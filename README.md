@@ -1,4 +1,4 @@
-# Zen-l-inite
+# Zen-l-initie
 Projet de programmation de fin de 1ere année de DUT Vannes.
 	
 
