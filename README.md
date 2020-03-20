@@ -2,10 +2,10 @@
 Projet de programmation de fin de 1ere année de DUT Vannes.
 	
 
-Il s'agit de créer un jeu sur plusieurs mois, individuellement. Les règles sont disponibles dans le pdf "besoin du client". L'ensemble de l'organisation du projet est bouleversé par le confinement général et la fermeture des établissement d'enseignement à cause de la pandémie du COVID-19.
+Il s'agit de créer un jeu sur plusieurs mois, individuellement. Les règles sont disponibles dans le pdf "besoin du client". L'ensemble de l'organisation du projet est bouleversé par le confinement général et la fermeture des établissements d'enseignements à cause de la pandémie du COVID-19.
 
 
-Les objectifs du projets sont d'accroitre ses compétences :
+Les objectifs du projet sont d'accroitre ses compétences :
 * D'analyse
 * De conception
 * En codage
@@ -16,7 +16,7 @@ Les objectifs du projets sont d'accroitre ses compétences :
 Organisation :
 -
 Nous disposons de 1h30 de travail encadré par semaine, le reste du travail doit être réalisé en autonomie.
-Juste avant les vacances nous disposons de 2 semaines de codage intensifs, dédiées au projet.
+Juste avant les vacances d'été nous disposons de 2 semaines de codage intensifs, dédiées au projet.
 
 
 Timeline Théorique :
@@ -29,7 +29,7 @@ Timeline Théorique :
 
 Evaluation :
 -
-* 6 avril : cahier des charge prévisionnel de gestion de projet
+* 6 avril : cahier des charges prévisionnel de gestion de projet
 * 18 mai : cahier d'analyse et de conception
 * 22 juin : 2 pages de bilan personnel
 * 22 juin : rendu et rapport final du projet
