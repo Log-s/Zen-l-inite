@@ -1,0 +1,15 @@
+A faire (dans l'ordre):
+	- Cahier des charges :
+		§ fonctionnalité de base
+		§ faire la 1ere page du cahier des charges 
+		§ fonctionnalité avancées
+		§ concevoir un visuel d'interface
+		§ faire le diagramme de Gantt
+		§ faire le diagramme de MPM
+
+	- A definir
+
+
+!!! Ne pas oublier de poser les questions au prof : 
+	- contenu des livrables
+	- estimation du projet
