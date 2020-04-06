@@ -1,4 +1,7 @@
 # Zen-l-initie
+
+![alt text](https://github.com/Log-s/Zen-l-initie/blob/master/Resources/logoZen.png)
+
 Projet de programmation de fin de 1ere année de DUT Vannes.
 	
 
