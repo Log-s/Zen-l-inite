@@ -1,8 +1,13 @@
 A faire (dans l'ordre):
 	- Cahier des charges :
-		§ faire le diagramme de Gantt
-		§ faire le diagramme de MPM
-		§ estimation du coup du projet
+		§ faire le diagramme de Gantt		(à compléter)
+		§ faire le diagramme de MPM		(à compléter)
+		§ estimation du coup du projet		(à compléter)
 
 	- Cahier de conception :
-
+		§ Diagramme de séquence boite noire
+		§ Diagramme de classe (analyse)
+		§ Diagramme de classe (conception)
+		§ Créer le squelette du programme + JavaDoc
+		§ Tests Unitaire (JUnit)
+		§ Fichier build.xml pour ANT
