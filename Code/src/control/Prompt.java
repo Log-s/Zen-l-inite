@@ -16,7 +16,6 @@ public class Prompt {
      * inputMode asks the user for an input, to select the gameMode :
      *      - HH (Human - Human)
      *      - HA (Human - Automated)
-     *      - AA (Automated - Automated)
      * 
      * @return Mode gameMode chosen by the user
      */
