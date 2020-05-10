@@ -23,7 +23,7 @@ public class Game {
      * 
      * @param player1 name of the first player
      * @param player2 name of the second player
-     * @param mode gameMode (for debugging purposes)
+     * @param gameMode gameMode (for debugging purposes)
      */
     public Game(String player1, String player2, Mode gameMode) {
 
@@ -36,7 +36,7 @@ public class Game {
      * 
      * @param player1 name of the first player
      * @param player2 name of the second player
-     * @param mode gameMode (for debugging purposes)
+     * @param gameMode gameMode (for debugging purposes)
      * @param dif Difficulty of the Automated player
      */
     public Game(String player1, String player2, Mode gameMode, Difficulty dif) {
@@ -96,6 +96,17 @@ public class Game {
      */
     public void makeMove() {
         
+    }
+
+
+
+    /**
+     * Removes a Pawn from pawnList, if this one is taken by the oppponent, and is therefor no longer in game
+     * 
+     * @param p Pawn to remove
+     */
+    public void removePawn(Pawn p) {
+
     }
 
 

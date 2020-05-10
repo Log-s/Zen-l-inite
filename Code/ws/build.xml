@@ -1,0 +1,44 @@
+<project name="Zen" default="test" basedir=".">
+
+    <description> Compiles, generates javaDoc, and runs JUnit tests </description>
+
+
+    <property name="src" location="../src" />
+    <property name="jar" location="../jar" />
+    <property name="class" location="../class" />
+    <property name="javadoc" location="../javaDoc" />
+
+
+    <target name="clean" description="Cleans the directories the build.xml works with" >
+        <delete dir="${jar}"/>
+        <delete dir="${javaDoc}"/>
+        <delete dir="${calss}"/>
+    </target>
+
+
+    <target name="compile" depends="clean" description="Compiles the project">
+        <mkdir dir="${class}"/>
+        <javac srcdir="${src}" destdir="${class}" includeantruntime="false" classpath="../class"/>
+    </target>
+
+
+    <target name="dist" depends="compile" description="creates a .jar file of the project">
+        <mkdir dir="${jar}"/>
+        <jar jarfile="${jar}/ZenLInitie.jar" basedir="${class}">
+            <manifest>
+                <attribute name="Main-Class" value="Laucher" />
+            </manifest>
+        </jar>
+    </target>
+
+
+    <target name="javaDoc" depends="dist" description="Generattes the JavaDoc">
+        <mkdir dir="${javadoc}"/>
+        <javadoc sourcepath="${src}" destdir="${javadoc}" />
+    </target>
+
+
+    <target name="test" depends="javaDoc" description="runs the tests">
+    </target>
+    
+</project>

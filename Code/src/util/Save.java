@@ -30,7 +30,7 @@ public class Save {
      * @param fileName name of the save.
      * @return a Game object that will be loaded by the app.
      */
-    public static Game readSave(String path) {
+    public static Game readSave(String fileName) {
         return new Game();
     }
 
