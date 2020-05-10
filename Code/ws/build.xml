@@ -12,13 +12,19 @@
     <target name="clean" description="Cleans the directories the build.xml works with" >
         <delete dir="${jar}"/>
         <delete dir="${javaDoc}"/>
-        <delete dir="${calss}"/>
+        <delete dir="${class}"/>
     </target>
 
 
     <target name="compile" depends="clean" description="Compiles the project">
         <mkdir dir="${class}"/>
-        <javac srcdir="${src}" destdir="${class}" includeantruntime="false" classpath="../class"/>
+        <javac destdir="${class}" includeantruntime="false" classpath="../class">
+            <src path="${src}"/>
+            <include name="control/*.java"/>
+            <include name="model/*.java"/>
+            <include name="util/*.java"/>
+            <exclude name="test/**"/>
+        </javac>
     </target>
 
 

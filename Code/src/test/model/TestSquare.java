@@ -1,4 +1,9 @@
-package test;
+package test.model;
+
+import org.junit.*;
+import static org.junit.Assert.*;
+
+import model.Square;
 
 public class TestSquare {
     
