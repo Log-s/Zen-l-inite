@@ -29,6 +29,19 @@ public class GameConfig {
 
 
     /**
+     * picks randomly the player who starts
+     * Original playing order is the order player names where enterd.
+     * This method randomly returns a boolean
+     * 
+     * @return -true : order is kept | -false : order is inverted
+     */
+    public boolean pickStartPlayer() {
+        return true;
+    }
+
+
+
+    /**
      * printConfig prints the configuration used for the game (gamemode, playernames, etc)
      */
     public void printConfig() {

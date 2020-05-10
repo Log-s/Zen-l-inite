@@ -1,5 +1,7 @@
 package util;
 
+import model.Game;
+
 /**
  * This class offers two static method, to save and load a game to/from a file (Serialized).
  * 
@@ -29,7 +31,7 @@ public class Save {
      * @return a Game object that will be loaded by the app.
      */
     public static Game readSave(String path) {
-
+        return new Game();
     }
 
 }

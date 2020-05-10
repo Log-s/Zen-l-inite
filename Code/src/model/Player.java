@@ -28,4 +28,13 @@ public abstract class Player {
      * Lauches the procedure of a new move
      */
     public abstract void newMove();
+
+
+
+    /**
+     * Method to be reimplemeted bu human and automated players.
+     * 
+     * @return a string containing formated information about the player
+     */
+    public abstract String toString();
 }

@@ -8,6 +8,8 @@ import java.util.ArrayList;
  */
 public class Game {
 
+    private int SIZE = 11;
+    private int[] lastZenPosition;
     protected Square[] grid;
     protected ArrayList<Pawn> pawnList;
     private Player player1;
@@ -39,6 +41,15 @@ public class Game {
      */
     public Game(String player1, String player2, Mode gameMode, Difficulty dif) {
 
+    }
+
+
+
+    /***
+     * class constructor in case the game is loaded
+     */
+    public Game() {
+        
     }
 
 
@@ -100,6 +111,16 @@ public class Game {
 
 
     /**
+     * Gets the number of pawn remanining possessed py the player (counting the ZEN pawn)
+     * Used to compare to the longuest chain
+     */
+    public int getNbPawn() {
+        return 0;
+    }
+
+
+
+    /**
      * isWon is called to verify if the game was won by one of the players
      * @return true if there is a winner or a tie, else otherwise
      */
@@ -116,4 +137,27 @@ public class Game {
 
     }
 
+
+
+    /**
+     * changes the current player to the other player
+     */
+    public void changePlayer() {
+
+    }
+
+
+
+    /**
+     * Checks if the enterd move is possible :
+     *  1) Evaluates the Direction by using relatives positions of the pawn and the entended move
+     *  2) Checks if there are some enemy pawn on the way
+     * 
+     * @param p Pawn to move
+     * @param coordinates position of the final square the player is trying to move is pawn on
+     * @return true if the move is possible, false otherwise
+     */
+    public boolean isMovePossible(Pawn p, int[] coordinates) {
+        return true;
+    }
 }

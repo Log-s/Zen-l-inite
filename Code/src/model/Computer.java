@@ -37,4 +37,14 @@ public class Computer extends Player {
     public Difficulty getDifficulty() {
         return Difficulty.RANDOM;
     }
+
+
+
+    /**
+     * returns a String with formated information about the player
+     * @return formated String
+     */
+    public String toString() {
+        return "";
+    }
 }
