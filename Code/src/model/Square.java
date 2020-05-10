@@ -39,6 +39,15 @@ public class Square {
 
 
     /**
+     * Chages the state of the square (free/not free)
+     */
+    public void changeState() {
+        
+    }
+
+
+
+    /**
      * Returns a string with formated information about the square
      * 
      * @return the formated string

@@ -1,0 +1,76 @@
+package test;
+
+public class TestSquare {
+    
+    Square s;
+
+
+
+    /**
+     * setUp
+     * Creates the test object before every test
+     */
+    @Before()
+    public void setUp() {
+        s = new Square(2,5);
+    }
+
+    /**
+     * tearDown
+     * Removes every link to objects (for the GC to do it's work)
+     */
+    @After()
+    public void tearDown() {
+        s = null;
+    }
+
+
+
+    /**
+     * tests if the square exists
+     */
+    @Test()
+    public void testExists() {
+        assertNotNull(s);
+    }
+
+    /**
+     * Tests if coordinate getters work
+     */
+    @Test()
+    public void testCoordinateGetters() {
+        assertEquals(2,s.getXPos());
+        assertEquals(5,s.getYPos());
+    }
+
+    /**
+     * Tests if isFree returns the right value
+     */
+    @Test()
+    public void testIsFree() {
+        assertEquals(false,s.isFree());
+    }
+
+    /**
+     * Tests if the change of state works (and tests isFree some more)
+     */
+    @Test()
+    public void testChangeState() {
+        assertEquals(false,s.isFree());
+        s.changeState();
+        assertEquals(true,s.isFree());
+        s.changeState();
+        assertEquals(false,s.isFree());
+    }
+
+    /**
+     * Tests if the toString methods works
+     */
+    @Test()
+    public void testToString() {
+        String test = s.toString();
+        String expected = "X = 2\nY = 5\nFree = false";
+        assertNotNull(test);
+        assertEquals(expected,test);
+    }
+}
