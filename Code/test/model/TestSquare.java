@@ -7,8 +7,7 @@ import model.Square;
 
 public class TestSquare {
     
-    Square s;
-
+    private Square s;
 
 
     /**

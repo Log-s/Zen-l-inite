@@ -1,2 +1,2 @@
 #! /bin/bash
-javac -d ../class ../src/Launcher.java ../src/model/*.java ../src/util/*.java ../src/control/*.java
+javac -d ../class ../src/Launcher.java ../src/model/*.java ../src/util/*.java ../src/control/*.java ../test/model/*.java
