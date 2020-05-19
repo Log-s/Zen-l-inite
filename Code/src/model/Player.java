@@ -24,6 +24,15 @@ public abstract class Player {
 
 
     /**
+     * Getter : gets the players name
+     */
+    public String getName() {
+        return "";
+    }
+
+
+
+    /**
      * Method to be reimplemented by humman and automated players.
      * Lauches the procedure of a new move
      */

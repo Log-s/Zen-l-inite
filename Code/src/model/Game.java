@@ -10,7 +10,7 @@ public class Game {
 
     private int SIZE = 11;
     private int[] lastZenPosition;
-    protected Square[] grid;
+    protected Square[][] grid;
     protected ArrayList<Pawn> pawnList;
     private Player player1;
     private Player player2;
@@ -73,6 +73,41 @@ public class Game {
 
 
     /**
+     * returns the arrayList of Pawns (for testing purposes)
+     * 
+     * @return pawnList attribut
+     */
+    public ArrayList<Pawn> getPawnList() {
+        return new ArrayList<Pawn>();
+    }
+
+
+
+    /**
+     * returns the grid (for testing purposes)
+     * 
+     * @return game board
+     */
+    public Square[][] getGrid() {
+        return new Square[0][0];
+    }
+
+
+
+    /**
+     * Gets the pawn on the given square
+     * 
+     * @param x x coordinate of the square
+     * @param y y coordinate of the square
+     * @return a pawn, or null if the square is empty
+     */
+    public Pawn getPawnOnSquare(int x, int y) {
+        return new Pawn(Color.ZEN);
+    }
+
+
+
+    /**
      * Method used to draw th board with the pawns in the current stat in the console
      */
     public void drawBoard() {
@@ -92,9 +127,13 @@ public class Game {
 
 
     /**
-     * updates pawns positions after readMove
+     * Moves a pawn on the grid
+     * 
+     * @param p pawn to move
+     * @param x x Coordinate of where to move the pawn
+     * @param y y Coordinate of where to move the pawn
      */
-    public void makeMove() {
+    public void makeMove(Pawn p, int x, int y) {
         
     }
 
@@ -113,19 +152,21 @@ public class Game {
 
     /**
      * Detects the longuest chain of a player. Is used to detect if there is a winner.
+     * 
+     * @param p Player to detect the longuest chain of
      * @return the longuest chain length
      */
-    public int detectLonguestChain() {
+    public int detectLonguestChain(Player p) {
         return 0;
     }
 
 
 
     /**
-     * Gets the number of pawn remanining possessed py the player (counting the ZEN pawn)
+     * Gets the number of pawn remanining possessed by the player (counting the ZEN pawn)
      * Used to compare to the longuest chain
      */
-    public int getNbPawn() {
+    public int getNbPawn(Player p) {
         return 0;
     }
 
@@ -160,15 +201,49 @@ public class Game {
 
 
     /**
+     * returns the current player (for testing purposes)
+     * 
+     * @return the current player
+     */
+    public Player getCurrent() {
+        return new Human("player");
+    }
+
+
+
+    /**
+     * returns the player 1 (for testing purposes)
+     * 
+     * @return the player 2
+     */
+    public Player getPlayer1() {
+        return new Human("player");
+    }
+
+
+
+    /**
+     * returns the player 2 (for testing purposes)
+     * 
+     * @return the player 2
+     */
+    public Player getPlayer2() {
+        return new Human("player");
+    }
+
+
+
+    /**
      * Checks if the enterd move is possible :
      *  1) Evaluates the Direction by using relatives positions of the pawn and the entended move
      *  2) Checks if there are some enemy pawn on the way
      * 
      * @param p Pawn to move
-     * @param coordinates position of the final square the player is trying to move is pawn on
+     * @param x x coordinate to move to
+     * @param y y coordinate to move to
      * @return true if the move is possible, false otherwise
      */
-    public boolean isMovePossible(Pawn p, int[] coordinates) {
+    public boolean isMovePossible(Pawn p, int x, int y) {
         return true;
     }
 }
