@@ -2,35 +2,46 @@
 
     <description> Compiles, generates javaDoc, and runs JUnit tests </description>
 
-
-    <property name="src" location="../src" />
-    <property name="jar" location="../jar" />
-    <property name="class" location="../class" />
+    <property name="main.build.dir" location="../build/main/" />
+    <property name="main.src.dir" location="../src/"/>
+    <property name="test.build.dir" location="../build/test/"/>
+    <property name="test.src.dir" location="../src/test/"/>
+    <property name="dist" location="../"/>
     <property name="javadoc" location="../javaDoc" />
+    <property name="testReport" location="../testReport"/>
+
+
+    <path id="classpath.test">
+        <pathelement location="${main.src.dir}lib/junit-4.13.jar"/>
+        <pathelement location="${main.src.dir}lib/hamcrest-core-1.3.jar"/>
+        <pathelement location="${main.build.dir}"/>
+    </path>
 
 
     <target name="clean" description="Cleans the directories the build.xml works with" >
-        <delete dir="${jar}"/>
-        <delete dir="${javaDoc}"/>
-        <delete dir="${class}"/>
+        <delete dir="${main.build.dir}"/>
+        <delete dir="${test.build.dir}"/>
+        <delete dir="${javadoc}"/>
+        <delete dir="${testReport}"/>
+        <delete file="{dist}/ZenLInitie.jar"/>
     </target>
 
 
     <target name="compile" depends="clean" description="Compiles the project">
-        <mkdir dir="${class}"/>
-        <javac destdir="${class}" includeantruntime="false" classpath="../class">
-            <src path="${src}"/>
-            <include name="control/*.java"/>
+        <mkdir dir="${main.build.dir}"/>
+        <javac destdir="${main.build.dir}" includeantruntime="false">
+            <src path="${main.src.dir}"/>
+            <include name="controle/*.java"/>
             <include name="model/*.java"/>
             <include name="util/*.java"/>
-            <exclude name="test/**"/>
+            <include name="*.java"/>
         </javac>
     </target>
 
 
     <target name="dist" depends="compile" description="creates a .jar file of the project">
-        <mkdir dir="${jar}"/>
-        <jar jarfile="${jar}/ZenLInitie.jar" basedir="${class}">
+        <mkdir dir="${dist}"/>
+        <jar jarfile="${dist}/ZenLInitie.jar" basedir="${main.build.dir}">
             <manifest>
                 <attribute name="Main-Class" value="Laucher" />
             </manifest>
@@ -38,13 +49,51 @@
     </target>
 
 
-    <target name="javaDoc" depends="dist" description="Generattes the JavaDoc">
+    <target name="javadoc" depends="dist" description="Generates the JavaDoc">
         <mkdir dir="${javadoc}"/>
-        <javadoc sourcepath="${src}" destdir="${javadoc}" />
+        <javadoc sourcepath="${main.src.dir}" destdir="${javadoc}" />
     </target>
 
 
-    <target name="test" depends="javaDoc" description="runs the tests">
+    <target name="test-compile" depends="javadoc">
+        <mkdir dir="${test.build.dir}"/>
+        <javac srcdir="${test.src.dir}" destdir="${test.build.dir}" includeantruntime="true">
+           <classpath refid="classpath.test"/>
+        </javac>
     </target>
+
+
+    <target name="test" depends="test-compile">
+        <junit printsummary="on" haltonfailure="no" fork="true">
+            <classpath>
+                <path refid="classpath.test"/>
+                <pathelement location="${test.build.dir}"/>
+            </classpath>
+            <formatter type="xml" />
+            <test name="test.model.PileTest"/>
+            <test name="test.model.TestComputer"/>
+            <test name="test.model.TestGame"/>
+            <test name="test.model.TestGameConfig"/>
+            <test name="test.model.TestHuman"/>
+            <test name="test.model.testPawn"/>
+            <test name="test.model.TestSquare"/>
+            <test name="test.util.TestSave"/>
+        </junit>
+        <mkdir dir="${testReport}"/>
+        <junitreport todir="${testReport}">
+            <fileset dir=".">
+                <include name="TEST-*.xml"/>
+            </fileset>
+            <report format="frames" todir="${testReport}"/>
+        </junitreport>
+        <delete file="TEST-test.model.PileTest.xml"/>
+        <delete file="TEST-test.model.TestComputer.xml"/>
+        <delete file="TEST-test.model.TestGame.xml"/>
+        <delete file="TEST-test.model.TestGameConfig.xml"/>
+        <delete file="TEST-test.model.TestHuman.xml"/>
+        <delete file="TEST-test.model.TestPawn.xml"/>
+        <delete file="TEST-test.model.TestSquare.xml"/>
+        <delete file="TEST-test.util.TestSave.xml"/>
+  </target>
     
 </project>
