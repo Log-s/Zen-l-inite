@@ -14,6 +14,6 @@ public class Launcher {
      * @param args String[] but isn't needed here.
      */
     public static void main (String[] args) {
-        
+        GameConfig gameInstance = new GameConfig();
     }
 }

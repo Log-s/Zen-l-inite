@@ -23,6 +23,11 @@ public class Square {
      */
     public Square(int x, int y) {
 
+        // value verifications are made by the calling method
+        // values are correct 
+        this.xPos = x;
+        this.yPos = y;
+        this.free = true;
     }
 
 
@@ -33,7 +38,7 @@ public class Square {
      * @return true if it's free, false otherwise
      */
     public boolean isFree() {
-        return true;
+        return this.free;
     }
 
 
@@ -42,18 +47,12 @@ public class Square {
      * Chages the state of the square (free/not free)
      */
     public void changeState() {
-        
-    }
-
-
-
-    /**
-     * Returns a string with formated information about the square
-     * 
-     * @return the formated string
-     */
-    public String toString() {
-        return "";
+        if (this.free) {
+            this.free = false;
+        }
+        else {
+            this.free = true;
+        }
     }
 
 
@@ -64,7 +63,7 @@ public class Square {
      * @return int with the x position
      */
     public int getXPos() {
-        return 0;
+        return this.xPos;
     }
 
 
@@ -75,6 +74,22 @@ public class Square {
      * @return in with y position
      */
     public int getYPos() {
-        return 0;
+        return this.yPos;
+    }
+
+
+
+    /**
+     * Returns a string with formated information about the square
+     * 
+     * @return the formated string
+     */
+    public String toString() {
+
+        String ret = "";
+        ret += "x : "+this.xPos;
+        ret += "y : "+this.yPos;
+        ret += "is free : "+this.free;
+        return ret;
     }
 }   

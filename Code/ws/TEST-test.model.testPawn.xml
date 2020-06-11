@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="1" failures="0" hostname="kali" name="test.model.testPawn" skipped="0" tests="1" time="0.0" timestamp="2020-05-20T14:45:52">
+<testsuite errors="1" failures="0" hostname="kali" name="test.model.testPawn" skipped="0" tests="1" time="0.0" timestamp="2020-06-11T08:28:01">
   <properties>
     <property name="ant.library.dir" value="/usr/share/ant/lib" />
     <property name="awt.toolkit" value="sun.awt.X11.XToolkit" />
@@ -10,7 +10,7 @@
     <property name="ant.file.Zen" value="/home/leo/Documents/Cours/Projet/Code/ws/build.xml" />
     <property name="sun.jnu.encoding" value="UTF-8" />
     <property name="main.src.dir" value="/home/leo/Documents/Cours/Projet/Code/src" />
-    <property name="java.class.path" value="/home/leo/Documents/Cours/Projet/Code/build/main:/home/leo/Documents/Cours/Projet/Code/build/test:/home/leo/junit/junit-4.12.jar:/home/leo/junit/hamcrest-core-1.3.jar:/usr/share/java/ant-launcher-1.10.7.jar:/usr/share/ant/lib/ant.jar:/usr/share/ant/lib/ant-junit.jar:/usr/share/ant/lib/ant-junit4.jar" />
+    <property name="java.class.path" value="/home/leo/Documents/Cours/Projet/Code/build/main:/home/leo/Documents/Cours/Projet/Code/build/test:/home/leo/junit/junit-4.12.jar:/home/leo/junit/hamcrest-core-1.3.jar:/usr/share/java/ant-launcher-1.10.8.jar:/usr/share/ant/lib/ant.jar:/usr/share/ant/lib/ant-junit.jar:/usr/share/ant/lib/ant-junit4.jar" />
     <property name="test.src.dir" value="/home/leo/Documents/Cours/Projet/Code/src/test" />
     <property name="dist" value="/home/leo/Documents/Cours/Projet/Code" />
     <property name="java.vm.vendor" value="Debian" />
@@ -25,7 +25,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD" />
     <property name="user.country" value="US" />
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-11-openjdk-amd64/lib" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner test.model.testPawn skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.SummaryJUnitResultFormatter showoutput=false outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/home/leo/Documents/Cours/Projet/Code/ws/TEST-test.model.testPawn.xml crashfile=/home/leo/Documents/Cours/Projet/Code/ws/junitvmwatcher14674579993654911102.properties propsfile=/home/leo/Documents/Cours/Projet/Code/ws/junit794537076325892719.properties" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner test.model.testPawn skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.SummaryJUnitResultFormatter showoutput=false outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/home/leo/Documents/Cours/Projet/Code/ws/TEST-test.model.testPawn.xml crashfile=/home/leo/Documents/Cours/Projet/Code/ws/junitvmwatcher8821148756944539246.properties propsfile=/home/leo/Documents/Cours/Projet/Code/ws/junit12195979697157387189.properties" />
     <property name="jdk.debug" value="release" />
     <property name="sun.cpu.endian" value="little" />
     <property name="user.home" value="/home/leo" />
@@ -64,7 +64,7 @@
     <property name="java.awt.printerjob" value="sun.print.PSPrinterJob" />
     <property name="ant.home" value="/usr/share/ant" />
     <property name="sun.os.patch.level" value="unknown" />
-    <property name="ant.version" value="Apache Ant(TM) version 1.10.7 compiled on October 24 2019" />
+    <property name="ant.version" value="Apache Ant(TM) version 1.10.8 compiled on January 8 1970" />
     <property name="java.library.path" value="/usr/java/packages/lib:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib" />
     <property name="java.vm.info" value="mixed mode, sharing" />
     <property name="java.vendor" value="Debian" />

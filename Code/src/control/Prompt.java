@@ -1,5 +1,8 @@
 package control;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 import model.Mode;
 
 /**
@@ -20,7 +23,26 @@ public class Prompt {
      * @return Mode gameMode chosen by the user
      */
     public static Mode inputMode() {
-        return Mode.HH;
+
+        String sMode = "";
+        int dialogButton = JOptionPane.YES_NO_OPTION;
+        int dialogResult = JOptionPane.NO_OPTION;
+
+        do {
+
+            do {
+                sMode = JOptionPane.showInputDialog(new JFrame(), "Choose game mode {HH | HA} :");
+            } while (!sMode.equals("HH") && !sMode.equals("HA"));
+
+            dialogResult = JOptionPane.showConfirmDialog (null, "You chose : "+sMode+"\nAre you sure ?","Verification",dialogButton);
+        } while (dialogResult == JOptionPane.NO_OPTION);
+
+        Mode mMode = Mode.HA;
+        if (sMode.equals("HH")) {
+            mMode = Mode.HH;
+        }
+
+        return mMode;
     }
 
 
@@ -31,7 +53,21 @@ public class Prompt {
      * @return String name of the player
      */
     public static String inputName() {
-        return "";
+
+        String name = "";
+        int dialogButton = JOptionPane.YES_NO_OPTION;
+        int dialogResult = JOptionPane.NO_OPTION;
+
+        do {
+
+            do {
+                name = JOptionPane.showInputDialog(new JFrame(), "Choose a name (can't be empty) :");
+            } while (name.equals(""));
+
+            dialogResult = JOptionPane.showConfirmDialog (null, "You chose : "+name+"\nAre you sure ?","Verification",dialogButton);
+        } while (dialogResult == JOptionPane.NO_OPTION);
+
+        return name;
     }
 
 
@@ -39,10 +75,45 @@ public class Prompt {
     /**
      * inputCoordinates asks the user for two Int, to form a coordinate (for a pawn to select of a move to make).
      * 
+     * @param SIZE is a int representing the size of the grid (is a square SIZExSIZE)
      * @return int[] a tab of int of lenght 2
      */
-    public static int[] inputCoordinates() {
-        int[] ret = {0,0};
+    public static int[] inputCoordinates(int SIZE) {
+
+        int x;
+        String xS;
+        int y;
+        String yS;
+        int dialogButton = JOptionPane.YES_NO_OPTION;
+        int dialogResult = JOptionPane.NO_OPTION;
+
+        do {
+
+            do {
+                xS = JOptionPane.showInputDialog(new JFrame(), "Choose a X coordinate (integers onlny):");
+                try {
+                    x = Integer.parseInt(xS);
+                }
+                catch (NumberFormatException e) {
+                    x = -1;
+                }
+            } while (x<0 || x>SIZE);
+
+            do {
+                yS = JOptionPane.showInputDialog(new JFrame(), "Choose a Y coordinate (integers onlny):");
+                try {
+                    y = Integer.parseInt(yS);
+                }
+                catch (NumberFormatException e) {
+                    y = -1;
+                }
+            } while (y<0 || y>SIZE);
+
+            dialogResult = JOptionPane.showConfirmDialog (null, "You chose :\nx : "+x+"\ny : "+y+"\nAre you sure ?","Verification",dialogButton);
+        } while (dialogResult == JOptionPane.NO_OPTION);
+
+        int[] ret = {x,y};
+
         return ret;
     }
 
@@ -51,9 +122,54 @@ public class Prompt {
     /**
      * askForQuit asks the user for y/n to maybe launch the save/quit procedure
      * 
-     * @return a char with the user's answer
+     * @return a char tab with the user's answer
+     * \n\t *char[0] = 'y' => user wants to quit
+     * \n\t *char[1] = 'y' => user wants to save
      */
-    public static char askForQuit() {
-        return 'y';
+    public static char[] askForQuit() {
+
+        String qS;
+        char q = 'n';
+        String sS;
+        char s = 'n';
+        int dialogButton = JOptionPane.YES_NO_OPTION;
+        int dialogResult = JOptionPane.YES_OPTION;
+
+        do {
+
+            q = 'e';    //e stands for error
+            s = 'e';
+            dialogResult = JOptionPane.YES_OPTION;
+
+            do {
+                qS = JOptionPane.showInputDialog(new JFrame(), "Do you want to quit ? (y/n)");
+                if (qS.length() == 1) {
+                    q = qS.charAt(0);
+                }
+                else {
+                    q = 'e';    //length error
+                }
+            } while (q != 'y' && q != 'n');
+
+            if (q == 'y') { // ask for save if user decides to quit
+                do {
+                    sS = JOptionPane.showInputDialog(new JFrame(), "Do you want to save ? (y/n)");
+                    if (sS.length() == 1) {
+                        s = sS.charAt(0);
+                    }
+                    else {
+                        s = 'e';    //length error
+                    }
+                } while (s != 'y' && s != 'n');
+            }
+
+            if (q == 'y' && s == 'n') { //verification if user chooses to quit without saving
+                dialogResult = JOptionPane.showConfirmDialog (null, "Quit without saving ?\nAre you sure ?","Verification",dialogButton);
+            }
+        } while (dialogResult == JOptionPane.NO_OPTION);
+
+        char[] ret = {q,s};
+
+        return ret;
     }
 }

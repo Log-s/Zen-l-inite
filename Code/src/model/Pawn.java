@@ -20,7 +20,12 @@ public class Pawn {
      * @param color Color of the pawn (can be WHITE, BLACK, ZEN)
      */
     public Pawn(Color color) {
-
+        if (color == null) {
+            System.err.println("[!] Error : null value -color- in model.Pawn.Pawn(Color color)");
+        }
+        else {
+            this.color = color;
+        }
     }
 
 
@@ -31,7 +36,7 @@ public class Pawn {
      * @return a Color
      */
     public Color getColor() {
-        return Color.ZEN;
+        return this.color;
     }
 
 
@@ -42,7 +47,7 @@ public class Pawn {
      * @return int with the x position
      */
     public int getXPos() {
-        return 0;
+        return this.xPos;
     }
 
 
@@ -53,7 +58,7 @@ public class Pawn {
      * @return int with the y position
      */
     public int getYPos() {
-        return 0;
+        return this.yPos;
     }
 
 
@@ -66,6 +71,10 @@ public class Pawn {
      */
     public void setPosition(int x, int y) {
 
+        // value verifications are made by the calling method
+        // values are correct 
+        this.xPos = x;
+        this.yPos = y;
     }
 
 
@@ -76,7 +85,12 @@ public class Pawn {
      * @return a string with the information
      */
     public String toString() {
-        return "";
+
+        String ret = "";
+        ret += "x : "+this.xPos;
+        ret += "y : "+this.yPos;
+        ret += "color : "+this.color;
+        return ret;
     }
     
 }
