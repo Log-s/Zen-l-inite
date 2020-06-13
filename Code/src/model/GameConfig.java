@@ -44,7 +44,7 @@ public class GameConfig {
         }
 
         if (this.gameMode == Mode.HA) {
-            this.diff = Difficulty.RANDOM;
+            this.diff = Difficulty.RANDOM; // to remove later
             Game myGame = new Game(player1, player2, gameMode, diff);
         }
         else {

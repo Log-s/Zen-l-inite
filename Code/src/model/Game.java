@@ -237,6 +237,12 @@ public class Game implements Serializable{
      */
     public void removePawn(Pawn p) {
 
+        if (p  == null) {
+            System.err.println("[!] Error - null value \"p\" | model.Game.removePawn(Pawn p)");
+        }
+        else {
+            this.pawnList.remove(p);
+        }
     }
 
 
@@ -417,6 +423,58 @@ public class Game implements Serializable{
      * @return true if the move is possible, false otherwise
      */
     public boolean isMovePossible(Pawn p, int x, int y) {
-        return true;
+
+        boolean possible = false;
+
+        if (p == null) {
+            System.err.println("[!] Error - null value \"p\" | model.Game.isMovePossible(Player p, int x, int y)");
+        }
+        else if (x<0 || x>this.SIZE) {
+            System.err.println("[!] Error - value  out of range \"x\" | model.Game.isMovePossible(Player p, int x, int y)");
+        }
+        else if (y<0 || y>this.SIZE) {
+            System.err.println("[!] Error - value  out of range \"y\" | model.Game.isMovePossible(Player p, int x, int y)");
+        }
+
+        else {
+
+            int xP = p.getXPos();
+            int yP = p.getYPos();
+            int count = 0;
+
+            if (xP-x == 0) {    //vertical direction
+                for (int i=0 ; i<this.SIZE ; i++) {
+                    if (!this.grid[i][x].isFree()) {
+                        count++;
+                    }
+                }
+                if (Math.abs(yP-y) == count) {
+                    // TODO : check for obstacles
+                    possible = true;
+                }
+            }
+            else if (yP-y == 0) {   //horizontal direction
+                for (int i=0 ; i<this.SIZE ; i++) {
+                    if (!this.grid[y][i].isFree()) {
+                        count++;
+                    }
+
+                }
+                if (Math.abs(xP-x) == count) {
+                    // TODO : check for obstacles
+                    possible = true;
+                }
+            }
+            // TODO : Diagonal directions (Double loop)
+
+            /*else if (yP-xP == y-x) {    //left_diag direction
+                direct = Direction.LEFT_DIAG;
+            }
+            else if (xP+xP == y+x) {    //right_diag direction
+                direct = Direction.RIGHT_DIAG;
+            }*/
+        }
+
+        return possible;
     }
 }

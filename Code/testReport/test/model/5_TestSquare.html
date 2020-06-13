@@ -49,7 +49,7 @@
     
         cur['java.awt.printerjob'] = 'sun.print.PSPrinterJob';
     
-        cur['java.class.path'] = '/home/leo/Documents/Cours/Projet/Code/build/main:/home/leo/Documents/Cours/Projet/Code/build/test:/home/leo/junit/junit-4.12.jar:/home/leo/junit/hamcrest-core-1.3.jar:/usr/share/java/ant-launcher-1.10.8.jar:/usr/share/ant/lib/ant.jar:/usr/share/ant/lib/ant-junit.jar:/usr/share/ant/lib/ant-junit4.jar';
+        cur['java.class.path'] = '/home/leo/Documents/Cours/Projet/Code/build/main:/home/leo/Documents/Cours/Projet/Code/build/test:/home/leo/Documents/Cours/Projet/Code/class:/home/leo/junit/junit-4.12.jar:/home/leo/junit/hamcrest-core-1.3.jar:/usr/share/java/ant-launcher-1.10.8.jar:/usr/share/ant/lib/ant.jar:/usr/share/ant/lib/ant-junit.jar:/usr/share/ant/lib/ant-junit4.jar';
     
         cur['java.class.version'] = '55.0';
     
@@ -123,7 +123,7 @@
     
         cur['sun.io.unicode.encoding'] = 'UnicodeLittle';
     
-        cur['sun.java.command'] = 'org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner test.model.TestSquare skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.SummaryJUnitResultFormatter showoutput=false outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/home/leo/Documents/Cours/Projet/Code/ws/TEST-test.model.TestSquare.xml crashfile=/home/leo/Documents/Cours/Projet/Code/ws/junitvmwatcher12778017691387158099.properties propsfile=/home/leo/Documents/Cours/Projet/Code/ws/junit18046627903038323642.properties';
+        cur['sun.java.command'] = 'org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner test.model.TestSquare skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.SummaryJUnitResultFormatter showoutput=false outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/home/leo/Documents/Cours/Projet/Code/ws/TEST-test.model.TestSquare.xml crashfile=/home/leo/Documents/Cours/Projet/Code/ws/junitvmwatcher2799125766542803286.properties propsfile=/home/leo/Documents/Cours/Projet/Code/ws/junit2768391620838300036.properties';
     
         cur['sun.java.launcher'] = 'SUN_STANDARD';
     
@@ -196,7 +196,7 @@
                 <th width="80%">Name</th><th>Tests</th><th>Errors</th><th>Failures</th><th>Skipped</th><th nowrap>Time(s)</th><th nowrap>Time Stamp</th><th>Host</th>
             </tr>
             <tr valign="top" class="Failure">
-                <td><a title="Display all tests" href="5_TestSquare.html">TestSquare</a></td><td><a title="Display all tests" href="5_TestSquare.html">5</a></td><td>0</td><td><a title="Display only failures" href="5_TestSquare-fails.html">4</a></td><td>0</td><td>0.215</td><td>2020-06-11T08:28:02</td><td>kali</td>
+                <td><a title="Display all tests" href="5_TestSquare.html">TestSquare</a></td><td><a title="Display all tests" href="5_TestSquare.html">5</a></td><td>0</td><td><a title="Display only failures" href="5_TestSquare-fails.html">3</a></td><td>0</td><td>0.210</td><td>2020-06-13T16:01:51</td><td>kali</td>
             </tr>
         </table>
         <h2>Tests</h2>
@@ -207,14 +207,14 @@
             <tr valign="top" class="Failure">
                 <td><a name="testToString"></a>testToString</td><td>Failure</td><td>expected:&lt;[X = 2
 Y = 5
-Free = false]&gt; but was:&lt;[]&gt;
+Free = fals]e&gt; but was:&lt;[x : 2y : 5is free : tru]e&gt;
                     <br>
                     <br>
                     <code>junit.framework.AssertionFailedError: expected:&lt;[X = 2
                         <br>
                         Y = 5
                         <br>
-                        Free = false]&gt; but was:&lt;[]&gt;
+                        Free = fals]e&gt; but was:&lt;[x : 2y : 5is free : tru]e&gt;
                         <br>
                         	at test.model.TestSquare.testToString(Unknown Source)
                         <br>
@@ -224,7 +224,7 @@ Free = false]&gt; but was:&lt;[]&gt;
                         <br>
                         	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
                         <br>
-                    </code></td><td>0.011</td>
+                    </code></td><td>0.025</td>
             </tr>
             <tr valign="top" class="TableRowColor">
                 <td><a name="testExists"></a>testExists</td><td>Success</td><td></td><td>0.000</td>
@@ -243,23 +243,10 @@ Free = false]&gt; but was:&lt;[]&gt;
                         <br>
                         	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
                         <br>
-                    </code></td><td>0.001</td>
+                    </code></td><td>0.002</td>
             </tr>
-            <tr valign="top" class="Failure">
-                <td><a name="testCoordinateGetters"></a>testCoordinateGetters</td><td>Failure</td><td>expected:&lt;2&gt; but was:&lt;0&gt;
-                    <br>
-                    <br>
-                    <code>junit.framework.AssertionFailedError: expected:&lt;2&gt; but was:&lt;0&gt;
-                        <br>
-                        	at test.model.TestSquare.testCoordinateGetters(Unknown Source)
-                        <br>
-                        	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-                        <br>
-                        	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-                        <br>
-                        	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-                        <br>
-                    </code></td><td>0.001</td>
+            <tr valign="top" class="TableRowColor">
+                <td><a name="testCoordinateGetters"></a>testCoordinateGetters</td><td>Success</td><td></td><td>0.000</td>
             </tr>
             <tr valign="top" class="Failure">
                 <td><a name="testChangeState"></a>testChangeState</td><td>Failure</td><td>expected:&lt;false&gt; but was:&lt;true&gt;

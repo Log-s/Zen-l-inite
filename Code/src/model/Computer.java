@@ -8,6 +8,12 @@ package model;
  */
 public class Computer extends Player {
 
+
+    private Difficulty diff;
+
+
+
+
     /**
      * class constructor, that calls upon the Player(String) constructor
      * 
@@ -16,12 +22,19 @@ public class Computer extends Player {
      */
     public Computer(String name, Difficulty diff) {
         super(name);
+
+        if (diff == null) {
+            System.err.println("[!] Error - null value \"diff\" | model.Computer.Computer(String name, Difficulty diff)");
+        }
+        else {
+            this.diff = diff;
+        }
     }
 
 
 
     /**
-     * Allow the automated player to move a pawn on ti's turn
+     * Allow the automated player to move a pawn on it's turn
      */
     public void newMove() {
 
@@ -35,7 +48,7 @@ public class Computer extends Player {
      * @return the difficulty
      */
     public Difficulty getDifficulty() {
-        return Difficulty.RANDOM;
+        return this.diff;
     }
 
 
@@ -45,6 +58,11 @@ public class Computer extends Player {
      * @return formated String
      */
     public String toString() {
-        return "";
+        
+        String ret = "";
+        ret += "Computer\n";
+        ret += "Name : "+this.name;
+
+        return ret;
     }
 }

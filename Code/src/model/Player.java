@@ -10,7 +10,7 @@ import java.io.Serializable;
  */
 public abstract class Player implements Serializable {
 
-    private String name;
+    protected String name;
 
 
 
@@ -21,6 +21,13 @@ public abstract class Player implements Serializable {
      */
     public Player(String name) {
 
+        if (name == null) {
+            System.err.println("[!] Error - null value \"name\" | model.Player.Player(String name)");
+        }
+
+        else {
+            this.name = name;
+        }
     }
 
 
@@ -29,7 +36,7 @@ public abstract class Player implements Serializable {
      * Getter : gets the players name
      */
     public String getName() {
-        return "";
+        return this.name;
     }
 
 

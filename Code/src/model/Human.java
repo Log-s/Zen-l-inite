@@ -33,6 +33,11 @@ public class Human extends Player {
      * @return formated String
      */
     public String toString() {
-        return "";
+        
+        String ret = "";
+        ret += "Human\n";
+        ret += "Name : "+this.name;
+        
+        return ret;
     }
 }

@@ -49,7 +49,7 @@
     
         cur['java.awt.printerjob'] = 'sun.print.PSPrinterJob';
     
-        cur['java.class.path'] = '/home/leo/Documents/Cours/Projet/Code/build/main:/home/leo/Documents/Cours/Projet/Code/build/test:/home/leo/junit/junit-4.12.jar:/home/leo/junit/hamcrest-core-1.3.jar:/usr/share/java/ant-launcher-1.10.8.jar:/usr/share/ant/lib/ant.jar:/usr/share/ant/lib/ant-junit.jar:/usr/share/ant/lib/ant-junit4.jar';
+        cur['java.class.path'] = '/home/leo/Documents/Cours/Projet/Code/build/main:/home/leo/Documents/Cours/Projet/Code/build/test:/home/leo/Documents/Cours/Projet/Code/class:/home/leo/junit/junit-4.12.jar:/home/leo/junit/hamcrest-core-1.3.jar:/usr/share/java/ant-launcher-1.10.8.jar:/usr/share/ant/lib/ant.jar:/usr/share/ant/lib/ant-junit.jar:/usr/share/ant/lib/ant-junit4.jar';
     
         cur['java.class.version'] = '55.0';
     
@@ -123,7 +123,7 @@
     
         cur['sun.io.unicode.encoding'] = 'UnicodeLittle';
     
-        cur['sun.java.command'] = 'org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner test.util.TestSave skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.SummaryJUnitResultFormatter showoutput=false outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/home/leo/Documents/Cours/Projet/Code/ws/TEST-test.util.TestSave.xml crashfile=/home/leo/Documents/Cours/Projet/Code/ws/junitvmwatcher15002178020579190888.properties propsfile=/home/leo/Documents/Cours/Projet/Code/ws/junit4362405040569867530.properties';
+        cur['sun.java.command'] = 'org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner test.util.TestSave skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.SummaryJUnitResultFormatter showoutput=false outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/home/leo/Documents/Cours/Projet/Code/ws/TEST-test.util.TestSave.xml crashfile=/home/leo/Documents/Cours/Projet/Code/ws/junitvmwatcher6443991782042678591.properties propsfile=/home/leo/Documents/Cours/Projet/Code/ws/junit8853024141175280457.properties';
     
         cur['sun.java.launcher'] = 'SUN_STANDARD';
     
@@ -196,7 +196,7 @@
                 <th width="80%">Name</th><th>Tests</th><th>Errors</th><th>Failures</th><th>Skipped</th><th nowrap>Time(s)</th><th nowrap>Time Stamp</th><th>Host</th>
             </tr>
             <tr valign="top" class="Failure">
-                <td><a title="Display all tests" href="7_TestSave.html">TestSave</a></td><td><a title="Display all tests" href="7_TestSave.html">1</a></td><td>0</td><td><a title="Display only failures" href="7_TestSave-fails.html">1</a></td><td>0</td><td>0.180</td><td>2020-06-11T08:28:02</td><td>kali</td>
+                <td><a title="Display all tests" href="7_TestSave.html">TestSave</a></td><td><a title="Display all tests" href="7_TestSave.html">1</a></td><td>0</td><td><a title="Display only failures" href="7_TestSave-fails.html">1</a></td><td>0</td><td>0.341</td><td>2020-06-13T16:01:52</td><td>kali</td>
             </tr>
         </table>
         <h2>Tests</h2>
@@ -205,10 +205,10 @@
                 <th>Name</th><th>Status</th><th width="80%">Type</th><th nowrap>Time(s)</th>
             </tr>
             <tr valign="top" class="Failure">
-                <td><a name="testSaveLoad"></a>testSaveLoad</td><td>Failure</td><td>expected:&lt;model.Game@26f67b76&gt; but was:&lt;model.Game@153f5a29&gt;
+                <td><a name="testSaveLoad"></a>testSaveLoad</td><td>Failure</td><td>expected:&lt;model.Game@1810399e&gt; but was:&lt;model.Game@32d992b2&gt;
                     <br>
                     <br>
-                    <code>junit.framework.AssertionFailedError: expected:&lt;model.Game@26f67b76&gt; but was:&lt;model.Game@153f5a29&gt;
+                    <code>junit.framework.AssertionFailedError: expected:&lt;model.Game@1810399e&gt; but was:&lt;model.Game@32d992b2&gt;
                         <br>
                         	at test.util.TestSave.testSaveLoad(Unknown Source)
                         <br>
@@ -218,13 +218,23 @@
                         <br>
                         	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
                         <br>
-                    </code></td><td>0.010</td>
+                    </code></td><td>0.089</td>
             </tr>
         </table>
         <div class="Properties">
             <a href="javascript:displayProperties('test.util.TestSave');">
                     Properties &raquo;
                 </a>
+        </div>
+        <div class="Properties">
+            <a href="./7_TestSave-out.html">
+                        System.out &raquo;
+                    </a>
+        </div>
+        <div class="Properties">
+            <a href="./7_TestSave-err.html">
+                        System.err &raquo;
+                    </a>
         </div>
     </body>
 </html>
