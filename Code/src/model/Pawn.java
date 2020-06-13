@@ -1,12 +1,14 @@
 package model;
 
+import java.io.Serializable;
+
 /**
  * class that models a pawn
  * 
  * @author Léo DESMONTS - IUT VANNES - 2020
  * @version 1.0
  */
-public class Pawn {
+public class Pawn implements Serializable {
 
     private Color color;
     private int xPos;
@@ -88,8 +90,8 @@ public class Pawn {
 
         String ret = "";
         ret += "x : "+this.xPos;
-        ret += "y : "+this.yPos;
-        ret += "color : "+this.color;
+        ret += " y : "+this.yPos;
+        ret += " color : "+this.color;
         return ret;
     }
     

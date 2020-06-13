@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 
 /**
  * class that models a square, meant to be part of the playing grid
@@ -7,7 +8,7 @@ package model;
  * @author Léo DESMONTS - IUT VANNES - 2020
  * @version 1.0
  */
-public class Square {
+public class Square implements Serializable {
 
     private int xPos;
     private int yPos;

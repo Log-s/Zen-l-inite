@@ -1,14 +1,21 @@
 package model;
 
+import util.Save;
+
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
+import java.util.Scanner;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.Serializable;
 
 /**
  * Main class that handles the game.
  * Handles the board, the main loop, the end conditions
  */
-public class Game {
+public class Game implements Serializable{
 
-    private int SIZE = 11;
+    private final int SIZE = 11;
     private int[] lastZenPosition;
     protected Square[][] grid;
     protected ArrayList<Pawn> pawnList;
@@ -27,6 +34,23 @@ public class Game {
      */
     public Game(String player1, String player2, Mode gameMode) {
 
+        if (player1 == null) {
+            System.err.println("[!] Error - null value \"player1\" | model.Game.Game(String player1, String player2, Mode gameMode)");
+        }
+        else if (player2 == null) {
+            System.err.println("[!] Error - null value \"player2\" | model.Game.Game(String player1, String player2, Mode gameMode)");
+        }
+        else if (gameMode == null) {
+            System.err.println("[!] Error - null value \"gameMode\" | model.Game.Game(String player1, String player2, Mode gameMode)");
+        }
+
+        else {
+            this.setBoard();
+            this.player1 = new Human(player1);
+            this.player2 = new Human(player2);
+            this.current = this.player1;
+            this.drawBoard();
+        }
     }
 
 
@@ -39,8 +63,27 @@ public class Game {
      * @param gameMode gameMode (for debugging purposes)
      * @param dif Difficulty of the Automated player
      */
-    public Game(String player1, String player2, Mode gameMode, Difficulty dif) {
+    public Game(String player1, String player2, Mode gameMode, Difficulty diff) {
+        if (player1 == null) {
+            System.err.println("[!] Error - null value \"player1\" | model.Game.Game(String player1, String player2, Mode gameMode, Difficulty diff)");
+        }
+        else if (player2 == null) {
+            System.err.println("[!] Error - null value \"player2\" | model.Game.Game(String player1, String player2, Mode gameMode, Difficulty diff)");
+        }
+        else if (gameMode == null) {
+            System.err.println("[!] Error - null value \"gameMode\" | model.Game.Game(String player1, String player2, Mode gameMode, Difficulty diff)");
+        }
+        else if (diff == null) {
+            System.err.println("[!] Error - null value \"diff\" | model.Game.Game(String player1, String player2, Mode gameMode, Difficulty diff)");
+        }
 
+        else {
+            this.setBoard();
+            this.player1 = new Human(player1);
+            this.player2 = new Computer(player2,diff);
+            this.current = this.player1;
+            this.drawBoard();
+        }
     }
 
 
@@ -78,7 +121,7 @@ public class Game {
      * @return pawnList attribut
      */
     public ArrayList<Pawn> getPawnList() {
-        return new ArrayList<Pawn>();
+        return this.pawnList;
     }
 
 
@@ -89,7 +132,7 @@ public class Game {
      * @return game board
      */
     public Square[][] getGrid() {
-        return new Square[0][0];
+        return this.grid;
     }
 
 
@@ -102,7 +145,16 @@ public class Game {
      * @return a pawn, or null if the square is empty
      */
     public Pawn getPawnOnSquare(int x, int y) {
-        return new Pawn(Color.ZEN);
+
+        Pawn ret = null;
+
+        for (Pawn p : this.pawnList) {
+            if (p.getXPos() == x && p.getYPos() == y) {
+                ret = p;
+            }
+        }
+
+        return ret;
     }
 
 
@@ -111,6 +163,45 @@ public class Game {
      * Method used to draw th board with the pawns in the current stat in the console
      */
     public void drawBoard() {
+
+        System.out.println("  | 0   1   2   3   4   5   6   7   8   9   10");
+        System.out.println("----------------------------------------------");
+        for (int y=0 ; y<this.SIZE ; y++) {
+
+            if (y<10) {
+                System.out.print(y+" | ");
+            }
+            else {
+                System.out.print(y+"| ");
+            }
+
+            for (int x=0 ; x<this.SIZE ; x++) {
+
+                if (!this.grid[y][x].isFree()) {
+                    switch (this.getPawnOnSquare(x, y).getColor()) {
+                        case BLACK:
+                            System.out.print("O");
+                            break;
+                        case WHITE:
+                            System.out.print("X");
+                            break;
+                        case ZEN:
+                            System.out.print("Z");
+                            break;
+                    }
+                }
+                else {
+                    System.out.print(".");
+                }
+                System.out.print("   ");
+            }
+            if (y<10) {
+                System.out.print("\n  |\n");
+            }
+            else {
+                System.out.println();
+            }
+        }
 
     }
 
@@ -165,9 +256,34 @@ public class Game {
     /**
      * Gets the number of pawn remanining possessed by the player (counting the ZEN pawn)
      * Used to compare to the longuest chain
+     * 
+     * @return nb of pawns remaining (-1 if an error occurs)
      */
     public int getNbPawn(Player p) {
-        return 0;
+        
+        int i = -1;
+
+        if (p == null) {
+            System.err.println("[!] Error - null value \"p\" | model.Game.getNbPawn(Player p)");
+        }
+
+        else {
+
+            i = 0;
+            Color c = Color.BLACK;
+            if (p == this.player1) {
+                c = Color.WHITE;
+            }
+
+            for (Pawn pwn : this.pawnList) {
+                if (pwn.getColor() == c || pwn.getColor() == Color.ZEN) {
+                    i++;
+                }
+            }
+
+        }
+
+        return i;
     }
 
 
@@ -187,6 +303,57 @@ public class Game {
      */
     public void setBoard() {
 
+        this.grid = new Square[this.SIZE][this.SIZE];
+        
+        for (int y=0 ; y<this.SIZE ; y++) {     //initilizing grid
+            for (int x=0 ; x<this.SIZE ; x++) {
+                this.grid[y][x] = new Square(x, y);
+            }
+        }
+
+        this.pawnList = new ArrayList<Pawn>();
+        ArrayList<String> content = new ArrayList<String>();
+
+        try {
+
+            Scanner sc = new Scanner(new FileReader("../data/config/pwnList.txt"));
+            sc.useDelimiter("\\s*:\\s*");
+
+            while(sc.hasNext()){
+        		content.add(sc.next());
+        	}
+
+            sc.close();
+
+        for (int i=0 ; i<content.size() ; i=i+3) {
+            Color c = null;
+            switch(content.get(i+2)) {
+                case "W":
+                    c = Color.WHITE;
+                    break;
+                case "B":
+                    c = Color.BLACK;
+                    break;
+                case "Z":
+                    c = Color.ZEN;
+                    break;
+            }
+            Pawn p = new Pawn(c);
+            p.setPosition(Integer.parseInt(content.get(i)), Integer.parseInt(content.get(i+1)));
+            this.pawnList.add(p);
+            this.grid[Integer.parseInt(content.get(i))][Integer.parseInt(content.get(i+1))].changeState();
+        }
+
+        } catch (FileNotFoundException e) {
+            System.err.println("[!] Error - file not found : ../ressources/config/pwnList.txt | model.Game.setBoard()");
+            e.printStackTrace();
+        } catch (NoSuchElementException e) {
+            System.err.println("[!] Error - no more elements : method next() | model.Game.setBoard()");
+            e.printStackTrace();
+        } catch (NumberFormatException e) {
+            System.err.println("[!] Error - parsing error : method Integer.parseInt() | model.Game.setBoard()");
+            e.printStackTrace();
+        }
     }
 
 
@@ -196,6 +363,12 @@ public class Game {
      */
     public void changePlayer() {
 
+        if (this.current == this.player1) {
+            this.current = this.player2;
+        }
+        else {
+            this.current = this.player1;
+        }
     }
 
 
@@ -206,7 +379,7 @@ public class Game {
      * @return the current player
      */
     public Player getCurrent() {
-        return new Human("player");
+        return this.current;
     }
 
 
@@ -217,7 +390,7 @@ public class Game {
      * @return the player 2
      */
     public Player getPlayer1() {
-        return new Human("player");
+        return this.player1;
     }
 
 
@@ -228,7 +401,7 @@ public class Game {
      * @return the player 2
      */
     public Player getPlayer2() {
-        return new Human("player");
+        return this.player2;
     }
 
 

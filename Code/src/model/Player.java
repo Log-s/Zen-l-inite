@@ -1,12 +1,14 @@
 package model;
 
+import java.io.Serializable;
+
 /**
  * abstract class modeling a player, and common attributs/method to human and automated players.
  * 
  * @author Léo DESMONTS - IUT VANNES - 2020
  * @version 1.0
  */
-public abstract class Player {
+public abstract class Player implements Serializable {
 
     private String name;
 
