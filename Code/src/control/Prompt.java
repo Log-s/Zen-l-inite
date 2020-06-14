@@ -73,46 +73,71 @@ public class Prompt {
 
 
     /**
-     * inputCoordinates asks the user for two Int, to form a coordinate (for a pawn to select of a move to make).
+     * inputCoordinates asks the user for two Ints.
+     * tab[0] : pawn x position     ;       tab[1] : pawn y position
+     * tab[2] : move x position     ;       tab[3] : move x positions
      * 
-     * @param SIZE is a int representing the size of the grid (is a square SIZExSIZE)
-     * @return int[] a tab of int of lenght 2
+     * @return int[] a tab of int of lenght 4
      */
-    public static int[] inputCoordinates(int SIZE) {
+    public static int[] inputCoordinates() {
 
-        int x;
-        String xS;
-        int y;
-        String yS;
+        int xP;
+        String xPS;
+        int yP;
+        String yPS;
+        int xM;
+        String xMS;
+        int yM;
+        String yMS;
         int dialogButton = JOptionPane.YES_NO_OPTION;
         int dialogResult = JOptionPane.NO_OPTION;
 
         do {
 
             do {
-                xS = JOptionPane.showInputDialog(new JFrame(), "Choose a X coordinate (integers onlny):");
+                xPS = JOptionPane.showInputDialog(new JFrame(), "Choose Pawn's x coordinate (integers only):");
                 try {
-                    x = Integer.parseInt(xS);
+                    xP = Integer.parseInt(xPS);
                 }
                 catch (NumberFormatException e) {
-                    x = -1;
+                    xP = -1;
                 }
-            } while (x<0 || x>SIZE);
+            } while (xP<0 || xP>10);
 
             do {
-                yS = JOptionPane.showInputDialog(new JFrame(), "Choose a Y coordinate (integers onlny):");
+                yPS = JOptionPane.showInputDialog(new JFrame(), "Choose Pawn's y coordinate (integers only):");
                 try {
-                    y = Integer.parseInt(yS);
+                    yP = Integer.parseInt(yPS);
                 }
                 catch (NumberFormatException e) {
-                    y = -1;
+                    yP = -1;
                 }
-            } while (y<0 || y>SIZE);
+            } while (yP<0 || yP>10);
 
-            dialogResult = JOptionPane.showConfirmDialog (null, "You chose :\nx : "+x+"\ny : "+y+"\nAre you sure ?","Verification",dialogButton);
+            do {
+                xMS = JOptionPane.showInputDialog(new JFrame(), "Choose a x coordinate (integers only):");
+                try {
+                    xM = Integer.parseInt(xMS);
+                }
+                catch (NumberFormatException e) {
+                    xM = -1;
+                }
+            } while (xM<0 || xM>10);
+
+            do {
+                yMS = JOptionPane.showInputDialog(new JFrame(), "Choose a y coordinate (integers only):");
+                try {
+                    yM = Integer.parseInt(yMS);
+                }
+                catch (NumberFormatException e) {
+                    yM = -1;
+                }
+            } while (yM<0 || yM>10);
+
+            dialogResult = JOptionPane.showConfirmDialog (null, "You chose to move the pawn ("+xP+","+yP+") to "+xM+","+yM,"Verification",dialogButton);
         } while (dialogResult == JOptionPane.NO_OPTION);
 
-        int[] ret = {x,y};
+        int[] ret = {xP,yP,xM,yM};
 
         return ret;
     }

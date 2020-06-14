@@ -43,6 +43,8 @@ public class GameConfig {
             this.player2 = tmp;
         }
 
+        this.printConfig();
+
         if (this.gameMode == Mode.HA) {
             this.diff = Difficulty.RANDOM; // to remove later
             Game myGame = new Game(player1, player2, gameMode, diff);
@@ -50,9 +52,6 @@ public class GameConfig {
         else {
             Game myGame = new Game(player1, player2, gameMode);
         }
-
-        this.printConfig();
-
     }
 
 
@@ -99,12 +98,13 @@ public class GameConfig {
         System.out.println("_____________________________________");
         System.out.println("|     Welcome to Zen l'Initie !      \\");
         System.out.println("|  ---------------------------------");
-        System.out.println("| Player 1 : "+this.player1);
-        System.out.println("| Player 2 : "+this.player2);
+        System.out.println("| Player 1 : "+this.player1+" (O)");
+        System.out.println("| Player 2 : "+this.player2+" (X)");
         System.out.println("| Game mode : "+this.gameMode);
         if (this.gameMode == Mode.HA) {
             System.out.println("| Bot Difficulty : "+this.diff);
         }
         System.out.println("|____________________________________/");
+        System.out.println();
     }
 }

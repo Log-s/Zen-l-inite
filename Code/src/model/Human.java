@@ -1,5 +1,8 @@
 package model;
 
+import java.util.ArrayList;
+import control.Prompt;
+
 /**
  * class that models a automated player
  * 
@@ -13,17 +16,22 @@ public class Human extends Player {
      * 
      * @param name name given to the human player
      */
-    public Human(String name) {
-        super(name);
+    public Human(String name, ArrayList<Pawn> pawnList) {
+        super(name, pawnList);
     }
 
 
 
     /**
      * Allow the player to move a pawn on his turn
+     * tab[0] : pawn x position     ;       tab[1] : pawn y position
+     * tab[2] : move x position     ;       tab[3] : move x positions
+     * 
+     * @return tab with move coordinates
      */
-    public void newMove() {
-
+    public int[] newMove() {
+        int[] coordinates = Prompt.inputCoordinates();
+        return coordinates;
     }
 
 

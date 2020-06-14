@@ -50,6 +50,7 @@ public class Game implements Serializable{
             this.player2 = new Human(player2);
             this.current = this.player1;
             this.drawBoard();
+            this.start();
         }
     }
 
@@ -83,6 +84,7 @@ public class Game implements Serializable{
             this.player2 = new Computer(player2,diff);
             this.current = this.player1;
             this.drawBoard();
+            this.start();
         }
     }
 
@@ -99,8 +101,15 @@ public class Game implements Serializable{
 
     /**
      * method used to start the game
+     * Also the game's main loop
      */
     public void start() {
+
+        while (!this.isWon()) {
+            this.readMove();
+            this.changePlayer();
+            this.drawBoard();
+        }
 
     }
 
@@ -180,10 +189,10 @@ public class Game implements Serializable{
                 if (!this.grid[y][x].isFree()) {
                     switch (this.getPawnOnSquare(x, y).getColor()) {
                         case BLACK:
-                            System.out.print("O");
+                            System.out.print("X");
                             break;
                         case WHITE:
-                            System.out.print("X");
+                            System.out.print("O");
                             break;
                         case ZEN:
                             System.out.print("Z");
@@ -202,6 +211,7 @@ public class Game implements Serializable{
                 System.out.println();
             }
         }
+        System.out.println();
 
     }
 
@@ -213,6 +223,16 @@ public class Game implements Serializable{
      */
     public void readMove() {
 
+        System.out.println(this.current.getName()+" your turn !");
+        int[] moveData = this.current.newMove();
+        Pawn p = this.getPawnOnSquare(moveData[0], moveData[1]);
+
+        while (p==null || !this.isMovePossible(p, moveData[2], moveData[3])) {
+            moveData = this.current.newMove();
+            p = this.getPawnOnSquare(moveData[0], moveData[1]);
+        }
+
+        this.makeMove(p, moveData[2], moveData[3]);
     }
 
 
@@ -225,6 +245,26 @@ public class Game implements Serializable{
      * @param y y Coordinate of where to move the pawn
      */
     public void makeMove(Pawn p, int x, int y) {
+
+        if (p == null) {
+            System.err.println("[!] Error - null value \"p\" | model.Game.makeMove(Pawn p, int x, int y)");
+        }
+        else if (x<0 || x>=this.SIZE) {
+            System.err.println("[!] Error - value out of bounds \"x\" | model.Game.makeMove(Pawn p, int x, int y)");
+        }
+        else if (y<0 || y>=this.SIZE) {
+            System.err.println("[!] Error - value out of bounds \"y\" | model.Game.makeMove(Pawn p, int x, int y)");
+        }
+        else {
+            this.grid[p.getYPos()][p.getXPos()].changeState();
+            if (!this.grid[y][x].isFree()) {
+                this.removePawn(this.getPawnOnSquare(x, y));
+            }
+            else {
+                this.grid[y][x].changeState();
+            }
+            p.setPosition(x, y);
+        }
         
     }
 
@@ -299,7 +339,7 @@ public class Game implements Serializable{
      * @return true if there is a winner or a tie, else otherwise
      */
     public boolean isWon() {
-        return true;
+        return false;
     }
 
 
@@ -424,23 +464,38 @@ public class Game implements Serializable{
      */
     public boolean isMovePossible(Pawn p, int x, int y) {
 
+        /*
+        Ne fontionne pas :
+	        $ bloquage par pions ennemis
+            $ déplacement en diagonal
+        */
+
         boolean possible = false;
 
         if (p == null) {
             System.err.println("[!] Error - null value \"p\" | model.Game.isMovePossible(Player p, int x, int y)");
         }
-        else if (x<0 || x>this.SIZE) {
-            System.err.println("[!] Error - value  out of range \"x\" | model.Game.isMovePossible(Player p, int x, int y)");
+        else if (x<0 || x>=this.SIZE) {
+            System.err.println("[!] Error - value  out of bounds \"x\" | model.Game.isMovePossible(Player p, int x, int y)");
         }
-        else if (y<0 || y>this.SIZE) {
-            System.err.println("[!] Error - value  out of range \"y\" | model.Game.isMovePossible(Player p, int x, int y)");
+        else if (y<0 || y>=this.SIZE) {
+            System.err.println("[!] Error - value  out of bounds \"y\" | model.Game.isMovePossible(Player p, int x, int y)");
         }
 
         else {
 
             int xP = p.getXPos();
             int yP = p.getYPos();
+            Color c = Color.BLACK; //to adapt to ZEN
+            if (p.getColor() == Color.BLACK) {
+                c = Color.WHITE;
+            }
+            else if (p.getColor() == Color.WHITE) {
+                c = Color.BLACK;
+            }
             int count = 0;
+            int startX = 0;
+            int startY = 0;
 
             if (xP-x == 0) {    //vertical direction
                 for (int i=0 ; i<this.SIZE ; i++) {
@@ -449,8 +504,16 @@ public class Game implements Serializable{
                     }
                 }
                 if (Math.abs(yP-y) == count) {
-                    // TODO : check for obstacles
                     possible = true;
+                    int isPos = -1;
+                    if (yP-y < 0) {
+                        isPos = 1;
+                    }
+                    for (int i=0 ; i<Math.abs(yP-y) ; i++) {
+                        if (!this.grid[yP+(i*isPos)][xP].isFree() && this.getPawnOnSquare(xP, yP).getColor() == c) {
+                            possible = false;
+                        }
+                    }
                 }
             }
             else if (yP-y == 0) {   //horizontal direction
@@ -461,18 +524,66 @@ public class Game implements Serializable{
 
                 }
                 if (Math.abs(xP-x) == count) {
+                    possible = true;
+                    int isPos = -1;
+                    if (xP-x < 0) {
+                        isPos = 1;
+                    }
+                    for (int i=0 ; i<Math.abs(yP-y) ; i++) {
+                        if (!this.grid[yP][xP+(i*isPos)].isFree() && this.getPawnOnSquare(xP, yP).getColor() == c) {
+                            possible = false;
+                        }
+                    }
+                }
+            }
+            else if (yP-xP == y-x) {    //left_diag direction
+                if (y-x >= 0) {
+                    startX = y-x;
+                    startY = 0;
+                }
+                else {
+                    startX = 0;
+                    startY = Math.abs(y-x);
+                }
+                int i=0;
+                while (startX-i > 0 && startY+i<this.SIZE) {
+                    if (!this.grid[startY+i][startX-i].isFree()) {
+                        count++;
+                    }
+                    i++;
+                }
+                if (Math.abs(xP-x) == count) {
                     // TODO : check for obstacles
                     possible = true;
                 }
             }
-            // TODO : Diagonal directions (Double loop)
-
-            /*else if (yP-xP == y-x) {    //left_diag direction
-                direct = Direction.LEFT_DIAG;
-            }
             else if (xP+xP == y+x) {    //right_diag direction
-                direct = Direction.RIGHT_DIAG;
-            }*/
+                if (y+x <= this.SIZE) {
+                    startX = 0;
+                    startY = x+y;
+                }
+                else {
+                    startX = y+x - this.SIZE-1;
+                    startY = this.SIZE-1;
+                }
+                int i=0;
+                while (startX+i < this.SIZE && startY-i<0) {
+                    if (!this.grid[startY+i][startX+i].isFree()) {
+                        count++;
+                    }
+                    i++;
+                }
+                if (Math.abs(xP-x) == count) {
+                    // TODO : check for obstacles
+                    possible = true;
+                }
+            }
+            if ((this.current == this.player1 && p.getColor() == Color.BLACK) || (this.current == this.player2 && p.getColor() == Color.WHITE)) {
+                possible = false;
+            }
+            if (!this.grid[y][x].isFree() && this.getPawnOnSquare(x, y).getColor() == p.getColor()) {  //checks if there is no friendy pawn on the destination square.
+                possible = false;
+            }
         }
 
         return possible;
