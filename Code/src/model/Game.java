@@ -5,6 +5,7 @@ import util.Save;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.Serializable;
@@ -46,8 +47,8 @@ public class Game implements Serializable{
 
         else {
             this.setBoard();
-            this.player1 = new Human(player1);
-            this.player2 = new Human(player2);
+            this.player1 = new Human(player1,this.pawnList);
+            this.player2 = new Human(player2,this.pawnList);
             this.current = this.player1;
             this.drawBoard();
             this.start();
@@ -80,8 +81,8 @@ public class Game implements Serializable{
 
         else {
             this.setBoard();
-            this.player1 = new Human(player1);
-            this.player2 = new Computer(player2,diff);
+            this.player1 = new Human(player1, this.pawnList);
+            this.player2 = new Computer(player2,this.pawnList,diff);
             this.current = this.player1;
             this.drawBoard();
             this.start();
@@ -466,8 +467,7 @@ public class Game implements Serializable{
 
         /*
         Ne fontionne pas :
-	        $ bloquage par pions ennemis
-            $ déplacement en diagonal
+	        $ bloquage par pions ennemis diagonales
         */
 
         boolean possible = false;
@@ -510,7 +510,7 @@ public class Game implements Serializable{
                         isPos = 1;
                     }
                     for (int i=0 ; i<Math.abs(yP-y) ; i++) {
-                        if (!this.grid[yP+(i*isPos)][xP].isFree() && this.getPawnOnSquare(xP, yP).getColor() == c) {
+                        if (!this.grid[yP+(i*isPos)][xP].isFree() && this.getPawnOnSquare(xP, yP+(i*isPos)).getColor() == c) {
                             possible = false;
                         }
                     }
@@ -529,25 +529,25 @@ public class Game implements Serializable{
                     if (xP-x < 0) {
                         isPos = 1;
                     }
-                    for (int i=0 ; i<Math.abs(yP-y) ; i++) {
-                        if (!this.grid[yP][xP+(i*isPos)].isFree() && this.getPawnOnSquare(xP, yP).getColor() == c) {
+                    for (int i=0 ; i<Math.abs(xP-x) ; i++) {
+                        if (!this.grid[yP][xP+(i*isPos)].isFree() && this.getPawnOnSquare(xP+(i*isPos), yP).getColor() == c) {
                             possible = false;
                         }
                     }
                 }
             }
             else if (yP-xP == y-x) {    //left_diag direction
-                if (y-x >= 0) {
-                    startX = y-x;
+                if (x-y >= 0) {
+                    startX = x-y;
                     startY = 0;
                 }
                 else {
                     startX = 0;
-                    startY = Math.abs(y-x);
+                    startY = Math.abs(x-y);
                 }
                 int i=0;
-                while (startX-i > 0 && startY+i<this.SIZE) {
-                    if (!this.grid[startY+i][startX-i].isFree()) {
+                while (startX+i<this.SIZE && startY+i<this.SIZE) {
+                    if (!this.grid[startY+i][startX+i].isFree()) {
                         count++;
                     }
                     i++;
@@ -567,7 +567,7 @@ public class Game implements Serializable{
                     startY = this.SIZE-1;
                 }
                 int i=0;
-                while (startX+i < this.SIZE && startY-i<0) {
+                while (startX-i>0 && startY+i<this.SIZE) {
                     if (!this.grid[startY+i][startX+i].isFree()) {
                         count++;
                     }

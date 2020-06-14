@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite errors="0" failures="1" hostname="ubuntu" name="test.model.TestComputer" skipped="0" tests="4" time="0.102" timestamp="2020-06-14T22:00:47">
+  <properties>
+    <property name="sun.desktop" value="gnome" />
+    <property name="awt.toolkit" value="sun.awt.X11.XToolkit" />
+    <property name="ant.library.dir" value="/usr/share/ant/lib" />
+    <property name="ant.file.type" value="file" />
+    <property name="java.specification.version" value="11" />
+    <property name="ant.project.name" value="Zen" />
+    <property name="sun.cpu.isalist" value="" />
+    <property name="ant.file.Zen" value="/home/leo/Documents/Zen-l-initie/Code/ws/build.xml" />
+    <property name="sun.jnu.encoding" value="UTF-8" />
+    <property name="main.src.dir" value="/home/leo/Documents/Zen-l-initie/Code/src" />
+    <property name="dist" value="/home/leo/Documents/Zen-l-initie/Code" />
+    <property name="java.class.path" value="/home/leo/Documents/Zen-l-initie/Code/build/main:/home/leo/Documents/Zen-l-initie/Code/build/test:/home/leo/Documents/Zen-l-initie/Code/class:/home/leo/junit/junit-4.12.jar:/home/leo/junit/hamcrest-core-1.3.jar:/usr/share/java/ant-launcher-1.10.5.jar:/usr/share/ant/lib/ant.jar:/usr/share/ant/lib/ant-junit.jar:/usr/share/ant/lib/ant-junit4.jar" />
+    <property name="test.src.dir" value="/home/leo/Documents/Zen-l-initie/Code/src/test" />
+    <property name="java.vm.vendor" value="Ubuntu" />
+    <property name="sun.arch.data.model" value="64" />
+    <property name="test.build.dir" value="/home/leo/Documents/Zen-l-initie/Code/build/test" />
+    <property name="testReport" value="/home/leo/Documents/Zen-l-initie/Code/testReport" />
+    <property name="java.vendor.url" value="https://ubuntu.com/" />
+    <property name="user.timezone" value="" />
+    <property name="os.name" value="Linux" />
+    <property name="java.vm.specification.version" value="11" />
+    <property name="sun.java.launcher" value="SUN_STANDARD" />
+    <property name="user.country" value="US" />
+    <property name="sun.boot.library.path" value="/usr/lib/jvm/java-11-openjdk-amd64/lib" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner test.model.TestComputer skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.SummaryJUnitResultFormatter showoutput=false outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/home/leo/Documents/Zen-l-initie/Code/ws/TEST-test.model.TestComputer.xml crashfile=/home/leo/Documents/Zen-l-initie/Code/ws/junitvmwatcher4363892948344432419.properties propsfile=/home/leo/Documents/Zen-l-initie/Code/ws/junit5487695887321515432.properties" />
+    <property name="jdk.debug" value="release" />
+    <property name="sun.cpu.endian" value="little" />
+    <property name="user.home" value="/home/leo" />
+    <property name="user.language" value="en" />
+    <property name="java.specification.vendor" value="Oracle Corporation" />
+    <property name="java.version.date" value="2020-01-14" />
+    <property name="java.home" value="/usr/lib/jvm/java-11-openjdk-amd64" />
+    <property name="file.separator" value="/" />
+    <property name="basedir" value="/home/leo/Documents/Zen-l-initie/Code/ws" />
+    <property name="java.vm.compressedOopsMode" value="32-bit" />
+    <property name="line.separator" value="&#xa;" />
+    <property name="ant.java.version" value="11" />
+    <property name="java.vm.specification.vendor" value="Oracle Corporation" />
+    <property name="java.specification.name" value="Java Platform API Specification" />
+    <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment" />
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers" />
+    <property name="java.runtime.version" value="11.0.6+10-post-Ubuntu-1ubuntu118.04.1" />
+    <property name="user.name" value="leo" />
+    <property name="ant.file" value="/home/leo/Documents/Zen-l-initie/Code/ws/build.xml" />
+    <property name="path.separator" value=":" />
+    <property name="main.build.dir" value="/home/leo/Documents/Zen-l-initie/Code/build/main" />
+    <property name="os.version" value="5.3.0-40-generic" />
+    <property name="javadoc" value="/home/leo/Documents/Zen-l-initie/Code/javaDoc" />
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment" />
+    <property name="file.encoding" value="UTF-8" />
+    <property name="ant.project.invoked-targets" value="test" />
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM" />
+    <property name="ant.core.lib" value="/usr/share/ant/lib/ant.jar" />
+    <property name="java.vendor.url.bug" value="https://bugs.launchpad.net/ubuntu/+source/openjdk-lts" />
+    <property name="java.io.tmpdir" value="/tmp" />
+    <property name="java.version" value="11.0.6" />
+    <property name="user.dir" value="/home/leo/Documents/Zen-l-initie/Code/ws" />
+    <property name="os.arch" value="amd64" />
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification" />
+    <property name="java.awt.printerjob" value="sun.print.PSPrinterJob" />
+    <property name="ant.home" value="/usr/share/ant" />
+    <property name="sun.os.patch.level" value="unknown" />
+    <property name="ant.version" value="Apache Ant(TM) version 1.10.5 compiled on March 28 2019" />
+    <property name="java.library.path" value="/usr/java/packages/lib:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib" />
+    <property name="java.vm.info" value="mixed mode, sharing" />
+    <property name="java.vendor" value="Ubuntu" />
+    <property name="java.vm.version" value="11.0.6+10-post-Ubuntu-1ubuntu118.04.1" />
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle" />
+    <property name="ant.file.type.Zen" value="file" />
+    <property name="java.class.version" value="55.0" />
+    <property name="ant.project.default-target" value="test" />
+  </properties>
+  <testcase classname="test.model.TestComputer" name="testToString" time="0.018">
+    <failure message="expected:&lt;Computer&#xa;Name [=] Bot1&gt; but was:&lt;Computer&#xa;Name [:] Bot1&gt;" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: expected:&lt;Computer
+Name [=] Bot1&gt; but was:&lt;Computer
+Name [:] Bot1&gt;
+	at test.model.TestComputer.testToString(Unknown Source)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+</failure>
+  </testcase>
+  <testcase classname="test.model.TestComputer" name="testGetDifficulty" time="0.0" />
+  <testcase classname="test.model.TestComputer" name="testGetName" time="0.0" />
+  <testcase classname="test.model.TestComputer" name="testExists" time="0.0" />
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
