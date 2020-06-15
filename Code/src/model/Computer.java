@@ -44,15 +44,42 @@ public class Computer extends Player {
     public int[] newMove() {
         
         int[] coordinates = new int[4];
+        Pawn p = null;
 
         if (this.diff == Difficulty.RANDOM) {
-            Pawn p;
             do {
                 p = this.pawnList.get((int) Math.random()*this.pawnList.size());
             } while (p.getColor() != Color.BLACK && p.getColor() != Color.ZEN);
         }
+
+        coordinates[0] = p.getXPos();
+        coordinates[1] = p.getYPos();
         
-        // TODO : Random coordinates generation
+        Direction direct = Direction.values()[(int) (Math.random() * (Direction.values().length))];
+        int invert = 1;
+        if ((int) (Math.random()*2) == 1) {
+            invert = -1;
+        }
+
+        int r = (int) (Math.random()*11);
+        switch (direct) {
+            case HORIZONTAL:
+                coordinates[2] = coordinates[0]+(r*invert);
+                coordinates[3] = coordinates[1];
+                break;
+            case VERTICAL:
+                coordinates[2] = coordinates[0];
+                coordinates[3] = coordinates[1]+(r*invert);
+                break;
+            case LEFT_DIAG:
+                coordinates[2] = coordinates[0]+(r*invert);
+                coordinates[3] = coordinates[1]+(r*invert);
+                break;
+            case RIGHT_DIAG:
+                coordinates[2] = coordinates[0]+(r*invert*(-1));
+                coordinates[3] = coordinates[1]+(r*invert);
+                break;
+        }
         return coordinates;
     }
 
