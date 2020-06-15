@@ -106,10 +106,18 @@ public class Game implements Serializable{
      */
     public void start() {
 
-        while (!this.isWon()) {
+        Player lastPlayer = this.player2;
+
+        while (!this.isWon(lastPlayer)) {
+
             this.readMove();
             this.changePlayer();
             this.drawBoard();
+
+            lastPlayer = this.player1;
+            if (this.current == this.player1) {
+                lastPlayer = this.player2;
+            }
         }
 
     }
@@ -224,7 +232,12 @@ public class Game implements Serializable{
      */
     public void readMove() {
 
-        System.out.println(this.current.getName()+" your turn !");
+        if (this.current == this.player1) {
+            System.out.println(this.current.getName()+" (O) your turn !");
+        }
+        else {
+            System.out.println(this.current.getName()+" (X) your turn !")
+        }
         int[] moveData = this.current.newMove();
         Pawn p = this.getPawnOnSquare(moveData[0], moveData[1]);
 
@@ -289,12 +302,14 @@ public class Game implements Serializable{
 
 
     /**
-     * Detects the longuest chain of a player. Is used to detect if there is a winner.
+     * Detects the lenght of a chain.
+     * Takes the first pawn in the pawnList's order and performs a Depth-First Search to mark every pawn that makes transitively contact with the first one.
      * 
-     * @param p Player to detect the longuest chain of
-     * @return the longuest chain length
+     * 
+     * @param p Player to detect the chain of
+     * @return the length of the chain
      */
-    public int detectLonguestChain(Player p) {
+    public int detectChain(Player p) {
         return 0;
     }
 
@@ -336,11 +351,20 @@ public class Game implements Serializable{
 
 
     /**
-     * isWon is called to verify if the game was won by one of the players
-     * @return true if there is a winner or a tie, else otherwise
+     * isWon is called to verify if the game was won by the given player
+     * 
+     * @param p Player who just played
+     * @return true if the player won
      */
-    public boolean isWon() {
-        return false;
+    public boolean isWon(Player p) {
+
+        boolean won = false;
+
+        if (this.getNbPawn(p) == this.detectChain(p)) {
+            won = true;
+        }
+
+        return won;
     }
 
 
@@ -545,37 +569,53 @@ public class Game implements Serializable{
                     startX = 0;
                     startY = Math.abs(x-y);
                 }
-                int i=0;
-                while (startX+i<this.SIZE && startY+i<this.SIZE) {
-                    if (!this.grid[startY+i][startX+i].isFree()) {
+                int j=0;
+                while (startX+j<this.SIZE && startY+j<this.SIZE) {
+                    if (!this.grid[startY+j][startX+j].isFree()) {
                         count++;
                     }
-                    i++;
+                    j++;
                 }
                 if (Math.abs(xP-x) == count) {
-                    // TODO : check for obstacles
                     possible = true;
+                    int isPos = -1;
+                    if (xP-x < 0) {
+                        isPos = 1;
+                    }
+                    for (int i=0 ; i<Math.abs(xP-x) ; i++) {
+                        if (!this.grid[yP+(i*isPos)][xP+(i*isPos)].isFree() && this.getPawnOnSquare(xP+(i*isPos), yP+(i*isPos)).getColor() == c) {
+                            possible = false;
+                        }
+                    }
                 }
             }
-            else if (xP+xP == y+x) {    //right_diag direction
-                if (y+x <= this.SIZE) {
-                    startX = 0;
-                    startY = x+y;
+            else if (xP+yP == y+x) {    //right_diag direction
+                if (y+x < this.SIZE) {
+                    startX = x+y;
+                    startY = 0;
                 }
                 else {
-                    startX = y+x - this.SIZE-1;
-                    startY = this.SIZE-1;
+                    startX = this.SIZE-1;
+                    startY = x+y-(this.SIZE-1);
                 }
-                int i=0;
-                while (startX-i>0 && startY+i<this.SIZE) {
-                    if (!this.grid[startY+i][startX+i].isFree()) {
+                int j=0;
+                while (startX-j>=0 && startY+j<this.SIZE) {
+                    if (!this.grid[startY+j][startX-j].isFree()) {
                         count++;
                     }
-                    i++;
+                    j++;
                 }
                 if (Math.abs(xP-x) == count) {
-                    // TODO : check for obstacles
                     possible = true;
+                    int isPos = -1;
+                    if (xP-x < 0) {
+                        isPos = 1;
+                    }
+                    for (int i=0 ; i<Math.abs(xP-x) ; i++) {
+                        if (!this.grid[yP+(i*isPos*(-1))][xP+(i*isPos)].isFree() && this.getPawnOnSquare(xP+(i*isPos), yP+(i*isPos*(-1))).getColor() == c) {
+                            possible = false;
+                        }
+                    }
                 }
             }
             if ((this.current == this.player1 && p.getColor() == Color.BLACK) || (this.current == this.player2 && p.getColor() == Color.WHITE)) {
