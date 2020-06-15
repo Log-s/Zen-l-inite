@@ -236,7 +236,7 @@ public class Game implements Serializable{
             System.out.println(this.current.getName()+" (O) your turn !");
         }
         else {
-            System.out.println(this.current.getName()+" (X) your turn !")
+            System.out.println(this.current.getName()+" (X) your turn !");
         }
         int[] moveData = this.current.newMove();
         Pawn p = this.getPawnOnSquare(moveData[0], moveData[1]);
@@ -310,7 +310,24 @@ public class Game implements Serializable{
      * @return the length of the chain
      */
     public int detectChain(Player p) {
+        
         return 0;
+
+    }
+
+
+
+    /**
+     * Gets a list of all remaining pawns of the given player
+     * 
+     * @param p Player to test
+     * @return an ArrayList<Pawn> with the player's pawns
+     */
+    private ArrayList<Pawn> getPlayerPawn(Player p) {
+
+        ArrayList<Pawn> playerList = new ArrayList<Pawn>();
+
+        return playerList;
     }
 
 
