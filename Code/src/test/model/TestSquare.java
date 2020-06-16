@@ -52,7 +52,7 @@ public class TestSquare {
      */
     @Test()
     public void testIsFree() {
-        assertEquals(false,s.isFree());
+        assertEquals(true,s.isFree());
     }
 
     /**
@@ -60,11 +60,11 @@ public class TestSquare {
      */
     @Test()
     public void testChangeState() {
-        assertEquals(false,s.isFree());
-        s.changeState();
         assertEquals(true,s.isFree());
         s.changeState();
         assertEquals(false,s.isFree());
+        s.changeState();
+        assertEquals(true,s.isFree());
     }
 
     /**
@@ -73,7 +73,7 @@ public class TestSquare {
     @Test()
     public void testToString() {
         String test = s.toString();
-        String expected = "X = 2\nY = 5\nFree = false";
+        String expected = "x : 2 | y : 5 | is free : true";
         assertNotNull(test);
         assertEquals(expected,test);
     }

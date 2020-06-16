@@ -20,15 +20,16 @@ import java.io.Serializable;
  */
 public class Game implements Serializable{
 
+    private static final long serialVersionUID = 6529685098267757690L;
+
     public final int SIZE = 11;
-    private int[] lastZenPosition;
     public Square[][] grid;
     protected ArrayList<Pawn> pawnList;
     private Player player1;
     private Player player2;
     private Player current;
-
-
+    private Mode gameMode;
+    private Difficulty diff;
 
     /**
      * class constructor in case both player are human
@@ -54,6 +55,7 @@ public class Game implements Serializable{
             this.player1 = new Human(player1,this.pawnList);
             this.player2 = new Human(player2,this.pawnList);
             this.current = this.player1;
+            this.gameMode = gameMode;
             Prints.board(this);
             this.start();
         }
@@ -67,7 +69,7 @@ public class Game implements Serializable{
      * @param player1 name of the first player
      * @param player2 name of the second player
      * @param gameMode gameMode (for debugging purposes)
-     * @param dif Difficulty of the Automated player
+     * @param diff Difficulty of the Automated player
      */
     public Game(String player1, String player2, Mode gameMode, Difficulty diff) {
         if (player1 == null) {
@@ -88,6 +90,8 @@ public class Game implements Serializable{
             this.player1 = new Human(player1, this.pawnList);
             this.player2 = new Computer(player2,this.pawnList,diff);
             this.current = this.player1;
+            this.diff = diff;
+            this.gameMode = gameMode;
             Prints.board(this);
             this.start();
         }
@@ -99,7 +103,7 @@ public class Game implements Serializable{
      * class constructor in case the game is loaded
      */
     public Game() {
-        
+
     }
 
 
@@ -114,9 +118,29 @@ public class Game implements Serializable{
 
         while (!this.isWon(lastPlayer)) {
 
+            Prompt.clear();
+            Prints.config(player1.getName(), player2.getName(), this.gameMode, this.diff);
+            Prints.board(this);
+            
+            if ((this.gameMode==Mode.HA && this.current!=this.player2) || this.gameMode==Mode.HH) {
+                String[] saveInfo = Prompt.askForQuit();
+                for (String s : saveInfo) {
+                    System.out.println(s);
+                }
+                if (saveInfo[0].equals("y") && saveInfo[1].equals("n")) {
+                    Prompt.clear();
+                    System.out.println("Bye bye !");
+                    System.exit(0);
+                }
+                else if (saveInfo[0].equals("y") && saveInfo[1].equals("y")) {
+                    Save.writeSave(saveInfo[2], this);
+                    Prompt.clear();
+                    System.out.println("Game saved !\n\nBye bye !");
+                    System.exit(0);
+                }
+            }
             this.readMove();
             this.changePlayer();
-            Prints.board(this);
 
             lastPlayer = this.player1;
             if (this.current == this.player1) {
@@ -195,6 +219,10 @@ public class Game implements Serializable{
      */
     public void readMove() {
 
+        Prompt.clear();
+        Prints.config(player1.getName(), player2.getName(), this.gameMode, this.diff);
+        Prints.board(this);
+
         if (this.current == this.player1) {
             System.out.println("\t\t"+this.current.getName()+" (O) your turn !\n");
         }
@@ -206,6 +234,7 @@ public class Game implements Serializable{
 
         while (p==null || !this.isMovePossible(p, moveData[2], moveData[3])) {
             Prompt.clear();
+            Prints.config(player1.getName(), player2.getName(), this.gameMode, this.diff);
             System.out.println("| Invalid move |\n");
             Prints.board(this);
             if (this.current == this.player1) {
@@ -462,7 +491,7 @@ public class Game implements Serializable{
 
         try {
 
-            Scanner sc = new Scanner(new FileReader("../data/config/pwnList2.txt"));
+            Scanner sc = new Scanner(new FileReader("../data/config/pwnList.txt"));
             sc.useDelimiter("\\s*:\\s*");
 
             while(sc.hasNext()){
@@ -590,7 +619,7 @@ public class Game implements Serializable{
             int startX = 0;
             int startY = 0;
             
-            if (x>0 && x<this.SIZE && y>0 && y<this.SIZE) {
+            if (x>=0 && x<this.SIZE && y>=0 && y<this.SIZE) {
                 if (xP-x == 0) {    //vertical direction
                     for (int i=0 ; i<this.SIZE ; i++) {
                         if (!this.grid[i][x].isFree()) {

@@ -87,6 +87,9 @@ public class TestGame {
         ArrayList<Pawn> list = g.getPawnList();
         Pawn p = g.getPawnOnSquare(0, 5);
 
+        System.out.println(s.isFree());
+        System.out.println(list.contains(p));
+
         assertEquals(false, s.isFree());
         assertEquals(true, list.contains(p));
 
@@ -125,15 +128,15 @@ public class TestGame {
      */
     @Test()
     public void testChangePlayer() {
-        Player p1 = g.getPlayer1();
+        Player p1 = g.getCurrent();
         Player c = g.getCurrent();
 
         assertEquals(p1, c);
 
-        Player p2 = g.getPlayer2();
         g.changePlayer();
+        Player p2 = g.getCurrent();
         
-        assertEquals(p2, c);
+        assertNotEquals(p2, c);
     }
 
 
@@ -145,7 +148,7 @@ public class TestGame {
     public void testIsMovePossible() {
         Pawn p = g.getPawnOnSquare(0, 5);
 
-        assertEquals(p, g.isMovePossible(p, -3, 5));
+        assertEquals(false, g.isMovePossible(p, -3, 5));
         assertEquals(true, g.isMovePossible(p, 3, 5));
 
         g.makeMove(p, 3, 5);
@@ -157,11 +160,11 @@ public class TestGame {
 
 
     /**
-     * Test if the longuest chain is detected
+     * Test if the chain is detected
      */
-    public void testLonguestChain() {
-        assertEquals(1, g.detectLonguestChain(g.getPlayer1()));
-        assertEquals(1, g.detectLonguestChain(g.getPlayer2()));
+    public void testDetectChain() {
+        assertEquals(1, g.detectChain(g.getPlayer1()));
+        assertEquals(1, g.detectChain(g.getPlayer2()));
 
         g.makeMove(g.getPawnOnSquare(2, 3), 0, 3);
         g.makeMove(g.getPawnOnSquare(0, 0), 0, 4);
@@ -169,8 +172,8 @@ public class TestGame {
         g.makeMove(g.getPawnOnSquare(5, 5), 3, 5);
         g.makeMove(g.getPawnOnSquare(3, 5), 1, 5);
 
-        assertEquals(4, g.detectLonguestChain(g.getPlayer1()));
-        assertEquals(3, g.detectLonguestChain(g.getPlayer2()));
+        assertEquals(4, g.detectChain(g.getPlayer1()));
+        assertEquals(3, g.detectChain(g.getPlayer2()));
     }
 
 

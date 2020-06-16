@@ -3,8 +3,11 @@ package test.model;
 import org.junit.*;
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import model.Computer;
 import model.Difficulty;
+import model.Pawn;
 
 public class TestComputer {
 
@@ -16,7 +19,8 @@ public class TestComputer {
      */
     @Before()
     public void setUp() {
-        c = new Computer("Bot1", Difficulty.EASY);
+        ArrayList<Pawn> pawnList = new ArrayList<Pawn>();
+        c = new Computer("Bot1", pawnList, Difficulty.EASY);
     }
 
     /**
@@ -65,7 +69,7 @@ public class TestComputer {
      */
     @Test()
     public void testToString() {
-        String expected = "Computer\nName = Bot1";
+        String expected = "Computer\nName : Bot1";
         String test = c.toString();
         assertEquals(expected, test);
     }

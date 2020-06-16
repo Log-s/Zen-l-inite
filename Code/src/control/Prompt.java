@@ -1,13 +1,20 @@
 package control;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import model.Mode;
 import util.Prints;
+import util.Save;
 
 /**
  * Class that offers different prompt types : mode prompt, name prompt, coordinates prompt and quit/save prompt.
@@ -80,6 +87,7 @@ public class Prompt {
             mMode = Mode.HH;
         }
 
+        clear();
         return mMode;
     }
 
@@ -110,8 +118,6 @@ public class Prompt {
             } while (!verif.equals("y") && !verif.equals("n"));
             
         } while (!verif.equals("y"));
-
-        System.out.println("Understood ! Name : "+name+"\n");
 
         return name;
     }
@@ -154,14 +160,15 @@ public class Prompt {
             System.out.println();
 
             do {
-                System.out.print("Choose Pawn's Y coordinate)\n> ");
+                System.out.print("Choose Pawn's Y coordinate\n> ");
                 yPS = sc.nextLine();
                 try {
                     yP = Integer.parseInt(yPS);
                 }
                 catch (NumberFormatException e) {
                     yP = -1;
-                    System.out.println("Nop ! Coordinates have to be intergers");
+                        System.out.println("Nop ! Coordinates have to be intergers");   
+
                 }
             } while (yP<0 || yP>10);
 
@@ -212,53 +219,137 @@ public class Prompt {
     /**
      * askForQuit asks the user for y/n to maybe launch the save/quit procedure
      * 
-     * @return a char tab with the user's answer
-     * \n\t *char[0] = 'y' => user wants to quit
-     * \n\t *char[1] = 'y' => user wants to save
+     * @return a String tab with the user's answer
+     * \n\t *char[0] = "y" => user wants to quit
+     * \n\t *char[1] = "y" => user wants to save
+     * \n\t *char[2] = "filename"
      */
-    public static char[] askForQuit() {
+    public static String[] askForQuit() {
 
-        String qS;
-        char q = 'n';
-        String sS;
-        char s = 'n';
-        int dialogButton = JOptionPane.YES_NO_OPTION;
-        int dialogResult = JOptionPane.YES_OPTION;
+        String[] ret = new String[3];
+
+        String q = "";
+        String s = "";
+        String name = "";
+        String verif = "y";
 
         do {
 
-            q = 'e';    //e stands for error
-            s = 'e';
-            dialogResult = JOptionPane.YES_OPTION;
+            do {
+                System.out.print("Do you want to quit ? (y/n)\n> ");
+                q = sc.nextLine();
+            } while (!q.equals("y") && !q.equals("n"));
+
+            System.out.println();
+
+            if (q.equals("y")) { // ask for save if user decides to quit
+                do {
+                    System.out.print("Do you want to save ? (y/n)\n> ");
+                    s = sc.nextLine();
+                } while (!s.equals("y") && !s.equals("n"));
+            }
+
+            System.out.println();
+
+            if (q.equals("y") && s.equals("y")) {
+                do {
+                    System.out.print("Save's name ?\n> ");
+                    name = sc.nextLine();
+                } while (name.isEmpty());
+            }
+            if (q.equals("y") && s.equals("n")) { //verification if user chooses to quit without saving
+                System.out.print("Quit without saving ?\nAre you sure ? (y/n)\n> ");
+                verif = sc.nextLine();
+            }
+        } while (!verif.equals("y"));
+
+        ret[0] = q;
+        ret[1] = s;
+        ret[2] = name;
+
+        return ret;
+    }
+
+
+
+    /**
+     * asks if a game should be loaded, if yes which one
+     * 
+     * @return a String with the user's anwser (the fileName, or null if no save is selected)
+     */
+    public static String loadGame() {
+
+        String ret = null;
+
+        String l = "";
+        String saveS = "";
+        int save = 0;
+        String verif = "";
+
+        do {
 
             do {
-                qS = JOptionPane.showInputDialog(new JFrame(), "Do you want to quit ? (y/n)");
-                if (qS.length() == 1) {
-                    q = qS.charAt(0);
-                }
-                else {
-                    q = 'e';    //length error
-                }
-            } while (q != 'y' && q != 'n');
+                System.out.print("Do you want to load a game (y) or start a fresh one (n) ?\n> ");
+                l = sc.nextLine();
+                clear();
+            } while (!l.equals("y") && !l.equals("n"));
 
-            if (q == 'y') { // ask for save if user decides to quit
+            verif = "y";
+
+            if (l.equals("y")) {
+                verif = "n";
                 do {
-                    sS = JOptionPane.showInputDialog(new JFrame(), "Do you want to save ? (y/n)");
-                    if (sS.length() == 1) {
-                        s = sS.charAt(0);
+                    clear();
+
+                    //getting the save list
+                    List<String> result = null;
+                    try (Stream<Path> walk = Files.walk(Paths.get("../data/saves/"))) {
+
+                        result = walk.filter(Files::isRegularFile)
+                                .map(x -> x.toString()).collect(Collectors.toList());
+                    
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    System.out.println();
+                    int i=1;
+                    while (i-1<result.size()) {
+                        if (result.get(i-1).equals("../data/saves/emptyFileForGit")) {
+                            result.remove(i-1);
+                        }
+                        else {
+                            System.out.println(i+") "+result.get(i-1).substring(14));
+                            i++;
+                        }
+                    }
+                    if (result.size() == 0) {
+                        System.out.println("No save avalaible :/\n\n== PRESS ENTER TO CONTINUE ==");
+                        verif = "y";
+                        try {
+                            System.in.read();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        Prompt.clear();
                     }
                     else {
-                        s = 'e';    //length error
+                        System.out.print("Choose a save file {1-"+(result.size())+"}\n> ");
+                        saveS = sc.nextLine();
+                        try {
+                            save = Integer.parseInt(saveS);
+                        } catch (NumberFormatException e) {
+                            save = -1;
+                        }
+                        if (save>0 && save<=(result.size())) {
+                            verif = "y";
+                            ret = result.get(save-1).substring(14);
+                        }
                     }
-                } while (s != 'y' && s != 'n');
+                    System.out.println();
+                } while (!verif.equals("y"));
             }
-
-            if (q == 'y' && s == 'n') { //verification if user chooses to quit without saving
-                dialogResult = JOptionPane.showConfirmDialog (null, "Quit without saving ?\nAre you sure ?","Verification",dialogButton);
-            }
-        } while (dialogResult == JOptionPane.NO_OPTION);
-
-        char[] ret = {q,s};
+        } while (!verif.equals("y"));
 
         return ret;
     }

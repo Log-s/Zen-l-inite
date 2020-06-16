@@ -70,12 +70,10 @@
                 <pathelement location="${test.build.dir}"/>
             </classpath>
             <formatter type="xml" />
-            <test name="test.model.PileTest"/>
             <test name="test.model.TestComputer"/>
             <test name="test.model.TestGame"/>
-            <test name="test.model.TestGameConfig"/>
             <test name="test.model.TestHuman"/>
-            <test name="test.model.testPawn"/>
+            <test name="test.model.TestPawn"/>
             <test name="test.model.TestSquare"/>
             <test name="test.util.TestSave"/>
         </junit>
@@ -86,10 +84,8 @@
             </fileset>
             <report format="frames" todir="${testReport}"/>
         </junitreport>
-        <delete file="TEST-test.model.PileTest.xml"/>
         <delete file="TEST-test.model.TestComputer.xml"/>
         <delete file="TEST-test.model.TestGame.xml"/>
-        <delete file="TEST-test.model.TestGameConfig.xml"/>
         <delete file="TEST-test.model.TestHuman.xml"/>
         <delete file="TEST-test.model.TestPawn.xml"/>
         <delete file="TEST-test.model.TestSquare.xml"/>

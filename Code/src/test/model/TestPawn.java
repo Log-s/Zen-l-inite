@@ -83,7 +83,7 @@ public class TestPawn {
     public void testToString() {
         pW.setPosition(3, 5);
         String test = pW.toString();
-        String expected = "Color = WHITE\nx = 3\ny = 5";
+        String expected = "x : 3 | y : 5 | color : WHITE";
         assertEquals(expected, test);
     }
 }

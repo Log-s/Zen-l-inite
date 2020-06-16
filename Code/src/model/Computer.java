@@ -46,11 +46,17 @@ public class Computer extends Player {
         int[] coordinates = new int[4];
         Pawn p = null;
 
+        System.out.println("break_1");
+        System.out.println(this.diff);
+
         if (this.diff == Difficulty.RANDOM) {
             do {
-                p = this.pawnList.get((int) Math.random()*this.pawnList.size());
+                p = this.pawnList.get((int) (Math.random()*this.pawnList.size()));
+                System.out.println(p);
             } while (p.getColor() != Color.BLACK && p.getColor() != Color.ZEN);
         }
+
+        System.out.println("break_2");
 
         coordinates[0] = p.getXPos();
         coordinates[1] = p.getYPos();
@@ -60,6 +66,8 @@ public class Computer extends Player {
         if ((int) (Math.random()*2) == 1) {
             invert = -1;
         }
+
+        System.out.println("break_3");
 
         int r = (int) (Math.random()*11);
         switch (direct) {
@@ -80,6 +88,7 @@ public class Computer extends Player {
                 coordinates[3] = coordinates[1]+(r*invert);
                 break;
         }
+        System.out.println("break_4");
         return coordinates;
     }
 

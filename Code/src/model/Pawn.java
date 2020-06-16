@@ -90,8 +90,8 @@ public class Pawn implements Serializable {
 
         String ret = "";
         ret += "x : "+this.xPos;
-        ret += " y : "+this.yPos;
-        ret += " color : "+this.color;
+        ret += " | y : "+this.yPos;
+        ret += " | color : "+this.color;
         return ret;
     }
     

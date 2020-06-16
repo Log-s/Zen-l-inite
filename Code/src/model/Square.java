@@ -89,8 +89,8 @@ public class Square implements Serializable {
 
         String ret = "";
         ret += "x : "+this.xPos;
-        ret += "y : "+this.yPos;
-        ret += "is free : "+this.free;
+        ret += " | y : "+this.yPos;
+        ret += " | is free : "+this.free;
         return ret;
     }
 }   

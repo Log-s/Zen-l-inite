@@ -3,7 +3,10 @@ package test.model;
 import org.junit.*;
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import model.Human;
+import model.Pawn;
 
 public class TestHuman {
 
@@ -15,7 +18,8 @@ public class TestHuman {
      */
     @Before()
     public void setUp() {
-        h = new Human("Player1");
+        ArrayList<Pawn> pawnList = new ArrayList<Pawn>();
+        h = new Human("Player1", pawnList);
     }
 
     /**
@@ -54,7 +58,7 @@ public class TestHuman {
      */
     @Test()
     public void testToString() {
-        String expected = "Human\nName = Player1";
+        String expected = "Human\nName : Player1";
         String test = h.toString();
         assertEquals(expected, test);
     }

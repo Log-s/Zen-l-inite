@@ -1,8 +1,10 @@
 package util;
 
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import model.Game;
@@ -24,8 +26,6 @@ public class Save {
      * @param game     Game object to save
      */
     public static void writeSave(String fileName, Game game) {
-
-        System.out.println("saving...");
 
         if (fileName == null) {
             System.err.println("[!] Error - null value \"fileName\" | util.Save.writeSave(String fileName, Game game)");
@@ -50,7 +50,6 @@ public class Save {
                 e.printStackTrace();
             }
         }
-        System.out.println("Done");
 
     }
 
@@ -63,7 +62,35 @@ public class Save {
      * @return a Game object that will be loaded by the app.
      */
     public static Game readSave(String fileName) {
-        return new Game();
+
+        Game game = new Game();
+        System.out.println("break save");
+
+        if (fileName == null) {
+            System.err.println("[!] Error - null value \"fileName\" | util.Save.readSave(String fileName)");
+        } else if (fileName.equals("")) {
+            System.err.println("[!] Error - \"fileName\" can not be empty | util.Save.readSave(String fileName)");
+        }
+
+        else {
+            String path = "../data/saves/" + fileName;
+
+            try {
+                ObjectInputStream file = new ObjectInputStream(new FileInputStream(path));
+
+                game = (Game) file.readObject();
+
+                file.close();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return game;
     }
 
 }
