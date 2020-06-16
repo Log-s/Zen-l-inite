@@ -1,11 +1,15 @@
 package model;
 
+import util.Prints;
 import util.Save;
 
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.Stack;
+
+import control.Prompt;
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.Serializable;
@@ -16,9 +20,9 @@ import java.io.Serializable;
  */
 public class Game implements Serializable{
 
-    private final int SIZE = 11;
+    public final int SIZE = 11;
     private int[] lastZenPosition;
-    protected Square[][] grid;
+    public Square[][] grid;
     protected ArrayList<Pawn> pawnList;
     private Player player1;
     private Player player2;
@@ -50,7 +54,7 @@ public class Game implements Serializable{
             this.player1 = new Human(player1,this.pawnList);
             this.player2 = new Human(player2,this.pawnList);
             this.current = this.player1;
-            this.drawBoard();
+            Prints.board(this);
             this.start();
         }
     }
@@ -84,7 +88,7 @@ public class Game implements Serializable{
             this.player1 = new Human(player1, this.pawnList);
             this.player2 = new Computer(player2,this.pawnList,diff);
             this.current = this.player1;
-            this.drawBoard();
+            Prints.board(this);
             this.start();
         }
     }
@@ -112,7 +116,7 @@ public class Game implements Serializable{
 
             this.readMove();
             this.changePlayer();
-            this.drawBoard();
+            Prints.board(this);
 
             lastPlayer = this.player1;
             if (this.current == this.player1) {
@@ -135,7 +139,9 @@ public class Game implements Serializable{
             if (this.current == this.player1) {
                 winner = this.player2;
             }
-        System.out.println("Winner winner chicken dinner ! Congratulations ! "+winner.getName()+ " !");
+        Prompt.clear();
+        System.out.println("Winner winner chicken dinner ! Congratulations "+winner.getName()+ " !");
+        System.exit(0);
     }
 
 
@@ -183,55 +189,6 @@ public class Game implements Serializable{
     }
 
 
-
-    /**
-     * Method used to draw th board with the pawns in the current stat in the console
-     */
-    public void drawBoard() {
-
-        System.out.println("  | 0   1   2   3   4   5   6   7   8   9   10");
-        System.out.println("----------------------------------------------");
-        for (int y=0 ; y<this.SIZE ; y++) {
-
-            if (y<10) {
-                System.out.print(y+" | ");
-            }
-            else {
-                System.out.print(y+"| ");
-            }
-
-            for (int x=0 ; x<this.SIZE ; x++) {
-                if (!this.grid[y][x].isFree()) {
-                    switch (this.getPawnOnSquare(x, y).getColor()) {
-                        case BLACK:
-                            System.out.print("X");
-                            break;
-                        case WHITE:
-                            System.out.print("O");
-                            break;
-                        case ZEN:
-                            System.out.print("Z");
-                            break;
-                    }
-                }
-                else {
-                    System.out.print(".");
-                }
-                System.out.print("   ");
-            }
-            if (y<10) {
-                System.out.print("\n  |\n");
-            }
-            else {
-                System.out.println();
-            }
-        }
-        System.out.println();
-
-    }
-
-
-
     /**
      * readMove reads the players next move (asks for pawn to move, and for the next coordinates).
      * Reapats until move is right, or the player saved the game to quit.
@@ -239,15 +196,24 @@ public class Game implements Serializable{
     public void readMove() {
 
         if (this.current == this.player1) {
-            System.out.println(this.current.getName()+" (O) your turn !");
+            System.out.println("\t\t"+this.current.getName()+" (O) your turn !\n");
         }
         else {
-            System.out.println(this.current.getName()+" (X) your turn !");
+            System.out.println("\t\t"+this.current.getName()+" (X) your turn !\n");
         }
         int[] moveData = this.current.newMove();
         Pawn p = this.getPawnOnSquare(moveData[0], moveData[1]);
 
         while (p==null || !this.isMovePossible(p, moveData[2], moveData[3])) {
+            Prompt.clear();
+            System.out.println("| Invalid move |\n");
+            Prints.board(this);
+            if (this.current == this.player1) {
+                System.out.println("\t\t"+this.current.getName()+" (O) your turn !\n");
+            }
+            else {
+                System.out.println("\t\t"+this.current.getName()+" (X) your turn !\n");
+            }
             moveData = this.current.newMove();
             p = this.getPawnOnSquare(moveData[0], moveData[1]);
         }
@@ -319,9 +285,6 @@ public class Game implements Serializable{
         
         ArrayList<Pawn> playerList = this.getPlayerPawn(p);
         boolean[] marked = new boolean[playerList.size()];
-        for (boolean b : marked) {
-            b = false;
-        }
         int length = 0;
         Stack<Pawn> pile = new Stack<Pawn>();
 

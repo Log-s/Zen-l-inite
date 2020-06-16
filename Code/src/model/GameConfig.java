@@ -2,6 +2,7 @@ package model;
 
 //personnal libs
 import control.Prompt;
+import util.Prints;
 
 //common libs
 import java.util.Random;
@@ -26,14 +27,7 @@ public class GameConfig {
      */
     public GameConfig() {
 
-        System.out.println();
-        System.out.println("███████╗███████╗███╗   ██╗        ██╗     ██╗ ██╗███╗   ██╗██╗████████╗██╗███████╗");
-        System.out.println("╚══███╔╝██╔════╝████╗  ██║        ██║     ██║ ██║████╗  ██║██║╚══██╔══╝██║██╔════╝");
-        System.out.println("  ███╔╝ █████╗  ██╔██╗ ██║        ██║     ╚═╝ ██║██╔██╗ ██║██║   ██║   ██║█████╗  ");
-        System.out.println(" ███╔╝  ██╔══╝  ██║╚██╗██║        ██║         ██║██║╚██╗██║██║   ██║   ██║██╔══╝  ");
-        System.out.println("███████╗███████╗██║ ╚████║        ███████╗    ██║██║ ╚████║██║   ██║   ██║███████╗");
-        System.out.println("╚══════╝╚══════╝╚═╝  ╚═══╝        ╚══════╝    ╚═╝╚═╝  ╚═══╝╚═╝   ╚═╝   ╚═╝╚══════╝");
-        System.out.println();
+        Prompt.clear();
         
         this.readConfig();
 
@@ -43,13 +37,13 @@ public class GameConfig {
             this.player2 = tmp;
         }
 
-        this.printConfig();
-
         if (this.gameMode == Mode.HA) {
             this.diff = Difficulty.RANDOM; // to remove later
+            Prints.config(this.player1, this.player2, this.gameMode, this.diff);
             Game myGame = new Game(player1, player2, gameMode, diff);
         }
         else {
+            Prints.config(this.player1, this.player2, this.gameMode, this.diff);
             Game myGame = new Game(player1, player2, gameMode);
         }
     }
