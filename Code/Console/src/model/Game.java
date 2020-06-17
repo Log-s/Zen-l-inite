@@ -748,4 +748,14 @@ public class Game implements Serializable{
     public Player getPlayer2() {
         return this.player2;
     }
+
+
+    /**
+     * returns the SIZE of the board
+     * 
+     * @return int
+     */
+    public int getSize() {
+        return this.SIZE;
+    }
 }
