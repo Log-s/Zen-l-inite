@@ -1,161 +1,155 @@
 package view;
 
 import model.Game;
+import java.awt.Color;
 
 import java.awt.GridLayout;
 import javax.swing.JPanel;
+import java.util.ArrayList;
+import model.Pawn;
+import model.PawnColor;
 
 
 public class Plateau extends JPanel {
 
 	private static final long serialVersionUID = 6726708245444190460L;
-
-	private Case caseActive;
-
+	private GUISquare selected;
 	private boolean tourNoir;
+	private final int SIZE;
+	private Game game;
+	private GUISquare[][] board;
 
 	public Plateau(Game g){
 
-		int SIZE = g.getSize();
-		this.setLayout(new GridLayout(SIZE, SIZE));
-		for(int i=0; i<SIZE; i++){
-			for(int j=0; j<SIZE; j++){
+		this.game = g;
+		this.SIZE = this.game.getSize();
+		this.board = new GUISquare[this.SIZE][this.SIZE];
+		this.setLayout(new GridLayout(this.SIZE, this.SIZE));
+		for(int i=0; i<this.SIZE; i++){
+			for(int j=0; j<this.SIZE; j++){
 				if((j%2==0 && i%2==0) || (j%2!=0 && i%2!=0)){
-					ajouterCase(Couleur.NOIR);
+					this.addSquare(Color.BLACK, j, i);
 				}
 				else{
-					ajouterCase(Couleur.BLANC);
+					this.addSquare(Color.WHITE, j, i);
 				}
 			}
 		}
 		init();
 	}
 
-	private void ajouterCase(Couleur couleur){
-		Case case1 = new Case(couleur);
-		case1.addMouseListener(new ListenerCase(case1, this));
-		add(case1);
+	private void addSquare(Color c, int x, int y){
+		GUISquare square = new GUISquare(c);
+		square.addMouseListener(new ListenerCase(square, this, this.game));
+		this.add(square);
+		this.board[y][x] = square;
 	}
 
-	private Pion creerPion(Couleur couleur, boolean monte){
-		Pion pion = new Pion(couleur, monte);
-		pion.addMouseListener(new ListenerPion(pion, this));
-		return pion;
+	public void update() {
+		System.out.println("update");
+		for (int j=0 ; j<this.SIZE ; j++) {
+			for (int i=0 ; i<this.SIZE ; i++) {
+				this.board[j][i].removeAll();
+			}
+		}
+		this.validate();
+		init();
+		this.revalidate();
+    	this.repaint();
 	}
 
 	private void init(){
-		for(int j=0; j<TAILLE*3; j+=2){
-			getCase(j).add(creerPion(Couleur.NOIR, false));
-			getCase(TAILLE*TAILLE-j-1).add(creerPion(Couleur.BLANC, true));
+		for (Pawn p : this.game.getPawnList()) {
+			GUIPawn pion;
+			if (p.getColor() == PawnColor.WHITE) {
+				pion = new GUIPawn(PawnColor.WHITE);
+			}
+			else if (p.getColor() == PawnColor.BLACK) {
+				pion = new GUIPawn(PawnColor.BLACK);
+			}
+			else {
+				pion = new GUIPawn(PawnColor.ZEN);
+			}
+			pion.addMouseListener(new ListenerPion(pion, this, this.game));
+			this.board[p.getYPos()][p.getXPos()].add(pion);
 		}
 	}
 
-	public Case getCase(int i, int j){
-		return (Case) getComponent(j+i*TAILLE);
+	public void afficherPossibilites(GUIPawn p){
+
 	}
 
-	public Case getCase(int i){
-		return (Case) getComponent(i);
+	public void selectSquare(GUISquare square){
+		this.selected = square;
 	}
+	public void selectSquare(GUIPawn pawn){
 
-	public void afficherPossibilites(Pion p){
-		if((p.getCouleur().equals(Couleur.NOIR) && tourNoir) || (p.getCouleur().equals(Couleur.BLANC) && !tourNoir)){
-			int i=0;
-			int j=0;
-			for(int k=0; k<TAILLE*TAILLE; k++){
-				getCase(k).setSelectionnee(false);
-				if(getCase(k).getComponentCount()!=0 && getCase(k).getComponent(0).equals(p)){
-					caseActive=getCase(k);
-					i=k/TAILLE;
-					j=k%TAILLE;
+		int[] coordinates = getGUIPawnCoordinates(pawn);
+		int[] coordinates_bis;
 
+		for (int j=0 ; j<this.SIZE ; j++) {
+			for (int i=0 ; i<this.SIZE ; i++) {
+				coordinates_bis = getGUISquareCoordinates(this.board[j][i]);
+				if (coordinates[0]==coordinates_bis[0] && coordinates[1]==coordinates_bis[1]) {
+					this.selected = this.board[j][i];
 				}
 			}
-			selectionnerCases(i, j, p.getCouleur());
 		}
 	}
 
-	public void selectionnerCases(int i, int j, Couleur couleur){
-		Pion pion = (Pion)(getCase(i, j).getComponent(0));
-		if(pion.isMonte()){
-			if(i-1>=0 && j-1>=0 && getCase(i-1, j-1).getComponentCount()==0){
-				getCase(i-1, j-1).setSelectionnee(true);
-			}
-			else if(i-2>=0 && j-2>=0 && getCase(i-2, j-2).getComponentCount()==0 && !((Pion)(getCase(i-1, j-1).getComponent(0))).getCouleur().equals(couleur)){
-				getCase(i-2, j-2).setSelectionnee(true);
-			}
-			if(i-1>=0 && j+1<TAILLE && getCase(i-1, j+1).getComponentCount()==0){
-				getCase(i-1, j+1).setSelectionnee(true);
-			}
-			else if(i-2>=0 && j+2<TAILLE && getCase(i-2, j+2).getComponentCount()==0 && !((Pion)(getCase(i-1, j+1).getComponent(0))).getCouleur().equals(couleur)){
-				getCase(i-2, j+2).setSelectionnee(true);
-			}
-		}
-		else{
-			if(i+1<TAILLE && j+1<TAILLE && getCase(i+1, j+1).getComponentCount()==0){
-				getCase(i+1, j+1).setSelectionnee(true);
-			}
-			else if(i+2<TAILLE && j+2<TAILLE && getCase(i+2, j+2).getComponentCount()==0 && !((Pion)(getCase(i+1, j+1).getComponent(0))).getCouleur().equals(couleur)){
-				getCase(i+2, j+2).setSelectionnee(true);
-			}
-			if(i+1<TAILLE && j-1>=0 && getCase(i+1, j-1).getComponentCount()==0){
-				getCase(i+1, j-1).setSelectionnee(true);
-			}
-			else if(i+2<TAILLE && j-2>=0 && getCase(i+2, j-2).getComponentCount()==0 && !((Pion)(getCase(i+1, j-1).getComponent(0))).getCouleur().equals(couleur)){
-				getCase(i+2, j-2).setSelectionnee(true);
-			}
-			
-		}
+	public void deselect() {
+		this.selected = null;
 	}
 
-	public void deplacer(Case case1){
-		case1.add(caseActive.getComponent(0));
-		for(int k=0; k<TAILLE*TAILLE; k++){
-			getCase(k).setSelectionnee(false);
-		}
-		if(Math.abs(getLigne(case1)-getLigne(caseActive))==2){
-			int i = (getLigne(case1)+getLigne(caseActive))/2;
-			int j = (getColonne(case1)+getColonne(caseActive))/2;
-			getCase(i, j).removeAll();
-			getCase(i, j).validate();
-			getCase(i, j).repaint();
-		}
-		tourNoir=!tourNoir;
-		caseActive.removeAll();
-		caseActive.repaint();
-		caseActive=null;
-		case1.repaint();
-		if(getLigne(case1)==0){
-			Pion p=(Pion)(case1.getComponent(0));
-			p.setMonte(false);
-		}
-		if(getLigne(case1)==TAILLE-1){
-			Pion p=(Pion)(case1.getComponent(0));
-			p.setMonte(true);
-		}
+	public void deplacer(GUISquare case1){
+
 	}
 
-	private int getLigne(Case case1){
-		int res=0;
-		for(int i=0; i<TAILLE*TAILLE; i+=2){
-			if(getCase(i).equals(case1)){
-				res=i/TAILLE;
+
+	public boolean isOneSelected() {
+		
+		boolean ret = true;
+		if (this.selected == null) {
+			ret = false;
+		}
+
+		return ret;
+		
+	}
+
+	public GUISquare getSelected() {
+		return this.selected;
+	}
+
+	public int[] getGUISquareCoordinates(GUISquare square) {
+
+		int[] ret = {-1, -1};
+
+		for (int j=0 ; j<this.SIZE ; j++) {
+			for (int i=0 ; i<this.SIZE ; i++) {
+				if (this.board[j][i] == square) {
+					ret[0] = i;
+					ret[1] = j;
+				}
 			}
 		}
-		return res;
+
+		return ret;
 	}
 
-	private int getColonne(Case case1){
-		int res=0;
-		for(int i=0; i<TAILLE*TAILLE; i+=2){
-			if(getCase(i).equals(case1)){
-				res=i%TAILLE;
+	public int[] getGUIPawnCoordinates(GUIPawn pawn) {
+
+		int[] ret = {-1, -1};
+
+		for (int j=0 ; j<this.SIZE ; j++) {
+			for (int i=0 ; i<this.SIZE ; i++) {
+				if (this.board[j][i].getComponents().length == 1 && this.board[j][i].getComponents()[0] == pawn) {
+					ret[0] = i;
+					ret[1] = j;
+				}
 			}
 		}
-		return res;
+
+		return ret;
 	}
-	
-	
-
-
 }

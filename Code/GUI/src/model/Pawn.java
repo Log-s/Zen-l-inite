@@ -10,7 +10,7 @@ import java.io.Serializable;
  */
 public class Pawn implements Serializable {
 
-    private Color color;
+    private PawnColor color;
     private int xPos;
     private int yPos;
 
@@ -21,7 +21,7 @@ public class Pawn implements Serializable {
      * 
      * @param color Color of the pawn (can be WHITE, BLACK, ZEN)
      */
-    public Pawn(Color color) {
+    public Pawn(PawnColor color) {
         if (color == null) {
             System.err.println("[!] Error : null value -color- in model.Pawn.Pawn(Color color)");
         }
@@ -37,7 +37,7 @@ public class Pawn implements Serializable {
      * 
      * @return a Color
      */
-    public Color getColor() {
+    public PawnColor getColor() {
         return this.color;
     }
 

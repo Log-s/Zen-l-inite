@@ -9,6 +9,7 @@ import java.util.Scanner;
 import java.util.Stack;
 
 import control.Prompt;
+import view.Lanceur;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -30,6 +31,7 @@ public class Game implements Serializable{
     private Player current;
     private Mode gameMode;
     private Difficulty diff;
+    Lanceur lanceur;
 
     /**
      * class constructor in case both player are human
@@ -56,8 +58,8 @@ public class Game implements Serializable{
             this.player2 = new Human(player2,this.pawnList);
             this.current = this.player1;
             this.gameMode = gameMode;
-            Prints.board(this);
-            this.start();
+            lanceur = new Lanceur(this);
+            //this.start();
         }
     }
 
@@ -92,8 +94,8 @@ public class Game implements Serializable{
             this.current = this.player1;
             this.diff = diff;
             this.gameMode = gameMode;
-            Prints.board(this);
-            this.start();
+            lanceur = new Lanceur(this);
+            //this.start();
         }
     }
 
@@ -123,7 +125,7 @@ public class Game implements Serializable{
             Prints.board(this);
             
             if ((this.gameMode==Mode.HA && this.current!=this.player2) || this.gameMode==Mode.HH) {
-                String[] saveInfo = Prompt.askForQuit();
+                /*String[] saveInfo = Prompt.askForQuit();
                 for (String s : saveInfo) {
                     System.out.println(s);
                 }
@@ -137,9 +139,10 @@ public class Game implements Serializable{
                     Prompt.clear();
                     System.out.println("Game saved !\n\nBye bye !");
                     System.exit(0);
-                }
+                }*/
             }
-            this.readMove();
+            //this.readMove();
+            lanceur.update();
             this.changePlayer();
 
             lastPlayer = this.player1;
@@ -216,12 +219,12 @@ public class Game implements Serializable{
 
             int xP = p.getXPos();
             int yP = p.getYPos();
-            Color c = Color.BLACK; //to adapt to ZEN
-            if (p.getColor() == Color.BLACK) {
-                c = Color.WHITE;
+            PawnColor c = PawnColor.BLACK; //to adapt to ZEN
+            if (p.getColor() == PawnColor.BLACK) {
+                c = PawnColor.WHITE;
             }
-            else if (p.getColor() == Color.WHITE) {
-                c = Color.BLACK;
+            else if (p.getColor() == PawnColor.WHITE) {
+                c = PawnColor.BLACK;
             }
             int count = 0;
             int startX = 0;
@@ -325,7 +328,7 @@ public class Game implements Serializable{
                         }
                     }
                 }
-                if ((this.current == this.player1 && p.getColor() == Color.BLACK) || (this.current == this.player2 && p.getColor() == Color.WHITE)) {
+                if ((this.current == this.player1 && p.getColor() == PawnColor.BLACK) || (this.current == this.player2 && p.getColor() == PawnColor.WHITE)) {
                     possible = false;
                 }
                 if (!this.grid[y][x].isFree() && this.getPawnOnSquare(x, y).getColor() == p.getColor()) {  //checks if there is no friendy pawn on the destination square.
@@ -359,8 +362,12 @@ public class Game implements Serializable{
     /**
      * readMove reads the players next move (asks for pawn to move, and for the next coordinates).
      * Reapats until move is right, or the player saved the game to quit.
+     * 
+     * @return true if a move was made, false otherwise
      */
-    public void readMove() {
+    public boolean readMove(int xP, int yP, int x, int y) {
+
+        boolean made = false;
 
         Prompt.clear();
         Prints.config(player1.getName(), player2.getName(), this.gameMode, this.diff);
@@ -372,25 +379,25 @@ public class Game implements Serializable{
         else {
             System.out.println("\t\t"+this.current.getName()+" (X) your turn !\n");
         }
-        int[] moveData = this.current.newMove();
-        Pawn p = this.getPawnOnSquare(moveData[0], moveData[1]);
 
-        while (p==null || !this.isMovePossible(p, moveData[2], moveData[3])) {
-            Prompt.clear();
-            Prints.config(player1.getName(), player2.getName(), this.gameMode, this.diff);
-            System.out.println("| Invalid move |\n");
-            Prints.board(this);
-            if (this.current == this.player1) {
-                System.out.println("\t\t"+this.current.getName()+" (O) your turn !\n");
+        if (this.gameMode == Mode.HA && this.current == this.player2) {
+            int[] coordinates = this.current.newMove();
+            Pawn p = this.getPawnOnSquare(coordinates[0], coordinates[1]);
+            while (!this.isMovePossible(p, coordinates[2], coordinates[3])) {
+                coordinates = this.current.newMove();
+                p = this.getPawnOnSquare(coordinates[0], coordinates[1]);
             }
-            else {
-                System.out.println("\t\t"+this.current.getName()+" (X) your turn !\n");
-            }
-            moveData = this.current.newMove();
-            p = this.getPawnOnSquare(moveData[0], moveData[1]);
+            this.makeMove(p, coordinates[2], coordinates[3]);
+            made = true;
+        }
+        Pawn p = this.getPawnOnSquare(xP, yP);
+
+        if (p!=null && this.isMovePossible(p, x, y)) {
+            this.makeMove(p, x, y);
+            made = true;
         }
 
-        this.makeMove(p, moveData[2], moveData[3]);
+        return made;
     }
 
 
@@ -539,7 +546,7 @@ public class Game implements Serializable{
 
         try {
 
-            Scanner sc = new Scanner(new FileReader("../data/config/pwnList2.txt"));
+            Scanner sc = new Scanner(new FileReader("../data/config/pwnList.txt"));
             sc.useDelimiter("\\s*:\\s*");
 
             while(sc.hasNext()){
@@ -549,16 +556,16 @@ public class Game implements Serializable{
             sc.close();
 
         for (int i=0 ; i<content.size() ; i=i+3) {
-            Color c = null;
+            PawnColor c = null;
             switch(content.get(i+2)) {
                 case "W":
-                    c = Color.WHITE;
+                    c = PawnColor.WHITE;
                     break;
                 case "B":
-                    c = Color.BLACK;
+                    c = PawnColor.BLACK;
                     break;
                 case "Z":
-                    c = Color.ZEN;
+                    c = PawnColor.ZEN;
                     break;
             }
             Pawn p = new Pawn(c);
@@ -568,7 +575,7 @@ public class Game implements Serializable{
         }
 
         } catch (FileNotFoundException e) {
-            System.err.println("[!] Error - file not found : ../ressources/config/pwnList.txt | model.Game.setBoard()");
+            System.err.println("[!] Error - file not found : ../data/config/pwnList.txt | model.Game.setBoard()");
             e.printStackTrace();
         } catch (NoSuchElementException e) {
             System.err.println("[!] Error - no more elements : method next() | model.Game.setBoard()");
@@ -652,13 +659,13 @@ public class Game implements Serializable{
 
         ArrayList<Pawn> playerList = new ArrayList<Pawn>();
 
-        Color c = Color.BLACK;
+        PawnColor c = PawnColor.BLACK;
         if (p == this.player1) {
-            c = Color.WHITE;
+            c = PawnColor.WHITE;
         }
 
         for (Pawn pwn : this.pawnList) {
-            if (pwn.getColor() == c || pwn.getColor() == Color.ZEN) {
+            if (pwn.getColor() == c || pwn.getColor() == PawnColor.ZEN) {
                 playerList.add(pwn);
             }
         }
@@ -685,13 +692,13 @@ public class Game implements Serializable{
         else {
 
             i = 0;
-            Color c = Color.BLACK;
+            PawnColor c = PawnColor.BLACK;
             if (p == this.player1) {
-                c = Color.WHITE;
+                c = PawnColor.WHITE;
             }
 
             for (Pawn pwn : this.pawnList) {
-                if (pwn.getColor() == c || pwn.getColor() == Color.ZEN) {
+                if (pwn.getColor() == c || pwn.getColor() == PawnColor.ZEN) {
                     i++;
                 }
             }
@@ -757,5 +764,15 @@ public class Game implements Serializable{
      */
     public int getSize() {
         return this.SIZE;
+    }
+
+
+    /**
+     * returns the game mode of the board
+     * 
+     * @return int
+     */
+    public Mode getMode() {
+        return this.gameMode;
     }
 }
