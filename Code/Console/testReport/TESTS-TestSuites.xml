@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <testsuites>
-  <testsuite errors="0" failures="0" hostname="ubuntu" id="0" name="TestComputer" package="test.model" skipped="0" tests="4" time="0.09" timestamp="2020-06-17T18:11:51">
+  <testsuite errors="0" failures="0" hostname="ubuntu" id="0" name="TestComputer" package="test.model" skipped="0" tests="4" time="0.136" timestamp="2020-06-18T05:29:52">
       <properties>
           <property name="sun.desktop" value="gnome" />
 
@@ -50,7 +50,7 @@
 
           <property name="sun.boot.library.path" value="/usr/lib/jvm/java-11-openjdk-amd64/lib" />
 
-          <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner test.model.TestComputer skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.SummaryJUnitResultFormatter showoutput=false outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/home/leo/Documents/Zen-l-initie/Code/Console/ws/TEST-test.model.TestComputer.xml crashfile=/home/leo/Documents/Zen-l-initie/Code/Console/ws/junitvmwatcher6713153882867799788.properties propsfile=/home/leo/Documents/Zen-l-initie/Code/Console/ws/junit13835771152335565228.properties" />
+          <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner test.model.TestComputer skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.SummaryJUnitResultFormatter showoutput=false outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/home/leo/Documents/Zen-l-initie/Code/Console/ws/TEST-test.model.TestComputer.xml crashfile=/home/leo/Documents/Zen-l-initie/Code/Console/ws/junitvmwatcher3307587168707634681.properties propsfile=/home/leo/Documents/Zen-l-initie/Code/Console/ws/junit2597220296292382605.properties" />
 
           <property name="jdk.debug" value="release" />
 
@@ -146,7 +146,7 @@
 
       </properties>
 
-      <testcase classname="test.model.TestComputer" name="testToString" time="0.012" />
+      <testcase classname="test.model.TestComputer" name="testToString" time="0.013" />
 
       <testcase classname="test.model.TestComputer" name="testGetDifficulty" time="0.0" />
 
@@ -159,7 +159,7 @@
       <system-err><![CDATA[]]></system-err>
 
   </testsuite>
-  <testsuite errors="6" failures="0" hostname="ubuntu" id="1" name="TestGame" package="test.model" skipped="0" tests="6" time="0.103" timestamp="2020-06-17T18:11:51">
+  <testsuite errors="6" failures="0" hostname="ubuntu" id="1" name="TestGame" package="test.model" skipped="0" tests="6" time="0.151" timestamp="2020-06-18T05:29:53">
       <properties>
           <property name="sun.desktop" value="gnome" />
 
@@ -209,7 +209,7 @@
 
           <property name="sun.boot.library.path" value="/usr/lib/jvm/java-11-openjdk-amd64/lib" />
 
-          <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner test.model.TestGame skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.SummaryJUnitResultFormatter showoutput=false outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/home/leo/Documents/Zen-l-initie/Code/Console/ws/TEST-test.model.TestGame.xml crashfile=/home/leo/Documents/Zen-l-initie/Code/Console/ws/junitvmwatcher15369827627590923036.properties propsfile=/home/leo/Documents/Zen-l-initie/Code/Console/ws/junit1843251181885148090.properties" />
+          <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner test.model.TestGame skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.SummaryJUnitResultFormatter showoutput=false outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/home/leo/Documents/Zen-l-initie/Code/Console/ws/TEST-test.model.TestGame.xml crashfile=/home/leo/Documents/Zen-l-initie/Code/Console/ws/junitvmwatcher15821772236469773936.properties propsfile=/home/leo/Documents/Zen-l-initie/Code/Console/ws/junit584629104963677809.properties" />
 
           <property name="jdk.debug" value="release" />
 
@@ -305,7 +305,7 @@
 
       </properties>
 
-      <testcase classname="test.model.TestGame" name="testIsMovePossible" time="0.023">
+      <testcase classname="test.model.TestGame" name="testIsMovePossible" time="0.062">
           <error message="No line found" type="java.util.NoSuchElementException">java.util.NoSuchElementException: No line found
 	at java.base/java.util.Scanner.nextLine(Scanner.java:1651)
 	at control.Prompt.askForQuit(Unknown Source)
@@ -361,7 +361,7 @@
 
       </testcase>
 
-      <testcase classname="test.model.TestGame" name="testExists" time="0.002">
+      <testcase classname="test.model.TestGame" name="testExists" time="0.001">
           <error message="No line found" type="java.util.NoSuchElementException">java.util.NoSuchElementException: No line found
 	at java.base/java.util.Scanner.nextLine(Scanner.java:1651)
 	at control.Prompt.askForQuit(Unknown Source)
@@ -784,7 +784,7 @@ Do you want to quit ? (y/n)
       <system-err><![CDATA[]]></system-err>
 
   </testsuite>
-  <testsuite errors="0" failures="0" hostname="ubuntu" id="2" name="TestHuman" package="test.model" skipped="0" tests="3" time="0.084" timestamp="2020-06-17T18:11:51">
+  <testsuite errors="0" failures="0" hostname="ubuntu" id="2" name="TestHuman" package="test.model" skipped="0" tests="3" time="0.087" timestamp="2020-06-18T05:29:53">
       <properties>
           <property name="sun.desktop" value="gnome" />
 
@@ -834,7 +834,7 @@ Do you want to quit ? (y/n)
 
           <property name="sun.boot.library.path" value="/usr/lib/jvm/java-11-openjdk-amd64/lib" />
 
-          <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner test.model.TestHuman skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.SummaryJUnitResultFormatter showoutput=false outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/home/leo/Documents/Zen-l-initie/Code/Console/ws/TEST-test.model.TestHuman.xml crashfile=/home/leo/Documents/Zen-l-initie/Code/Console/ws/junitvmwatcher10702434339070557446.properties propsfile=/home/leo/Documents/Zen-l-initie/Code/Console/ws/junit13969326099825872439.properties" />
+          <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner test.model.TestHuman skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.SummaryJUnitResultFormatter showoutput=false outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/home/leo/Documents/Zen-l-initie/Code/Console/ws/TEST-test.model.TestHuman.xml crashfile=/home/leo/Documents/Zen-l-initie/Code/Console/ws/junitvmwatcher13414110081764036845.properties propsfile=/home/leo/Documents/Zen-l-initie/Code/Console/ws/junit14287608678074557295.properties" />
 
           <property name="jdk.debug" value="release" />
 
@@ -930,7 +930,7 @@ Do you want to quit ? (y/n)
 
       </properties>
 
-      <testcase classname="test.model.TestHuman" name="testToString" time="0.011" />
+      <testcase classname="test.model.TestHuman" name="testToString" time="0.012" />
 
       <testcase classname="test.model.TestHuman" name="testGetName" time="0.0" />
 
@@ -941,7 +941,7 @@ Do you want to quit ? (y/n)
       <system-err><![CDATA[]]></system-err>
 
   </testsuite>
-  <testsuite errors="0" failures="0" hostname="ubuntu" id="3" name="TestPawn" package="test.model" skipped="0" tests="4" time="0.088" timestamp="2020-06-17T18:11:52">
+  <testsuite errors="0" failures="0" hostname="ubuntu" id="3" name="TestPawn" package="test.model" skipped="0" tests="4" time="0.105" timestamp="2020-06-18T05:29:53">
       <properties>
           <property name="sun.desktop" value="gnome" />
 
@@ -991,7 +991,7 @@ Do you want to quit ? (y/n)
 
           <property name="sun.boot.library.path" value="/usr/lib/jvm/java-11-openjdk-amd64/lib" />
 
-          <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner test.model.TestPawn skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.SummaryJUnitResultFormatter showoutput=false outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/home/leo/Documents/Zen-l-initie/Code/Console/ws/TEST-test.model.TestPawn.xml crashfile=/home/leo/Documents/Zen-l-initie/Code/Console/ws/junitvmwatcher15064697909450536459.properties propsfile=/home/leo/Documents/Zen-l-initie/Code/Console/ws/junit16427629612238250786.properties" />
+          <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner test.model.TestPawn skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.SummaryJUnitResultFormatter showoutput=false outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/home/leo/Documents/Zen-l-initie/Code/Console/ws/TEST-test.model.TestPawn.xml crashfile=/home/leo/Documents/Zen-l-initie/Code/Console/ws/junitvmwatcher12011563370851515953.properties propsfile=/home/leo/Documents/Zen-l-initie/Code/Console/ws/junit15344941781342971465.properties" />
 
           <property name="jdk.debug" value="release" />
 
@@ -1089,18 +1089,18 @@ Do you want to quit ? (y/n)
 
       <testcase classname="test.model.TestPawn" name="testGetColor" time="0.001" />
 
-      <testcase classname="test.model.TestPawn" name="testToString" time="0.011" />
+      <testcase classname="test.model.TestPawn" name="testToString" time="0.015" />
 
-      <testcase classname="test.model.TestPawn" name="testPostionGettersSetter" time="0.001" />
+      <testcase classname="test.model.TestPawn" name="testPostionGettersSetter" time="0.0" />
 
-      <testcase classname="test.model.TestPawn" name="testExists" time="0.0" />
+      <testcase classname="test.model.TestPawn" name="testExists" time="0.001" />
 
       <system-out><![CDATA[]]></system-out>
 
       <system-err><![CDATA[]]></system-err>
 
   </testsuite>
-  <testsuite errors="0" failures="0" hostname="ubuntu" id="4" name="TestSquare" package="test.model" skipped="0" tests="5" time="0.08" timestamp="2020-06-17T18:11:52">
+  <testsuite errors="0" failures="0" hostname="ubuntu" id="4" name="TestSquare" package="test.model" skipped="0" tests="5" time="0.09" timestamp="2020-06-18T05:29:53">
       <properties>
           <property name="sun.desktop" value="gnome" />
 
@@ -1150,7 +1150,7 @@ Do you want to quit ? (y/n)
 
           <property name="sun.boot.library.path" value="/usr/lib/jvm/java-11-openjdk-amd64/lib" />
 
-          <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner test.model.TestSquare skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.SummaryJUnitResultFormatter showoutput=false outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/home/leo/Documents/Zen-l-initie/Code/Console/ws/TEST-test.model.TestSquare.xml crashfile=/home/leo/Documents/Zen-l-initie/Code/Console/ws/junitvmwatcher6839504178552229177.properties propsfile=/home/leo/Documents/Zen-l-initie/Code/Console/ws/junit16571761691905853524.properties" />
+          <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner test.model.TestSquare skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.SummaryJUnitResultFormatter showoutput=false outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/home/leo/Documents/Zen-l-initie/Code/Console/ws/TEST-test.model.TestSquare.xml crashfile=/home/leo/Documents/Zen-l-initie/Code/Console/ws/junitvmwatcher11589721761561958470.properties propsfile=/home/leo/Documents/Zen-l-initie/Code/Console/ws/junit11081789633100071711.properties" />
 
           <property name="jdk.debug" value="release" />
 
@@ -1246,11 +1246,11 @@ Do you want to quit ? (y/n)
 
       </properties>
 
-      <testcase classname="test.model.TestSquare" name="testToString" time="0.008" />
+      <testcase classname="test.model.TestSquare" name="testToString" time="0.01" />
 
       <testcase classname="test.model.TestSquare" name="testExists" time="0.0" />
 
-      <testcase classname="test.model.TestSquare" name="testIsFree" time="0.0" />
+      <testcase classname="test.model.TestSquare" name="testIsFree" time="0.001" />
 
       <testcase classname="test.model.TestSquare" name="testCoordinateGetters" time="0.0" />
 
@@ -1261,7 +1261,7 @@ Do you want to quit ? (y/n)
       <system-err><![CDATA[]]></system-err>
 
   </testsuite>
-  <testsuite errors="1" failures="0" hostname="ubuntu" id="5" name="TestSave" package="test.util" skipped="0" tests="1" time="0.095" timestamp="2020-06-17T18:11:52">
+  <testsuite errors="1" failures="0" hostname="ubuntu" id="5" name="TestSave" package="test.util" skipped="0" tests="1" time="0.096" timestamp="2020-06-18T05:29:54">
       <properties>
           <property name="sun.desktop" value="gnome" />
 
@@ -1311,7 +1311,7 @@ Do you want to quit ? (y/n)
 
           <property name="sun.boot.library.path" value="/usr/lib/jvm/java-11-openjdk-amd64/lib" />
 
-          <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner test.util.TestSave skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.SummaryJUnitResultFormatter showoutput=false outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/home/leo/Documents/Zen-l-initie/Code/Console/ws/TEST-test.util.TestSave.xml crashfile=/home/leo/Documents/Zen-l-initie/Code/Console/ws/junitvmwatcher12428313485919253632.properties propsfile=/home/leo/Documents/Zen-l-initie/Code/Console/ws/junit4947765275565518121.properties" />
+          <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner test.util.TestSave skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.SummaryJUnitResultFormatter showoutput=false outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,/home/leo/Documents/Zen-l-initie/Code/Console/ws/TEST-test.util.TestSave.xml crashfile=/home/leo/Documents/Zen-l-initie/Code/Console/ws/junitvmwatcher8977486929057482239.properties propsfile=/home/leo/Documents/Zen-l-initie/Code/Console/ws/junit1581054124632022997.properties" />
 
           <property name="jdk.debug" value="release" />
 
@@ -1407,7 +1407,7 @@ Do you want to quit ? (y/n)
 
       </properties>
 
-      <testcase classname="test.util.TestSave" name="testSaveLoad" time="0.022">
+      <testcase classname="test.util.TestSave" name="testSaveLoad" time="0.023">
           <error message="No line found" type="java.util.NoSuchElementException">java.util.NoSuchElementException: No line found
 	at java.base/java.util.Scanner.nextLine(Scanner.java:1651)
 	at control.Prompt.askForQuit(Unknown Source)

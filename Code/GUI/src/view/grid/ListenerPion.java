@@ -1,4 +1,4 @@
-package view;
+package view.grid;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseAdapter;
@@ -23,7 +23,6 @@ public class ListenerPion extends MouseAdapter {
 
 			if (this.game.getPawnOnSquare(this.plateau.getGUIPawnCoordinates(this.pawn)[0], this.plateau.getGUIPawnCoordinates(this.pawn)[1]) != null) {
 				this.plateau.selectSquare(this.pawn);
-				System.out.println("SELECTED "+this.plateau.getGUIPawnCoordinates(this.pawn)[0]+","+this.plateau.getGUIPawnCoordinates(this.pawn)[1]);
 			}
 
 		}
@@ -33,10 +32,10 @@ public class ListenerPion extends MouseAdapter {
 			int yP = this.plateau.getGUISquareCoordinates(this.plateau.getSelected())[1];
 			int x = this.plateau.getGUIPawnCoordinates(this.pawn)[0];
 			int y = this.plateau.getGUIPawnCoordinates(this.pawn)[1];
-			System.out.println("TRYING : "+xP+","+yP+" to "+x+","+y);
 			this.game.readMove(xP, yP, x, y);
 			this.plateau.update();
 			this.plateau.deselect();
+			Lanceur.turn.setText("   "+this.game.getCurrent().getName()+", it's your turn !");
 		}
 	}
 

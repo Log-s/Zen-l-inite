@@ -9,7 +9,8 @@ import java.util.Scanner;
 import java.util.Stack;
 
 import control.Prompt;
-import view.Lanceur;
+import view.MainWindow;
+import view.grid.Lanceur;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -31,7 +32,7 @@ public class Game implements Serializable{
     private Player current;
     private Mode gameMode;
     private Difficulty diff;
-    Lanceur lanceur;
+    MainWindow window;
 
     /**
      * class constructor in case both player are human
@@ -58,7 +59,7 @@ public class Game implements Serializable{
             this.player2 = new Human(player2,this.pawnList);
             this.current = this.player1;
             this.gameMode = gameMode;
-            lanceur = new Lanceur(this);
+            window = new MainWindow(this);
             //this.start();
         }
     }
@@ -94,7 +95,7 @@ public class Game implements Serializable{
             this.current = this.player1;
             this.diff = diff;
             this.gameMode = gameMode;
-            lanceur = new Lanceur(this);
+            window = new MainWindow(this);
             //this.start();
         }
     }
@@ -142,7 +143,7 @@ public class Game implements Serializable{
                 }*/
             }
             //this.readMove();
-            lanceur.update();
+            //lanceur.update();
             this.changePlayer();
 
             lastPlayer = this.player1;

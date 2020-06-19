@@ -1,4 +1,4 @@
-package view;
+package view.grid;
 
 import java.awt.Color;
 import java.awt.GridLayout;
@@ -37,12 +37,16 @@ public class GUISquare extends JPanel {
 		}
 	}
 	
-	private void initCouleur(){
+	public void initCouleur(){
 		if (this.color == Color.WHITE) {
 			setBackground(Color.LIGHT_GRAY);
 		}
 		else {
 			setBackground(Color.DARK_GRAY);
 		}
+	}
+
+	public void select() {
+		this.setBackground(Color.BLUE);
 	}
 }

@@ -1,11 +1,12 @@
-package view;
+package view.grid;
 
 import model.Game;
 import java.awt.Color;
-
+import java.awt.Dimension;
 import java.awt.GridLayout;
+
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
-import java.util.ArrayList;
 import model.Pawn;
 import model.PawnColor;
 
@@ -14,14 +15,16 @@ public class Plateau extends JPanel {
 
 	private static final long serialVersionUID = 6726708245444190460L;
 	private GUISquare selected;
-	private boolean tourNoir;
 	private final int SIZE;
 	private Game game;
 	private GUISquare[][] board;
 
 	public Plateau(Game g){
 
+		this.setPreferredSize(new Dimension(600,600));
+		this.setBorder(BorderFactory.createLineBorder(Color.decode("#402b10"), 10));
 		this.game = g;
+		Lanceur.turn.setText("   "+this.game.getCurrent().getName()+", it's your turn !");
 		this.SIZE = this.game.getSize();
 		this.board = new GUISquare[this.SIZE][this.SIZE];
 		this.setLayout(new GridLayout(this.SIZE, this.SIZE));
@@ -81,6 +84,7 @@ public class Plateau extends JPanel {
 
 	public void selectSquare(GUISquare square){
 		this.selected = square;
+		this.selected.select();
 	}
 	public void selectSquare(GUIPawn pawn){
 
@@ -95,9 +99,11 @@ public class Plateau extends JPanel {
 				}
 			}
 		}
+		this.selected.select();
 	}
 
 	public void deselect() {
+		this.selected.initCouleur();
 		this.selected = null;
 	}
 
