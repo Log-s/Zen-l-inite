@@ -1,6 +1,8 @@
-package view.grid;
+package view;
 
 import java.awt.event.MouseEvent;
+
+import javax.swing.JOptionPane;
 
 import java.awt.event.MouseAdapter;
 import model.Game;
@@ -35,23 +37,13 @@ public class ListenerCase extends MouseAdapter{
 				this.plateau.update();
 				this.game.changePlayer();
 			}
+			this.checkWinner();
 			if (this.game.getMode() == Mode.HA && this.game.getCurrent() == this.game.getPlayer2()) {
 				this.game.readMove(xP, yP, x, y);
 				this.plateau.update();
 				this.game.changePlayer();
 			}
-			if (this.game.isWon(this.game.getPlayer1()) && this.game.isWon(this.game.getPlayer2())) {
-				System.out.println("Tie");
-				System.exit(0);
-			}
-			else if(this.game.isWon(this.game.getPlayer1())) {
-				System.out.println("Won : "+ this.game.getPlayer1().getName());
-				System.exit(0);
-			}
-			else if (this.game.isWon(this.game.getPlayer2())) {
-				System.out.println("Won : "+this.game.getPlayer2().getName());
-				System.exit(0);
-			}
+			this.checkWinner();
 			this.plateau.deselect();
 			Lanceur.turn.setText("   "+this.game.getCurrent().getName()+", it's your turn !");
 			
@@ -59,6 +51,22 @@ public class ListenerCase extends MouseAdapter{
 		}
 		else {
 			this.plateau.selectSquare(this.square);
+		}
+	}
+
+	public void checkWinner() {
+		if (this.game.isWon(this.game.getPlayer1()) && this.game.isWon(this.game.getPlayer2())) {
+			JOptionPane.showMessageDialog(null, "Ouch ! It's a tie... You both fought well", "Congratulation !", JOptionPane.INFORMATION_MESSAGE);
+			System.out.println("Tie");
+			System.exit(0);
+		}
+		else if(this.game.isWon(this.game.getPlayer1())) {
+			JOptionPane.showMessageDialog(null, this.game.getPlayer1().getName()+", you won !", "Congratulation !", JOptionPane.INFORMATION_MESSAGE);
+			System.exit(0);
+		}
+		else if (this.game.isWon(this.game.getPlayer2())) {
+			JOptionPane.showMessageDialog(null, this.game.getPlayer2().getName()+", you won !", "Congratulation !", JOptionPane.INFORMATION_MESSAGE);
+			System.exit(0);
 		}
 	}
 

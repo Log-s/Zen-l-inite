@@ -1,4 +1,4 @@
-package view.grid;
+package view;
 
 import model.Game;
 import java.awt.Color;
@@ -13,7 +13,7 @@ import model.PawnColor;
 
 public class Plateau extends JPanel {
 
-	private static final long serialVersionUID = 6726708245444190460L;
+	private static final long serialVersionUID = 6529685098267757690L;
 	private GUISquare selected;
 	private final int SIZE;
 	private Game game;
@@ -49,7 +49,6 @@ public class Plateau extends JPanel {
 	}
 
 	public void update() {
-		System.out.println("update");
 		for (int j=0 ; j<this.SIZE ; j++) {
 			for (int i=0 ; i<this.SIZE ; i++) {
 				this.board[j][i].removeAll();
@@ -107,9 +106,6 @@ public class Plateau extends JPanel {
 		this.selected = null;
 	}
 
-	public void deplacer(GUISquare case1){
-
-	}
 
 
 	public boolean isOneSelected() {

@@ -1,4 +1,4 @@
-package view.grid;
+package view;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;

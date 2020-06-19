@@ -35,7 +35,7 @@ public class Save {
             System.err.println("[!] Error - null value \"game\" | util.Save.writeSave(String fileName, Game game)");
         } else {
 
-            String path = "../data/saves/" + fileName;
+            String path = "../../GUI/data/saves/" + fileName;
 
             try {
                 FileOutputStream filePath = new FileOutputStream(path);

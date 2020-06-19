@@ -1,4 +1,4 @@
-package view.grid;
+package view;
 
 import model.Game;
 import view.MainWindow;

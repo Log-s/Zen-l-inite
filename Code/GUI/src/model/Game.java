@@ -10,7 +10,7 @@ import java.util.Stack;
 
 import control.Prompt;
 import view.MainWindow;
-import view.grid.Lanceur;
+import view.Lanceur;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -59,7 +59,7 @@ public class Game implements Serializable{
             this.player2 = new Human(player2,this.pawnList);
             this.current = this.player1;
             this.gameMode = gameMode;
-            window = new MainWindow(this);
+            //window = new MainWindow(this);
             //this.start();
         }
     }
@@ -95,7 +95,7 @@ public class Game implements Serializable{
             this.current = this.player1;
             this.diff = diff;
             this.gameMode = gameMode;
-            window = new MainWindow(this);
+            //window = new MainWindow(this);
             //this.start();
         }
     }
@@ -121,9 +121,9 @@ public class Game implements Serializable{
 
         while (!this.isWon(lastPlayer)) {
 
-            Prompt.clear();
-            Prints.config(player1.getName(), player2.getName(), this.gameMode, this.diff);
-            Prints.board(this);
+            
+            
+            
             
             if ((this.gameMode==Mode.HA && this.current!=this.player2) || this.gameMode==Mode.HH) {
                 /*String[] saveInfo = Prompt.askForQuit();
@@ -131,13 +131,13 @@ public class Game implements Serializable{
                     System.out.println(s);
                 }
                 if (saveInfo[0].equals("y") && saveInfo[1].equals("n")) {
-                    Prompt.clear();
+                    
                     System.out.println("Bye bye !");
                     System.exit(0);
                 }
                 else if (saveInfo[0].equals("y") && saveInfo[1].equals("y")) {
                     Save.writeSave(saveInfo[2], this);
-                    Prompt.clear();
+                    
                     System.out.println("Game saved !\n\nBye bye !");
                     System.exit(0);
                 }*/
@@ -177,11 +177,11 @@ public class Game implements Serializable{
             if (this.current == this.player1) {
                 winner = this.player2;
             }
-            Prompt.clear();
+            
             System.out.println("Winner winner chicken dinner ! Congratulations "+winner.getName()+ " !");
         }
         else if (n==1) {
-            Prompt.clear();
+            
             System.out.println("You both fought well ! It's a tie !");
         }
         else {
@@ -370,17 +370,6 @@ public class Game implements Serializable{
 
         boolean made = false;
 
-        Prompt.clear();
-        Prints.config(player1.getName(), player2.getName(), this.gameMode, this.diff);
-        Prints.board(this);
-
-        if (this.current == this.player1) {
-            System.out.println("\t\t"+this.current.getName()+" (O) your turn !\n");
-        }
-        else {
-            System.out.println("\t\t"+this.current.getName()+" (X) your turn !\n");
-        }
-
         if (this.gameMode == Mode.HA && this.current == this.player2) {
             int[] coordinates = this.current.newMove();
             Pawn p = this.getPawnOnSquare(coordinates[0], coordinates[1]);
@@ -547,7 +536,7 @@ public class Game implements Serializable{
 
         try {
 
-            Scanner sc = new Scanner(new FileReader("../data/config/pwnList.txt"));
+            Scanner sc = new Scanner(new FileReader("../data/config/pwnList2.txt"));
             sc.useDelimiter("\\s*:\\s*");
 
             while(sc.hasNext()){
