@@ -1,59 +1,76 @@
 package view;
 
-import java.awt.event.MouseEvent;
+import model.Game;
+import model.Mode;
 
 import javax.swing.JOptionPane;
 
 import java.awt.event.MouseAdapter;
-import model.Game;
-import model.Mode;
+import java.awt.event.MouseEvent;
 
-
+/**
+ * class that handles the clicks on a square
+ * 
+ * @author Léo DESMONTS - IUT VANNES - 2020
+ * @version 1.0
+ */
 public class ListenerCase extends MouseAdapter{
 	
 	private GUISquare square;
-	private Plateau plateau;
+	private Board board;
 	private Game game;
 
-	
-	public ListenerCase(GUISquare square, Plateau plateau, Game game) {
+	/**
+	 * Creates the listener
+	 * @param square the square it applies to
+	 * @param board The board the square belongs to
+	 * @param game The game instance 
+	 */
+	public ListenerCase(GUISquare square, Board board, Game game) {
 		super();
 		this.square = square;
-		this.plateau = plateau;
+		this.board = board;
 		this.game = game;
 	}
 
 
-	public void mousePressed(MouseEvent arg0) {
+	/**
+	 * Events when the mouse is pressed
+	 * @param e Event instance (useless here)
+	 */
+	public void mousePressed(MouseEvent e) {
 
-		if (this.plateau.isOneSelected()) {
+		if (this.board.isOneSelected()) {
 
-			int xP = this.plateau.getGUISquareCoordinates(this.plateau.getSelected())[0];
-			int yP = this.plateau.getGUISquareCoordinates(this.plateau.getSelected())[1];
-			int x = this.plateau.getGUISquareCoordinates(this.square)[0];
-			int y = this.plateau.getGUISquareCoordinates(this.square)[1];
+			int xP = this.board.getGUISquareCoordinates(this.board.getSelected())[0];
+			int yP = this.board.getGUISquareCoordinates(this.board.getSelected())[1];
+			int x = this.board.getGUISquareCoordinates(this.square)[0];
+			int y = this.board.getGUISquareCoordinates(this.square)[1];
 			boolean made = this.game.readMove(xP, yP, x, y);
 			if (made) {
-				this.plateau.update();
+				this.board.update();
 				this.game.changePlayer();
 			}
 			this.checkWinner();
 			if (this.game.getMode() == Mode.HA && this.game.getCurrent() == this.game.getPlayer2()) {
 				this.game.readMove(xP, yP, x, y);
-				this.plateau.update();
+				this.board.update();
 				this.game.changePlayer();
 			}
 			this.checkWinner();
-			this.plateau.deselect();
-			Lanceur.turn.setText("   "+this.game.getCurrent().getName()+", it's your turn !");
+			this.board.deselect();
+			PlayPanel.turn.setText("   "+this.game.getCurrent().getName()+", it's your turn !");
 			
 
 		}
 		else {
-			this.plateau.selectSquare(this.square);
+			this.board.selectSquare(this.square);
 		}
 	}
 
+	/**
+	 * Checks if there is a winner
+	 */
 	public void checkWinner() {
 		if (this.game.isWon(this.game.getPlayer1()) && this.game.isWon(this.game.getPlayer2())) {
 			JOptionPane.showMessageDialog(null, "Ouch ! It's a tie... You both fought well", "Congratulation !", JOptionPane.INFORMATION_MESSAGE);

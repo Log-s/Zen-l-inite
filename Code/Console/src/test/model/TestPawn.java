@@ -3,6 +3,7 @@ package test.model;
 import org.junit.*;
 import static org.junit.Assert.*;
 
+import model.PawnColor;
 import model.Pawn;
 import model.Color;
 
@@ -18,9 +19,9 @@ public class TestPawn {
      */
     @Before()
     public void setUp() {
-        pW = new Pawn(Color.WHITE);
-        pB = new Pawn(Color.BLACK);
-        pZ = new Pawn(Color.ZEN);
+        pW = new Pawn(PawnColor.WHITE);
+        pB = new Pawn(PawnColor.BLACK);
+        pZ = new Pawn(PawnColor.ZEN);
     }
 
 
@@ -55,9 +56,9 @@ public class TestPawn {
      */
     @Test()
     public void testGetColor() {
-        assertEquals(Color.WHITE, pW.getColor());
-        assertEquals(Color.BLACK, pB.getColor());
-        assertEquals(Color.ZEN, pZ.getColor());
+        assertEquals(PawnColor.WHITE, pW.getColor());
+        assertEquals(PawnColor.BLACK, pB.getColor());
+        assertEquals(PawnColor.ZEN, pZ.getColor());
     }
 
 

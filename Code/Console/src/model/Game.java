@@ -25,6 +25,7 @@ public class Game implements Serializable{
     public final int SIZE = 11;
     public Square[][] grid;
     protected ArrayList<Pawn> pawnList;
+    private int[] zenLastPosition;
     private Player player1;
     private Player player2;
     private Player current;
@@ -56,6 +57,9 @@ public class Game implements Serializable{
             this.player2 = new Human(player2,this.pawnList);
             this.current = this.player1;
             this.gameMode = gameMode;
+            this.zenLastPosition = new int[2];
+            this.zenLastPosition[0] = 5;
+            this.zenLastPosition[1] = 5;
             Prints.board(this);
             this.start();
         }
@@ -92,6 +96,9 @@ public class Game implements Serializable{
             this.current = this.player1;
             this.diff = diff;
             this.gameMode = gameMode;
+            this.zenLastPosition = new int[2];
+            this.zenLastPosition[0] = 5;
+            this.zenLastPosition[1] = 5;
             Prints.board(this);
             this.start();
         }
@@ -161,8 +168,8 @@ public class Game implements Serializable{
 
     /**
      * method used to end the game when someone wins
-     * n = 0  =>  a player won
-     * n = 1  =>  the game ended on a tie
+     * n = 0  :  a player won
+     * n = 1  :  the game ended on a tie
      * 
      * @param n int that decides the end scenario
      */
@@ -216,12 +223,12 @@ public class Game implements Serializable{
 
             int xP = p.getXPos();
             int yP = p.getYPos();
-            Color c = Color.BLACK; //to adapt to ZEN
-            if (p.getColor() == Color.BLACK) {
-                c = Color.WHITE;
+            PawnColor c = PawnColor.BLACK; //to adapt to ZEN
+            if (p.getColor() == PawnColor.BLACK) {
+                c = PawnColor.WHITE;
             }
-            else if (p.getColor() == Color.WHITE) {
-                c = Color.BLACK;
+            else if (p.getColor() == PawnColor.WHITE) {
+                c = PawnColor.BLACK;
             }
             int count = 0;
             int startX = 0;
@@ -325,11 +332,23 @@ public class Game implements Serializable{
                         }
                     }
                 }
-                if ((this.current == this.player1 && p.getColor() == Color.BLACK) || (this.current == this.player2 && p.getColor() == Color.WHITE)) {
+                if ((this.current == this.player1 && p.getColor() == PawnColor.BLACK) || (this.current == this.player2 && p.getColor() == PawnColor.WHITE)) {
                     possible = false;
                 }
                 if (!this.grid[y][x].isFree() && this.getPawnOnSquare(x, y).getColor() == p.getColor()) {  //checks if there is no friendy pawn on the destination square.
                     possible = false;
+                }
+                if (p.getColor() == PawnColor.ZEN && this.zenLastPosition[0]==x && this.zenLastPosition[1]==y) {
+                    possible = false;
+                }
+                if (p.getColor() == PawnColor.ZEN) {
+                    boolean tmp = false;
+                    if (!this.grid[p.getYPos()-1][p.getXPos()-1].isFree() ||  !this.grid[p.getYPos()-1][p.getXPos()].isFree() || !this.grid[p.getYPos()-1][p.getXPos()+1].isFree() || !this.grid[p.getYPos()][p.getXPos()-1].isFree() || !this.grid[p.getYPos()][p.getXPos()+1].isFree() || !this.grid[p.getYPos()+1][p.getXPos()-1].isFree() || !this.grid[p.getYPos()+1][p.getXPos()].isFree() || !this.grid[p.getYPos()+1][p.getXPos()+1].isFree()){
+                        tmp = true;
+                    }
+                    if (tmp != possible) {
+                        possible = false;
+                    }
                 }
             }
         }
@@ -414,6 +433,14 @@ public class Game implements Serializable{
             System.err.println("[!] Error - value out of bounds \"y\" | model.Game.makeMove(Pawn p, int x, int y)");
         }
         else {
+            if (p.getColor() == PawnColor.ZEN) {
+                this.zenLastPosition[0] = p.getXPos();
+                this.zenLastPosition[1] = p.getYPos();
+            }
+            else {
+                this.zenLastPosition[0] = -1;
+                this.zenLastPosition[1] = -1;
+            }
             this.grid[p.getYPos()][p.getXPos()].changeState();
             if (!this.grid[y][x].isFree()) {
                 this.removePawn(this.getPawnOnSquare(x, y));
@@ -549,16 +576,16 @@ public class Game implements Serializable{
             sc.close();
 
         for (int i=0 ; i<content.size() ; i=i+3) {
-            Color c = null;
+            PawnColor c = null;
             switch(content.get(i+2)) {
                 case "W":
-                    c = Color.WHITE;
+                    c = PawnColor.WHITE;
                     break;
                 case "B":
-                    c = Color.BLACK;
+                    c = PawnColor.BLACK;
                     break;
                 case "Z":
-                    c = Color.ZEN;
+                    c = PawnColor.ZEN;
                     break;
             }
             Pawn p = new Pawn(c);
@@ -652,13 +679,13 @@ public class Game implements Serializable{
 
         ArrayList<Pawn> playerList = new ArrayList<Pawn>();
 
-        Color c = Color.BLACK;
+        PawnColor c = PawnColor.BLACK;
         if (p == this.player1) {
-            c = Color.WHITE;
+            c = PawnColor.WHITE;
         }
 
         for (Pawn pwn : this.pawnList) {
-            if (pwn.getColor() == c || pwn.getColor() == Color.ZEN) {
+            if (pwn.getColor() == c || pwn.getColor() == PawnColor.ZEN) {
                 playerList.add(pwn);
             }
         }
@@ -685,13 +712,13 @@ public class Game implements Serializable{
         else {
 
             i = 0;
-            Color c = Color.BLACK;
+            PawnColor c = PawnColor.BLACK;
             if (p == this.player1) {
-                c = Color.WHITE;
+                c = PawnColor.WHITE;
             }
 
             for (Pawn pwn : this.pawnList) {
-                if (pwn.getColor() == c || pwn.getColor() == Color.ZEN) {
+                if (pwn.getColor() == c || pwn.getColor() == PawnColor.ZEN) {
                     i++;
                 }
             }

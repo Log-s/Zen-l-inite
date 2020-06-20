@@ -1,4 +1,3 @@
-import model.GameConfig;
 import view.MainWindow;
 
 /**

@@ -1,16 +1,11 @@
 package model;
 
-import util.Prints;
-import util.Save;
-
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.Stack;
 
-import control.Prompt;
 import view.MainWindow;
-import view.Lanceur;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -27,6 +22,7 @@ public class Game implements Serializable{
     public final int SIZE = 11;
     public Square[][] grid;
     protected ArrayList<Pawn> pawnList;
+    private int[] zenLastPosition;
     private Player player1;
     private Player player2;
     private Player current;
@@ -59,8 +55,9 @@ public class Game implements Serializable{
             this.player2 = new Human(player2,this.pawnList);
             this.current = this.player1;
             this.gameMode = gameMode;
-            //window = new MainWindow(this);
-            //this.start();
+            this.zenLastPosition = new int[2];
+            this.zenLastPosition[0] = 5;
+            this.zenLastPosition[1] = 5;
         }
     }
 
@@ -95,8 +92,9 @@ public class Game implements Serializable{
             this.current = this.player1;
             this.diff = diff;
             this.gameMode = gameMode;
-            //window = new MainWindow(this);
-            //this.start();
+            this.zenLastPosition = new int[2];
+            this.zenLastPosition[0] = 5;
+            this.zenLastPosition[1] = 5;
         }
     }
 
@@ -108,58 +106,6 @@ public class Game implements Serializable{
     public Game() {
 
     }
-
-
-
-    /**
-     * method used to start the game
-     * Also the game's main loop
-     */
-    public void start() {
-
-        Player lastPlayer = this.player2;
-
-        while (!this.isWon(lastPlayer)) {
-
-            
-            
-            
-            
-            if ((this.gameMode==Mode.HA && this.current!=this.player2) || this.gameMode==Mode.HH) {
-                /*String[] saveInfo = Prompt.askForQuit();
-                for (String s : saveInfo) {
-                    System.out.println(s);
-                }
-                if (saveInfo[0].equals("y") && saveInfo[1].equals("n")) {
-                    
-                    System.out.println("Bye bye !");
-                    System.exit(0);
-                }
-                else if (saveInfo[0].equals("y") && saveInfo[1].equals("y")) {
-                    Save.writeSave(saveInfo[2], this);
-                    
-                    System.out.println("Game saved !\n\nBye bye !");
-                    System.exit(0);
-                }*/
-            }
-            //this.readMove();
-            //lanceur.update();
-            this.changePlayer();
-
-            lastPlayer = this.player1;
-            if (this.current == this.player1) {
-                lastPlayer = this.player2;
-            }
-        }
-
-        if (this.isWon(this.current)) {
-            this.end(1);
-        }
-        else {
-            this.end(0);
-        }
-    }
-
 
 
 
@@ -226,6 +172,12 @@ public class Game implements Serializable{
             }
             else if (p.getColor() == PawnColor.WHITE) {
                 c = PawnColor.BLACK;
+            }
+            else if (this.getCurrent() == this.getPlayer1() && p.getColor()==PawnColor.ZEN) {
+                c = PawnColor.BLACK;
+            }
+            else if (this.getCurrent() == this.getPlayer2() && p.getColor()==PawnColor.ZEN) {
+                c = PawnColor.WHITE;
             }
             int count = 0;
             int startX = 0;
@@ -335,6 +287,18 @@ public class Game implements Serializable{
                 if (!this.grid[y][x].isFree() && this.getPawnOnSquare(x, y).getColor() == p.getColor()) {  //checks if there is no friendy pawn on the destination square.
                     possible = false;
                 }
+                if (p.getColor() == PawnColor.ZEN && this.zenLastPosition[0]==x && this.zenLastPosition[1]==y) {
+                    possible = false;
+                }
+                if (p.getColor() == PawnColor.ZEN) {
+                    boolean tmp = false;
+                    if (!this.grid[p.getYPos()-1][p.getXPos()-1].isFree() ||  !this.grid[p.getYPos()-1][p.getXPos()].isFree() || !this.grid[p.getYPos()-1][p.getXPos()+1].isFree() || !this.grid[p.getYPos()][p.getXPos()-1].isFree() || !this.grid[p.getYPos()][p.getXPos()+1].isFree() || !this.grid[p.getYPos()+1][p.getXPos()-1].isFree() || !this.grid[p.getYPos()+1][p.getXPos()].isFree() || !this.grid[p.getYPos()+1][p.getXPos()+1].isFree()){
+                        tmp = true;
+                    }
+                    if (tmp != possible) {
+                        possible = false;
+                    }
+                }
             }
         }
 
@@ -411,6 +375,14 @@ public class Game implements Serializable{
             System.err.println("[!] Error - value out of bounds \"y\" | model.Game.makeMove(Pawn p, int x, int y)");
         }
         else {
+            if (p.getColor() == PawnColor.ZEN) {
+                this.zenLastPosition[0] = p.getXPos();
+                this.zenLastPosition[1] = p.getYPos();
+            }
+            else {
+                this.zenLastPosition[0] = -1;
+                this.zenLastPosition[1] = -1;
+            }
             this.grid[p.getYPos()][p.getXPos()].changeState();
             if (!this.grid[y][x].isFree()) {
                 this.removePawn(this.getPawnOnSquare(x, y));
@@ -536,7 +508,7 @@ public class Game implements Serializable{
 
         try {
 
-            Scanner sc = new Scanner(new FileReader("../data/config/pwnList2.txt"));
+            Scanner sc = new Scanner(new FileReader("../data/config/pwnList.txt"));
             sc.useDelimiter("\\s*:\\s*");
 
             while(sc.hasNext()){
@@ -643,7 +615,7 @@ public class Game implements Serializable{
      * Gets a list of all remaining pawns of the given player
      * 
      * @param p Player to test
-     * @return an ArrayList<Pawn> with the player's pawns
+     * @return an ArrayList(Pawn) with the player's pawns
      */
     private ArrayList<Pawn> getPlayerPawn(Player p) {
 

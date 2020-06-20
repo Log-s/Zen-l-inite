@@ -220,8 +220,8 @@ public class Prompt {
      * askForQuit asks the user for y/n to maybe launch the save/quit procedure
      * 
      * @return a String tab with the user's answer
-     * \n\t *char[0] = "y" => user wants to quit
-     * \n\t *char[1] = "y" => user wants to save
+     * \n\t *char[0] = "y" : user wants to quit
+     * \n\t *char[1] = "y" : user wants to save
      * \n\t *char[2] = "filename"
      */
     public static String[] askForQuit() {
@@ -303,7 +303,7 @@ public class Prompt {
 
                     //getting the save list
                     List<String> result = null;
-                    try (Stream<Path> walk = Files.walk(Paths.get("../../GUI/data/saves/"))) {
+                    try (Stream<Path> walk = Files.walk(Paths.get("../../saves"))) {
 
                         result = walk.filter(Files::isRegularFile)
                                 .map(x -> x.toString()).collect(Collectors.toList());
@@ -315,11 +315,11 @@ public class Prompt {
                     System.out.println();
                     int i=1;
                     while (i-1<result.size()) {
-                        if (result.get(i-1).equals("../../GUI/data/saves/emptyFileForGit")) {
+                        if (result.get(i-1).equals("../../saves/emptyFileForGit")) {
                             result.remove(i-1);
                         }
                         else {
-                            System.out.println(i+") "+result.get(i-1).substring(21));
+                            System.out.println(i+") "+result.get(i-1).substring(12));
                             i++;
                         }
                     }
@@ -343,7 +343,7 @@ public class Prompt {
                         }
                         if (save>0 && save<=(result.size())) {
                             verif = "y";
-                            ret = result.get(save-1).substring(21);
+                            ret = result.get(save-1).substring(12);
                         }
                     }
                     System.out.println();

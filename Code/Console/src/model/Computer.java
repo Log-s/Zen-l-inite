@@ -53,7 +53,7 @@ public class Computer extends Player {
             do {
                 p = this.pawnList.get((int) (Math.random()*this.pawnList.size()));
                 System.out.println(p);
-            } while (p.getColor() != Color.BLACK && p.getColor() != Color.ZEN);
+            } while (p.getColor() != PawnColor.BLACK && p.getColor() != PawnColor.ZEN);
         }
 
         System.out.println("break_2");

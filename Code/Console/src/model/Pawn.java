@@ -10,7 +10,9 @@ import java.io.Serializable;
  */
 public class Pawn implements Serializable {
 
-    private Color color;
+    private static final long serialVersionUID = 6529685098267757690L;
+
+    private PawnColor color;
     private int xPos;
     private int yPos;
 
@@ -19,11 +21,11 @@ public class Pawn implements Serializable {
     /**
      * Class construtor, creates the pawn
      * 
-     * @param color Color of the pawn (can be WHITE, BLACK, ZEN)
+     * @param color PawnColor of the pawn (can be WHITE, BLACK, ZEN)
      */
-    public Pawn(Color color) {
+    public Pawn(PawnColor color) {
         if (color == null) {
-            System.err.println("[!] Error : null value -color- in model.Pawn.Pawn(Color color)");
+            System.err.println("[!] Error : null value -color- in model.Pawn.Pawn(PawnColor color)");
         }
         else {
             this.color = color;
@@ -33,11 +35,11 @@ public class Pawn implements Serializable {
 
 
     /**
-     * getter that returns the color of the pawn
+     * getter that returns the PawnColor of the pawn
      * 
      * @return a Color
      */
-    public Color getColor() {
+    public PawnColor getColor() {
         return this.color;
     }
 

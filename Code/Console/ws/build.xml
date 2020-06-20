@@ -71,11 +71,9 @@
             </classpath>
             <formatter type="xml" />
             <test name="test.model.TestComputer"/>
-            <test name="test.model.TestGame"/>
             <test name="test.model.TestHuman"/>
             <test name="test.model.TestPawn"/>
             <test name="test.model.TestSquare"/>
-            <test name="test.util.TestSave"/>
         </junit>
         <mkdir dir="${testReport}"/>
         <junitreport todir="${testReport}">
@@ -85,11 +83,9 @@
             <report format="frames" todir="${testReport}"/>
         </junitreport>
         <delete file="TEST-test.model.TestComputer.xml"/>
-        <delete file="TEST-test.model.TestGame.xml"/>
         <delete file="TEST-test.model.TestHuman.xml"/>
         <delete file="TEST-test.model.TestPawn.xml"/>
         <delete file="TEST-test.model.TestSquare.xml"/>
-        <delete file="TEST-test.util.TestSave.xml"/>
   </target>
     
 </project>

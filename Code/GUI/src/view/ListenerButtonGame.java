@@ -1,32 +1,37 @@
 package view;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-import view.MainWindow;
-
-import java.awt.*;
-
-import java.awt.event.*;
-
+/**
+ * class that handles every button event
+ * 
+ * @author Léo DESMONTS - IUT VANNES - 2020
+ * @version 1.0
+ */
 public class ListenerButtonGame implements ActionListener {
     
     private MainWindow f;
 
+    /**
+     * Creates the Listener
+     * @param f MainWindow that posesses the main methods
+     */
     public ListenerButtonGame(MainWindow f) {
         this.f = f;
-
     }
 
+    /**
+     * Method when a button is clicked
+     * @param e Event
+     */
     public void actionPerformed(ActionEvent e) {
 
-        if (e.getSource() == Lanceur.pause) {
+        if (e.getSource() == PlayPanel.pause) {
             this.f.goToPause();
         }
 
-        else if (e.getSource() == Lanceur.exit) {
+        else if (e.getSource() == PlayPanel.exit) {
             this.f.goToQuitSave();
         }
 
@@ -78,12 +83,19 @@ public class ListenerButtonGame implements ActionListener {
         }
 
         else if (e.getSource() == Saves.loadGame) {
-            System.out.println("Load Game");
-            Saves.displaySaves();
+            this.f.goToSavesList();
         }
 
         else if (e.getSource() == Saves.savesBack) {
             this.f.goToMainMenu();
+        }
+
+        else if (e.getSource() == SavesList.savesListBack) {
+            this.f.goToSaves();
+        }
+
+        else if (e.getSource() == SavesList.go) {
+            this.f.goToGameLoaded(SavesList.list.getSelectedValue().toString());
         }
     }
 }

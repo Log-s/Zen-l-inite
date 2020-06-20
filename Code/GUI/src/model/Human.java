@@ -1,7 +1,6 @@
 package model;
 
 import java.util.ArrayList;
-import control.Prompt;
 
 /**
  * class that models a automated player
@@ -30,7 +29,7 @@ public class Human extends Player {
      * @return tab with move coordinates
      */
     public int[] newMove() {
-        int[] coordinates = Prompt.inputCoordinates();
+        int[] coordinates = {0,0};
         return coordinates;
     }
 

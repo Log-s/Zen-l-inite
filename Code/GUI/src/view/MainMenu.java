@@ -1,13 +1,12 @@
 package view;
 
-import java.awt.Graphics;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import java.awt.*;
 
-import view.MainWindow;
+import java.awt.Graphics;
+import java.awt.GridLayout;
 
 public class MainMenu extends JPanel {
 
@@ -15,15 +14,21 @@ public class MainMenu extends JPanel {
     public static JButton rules;
     public static JButton quit;
 
+    /**
+     * Creates the MainMenu Panel
+     * @param f the main frame on wich to apply the panel
+     */
     public MainMenu(MainWindow f) {
-        //title
 
-        play = new JButton("Play");
+        play = new JButton();
         play.addActionListener(new ListenerButtonGame(f));
-        rules = new JButton("Rules");
+        play.setIcon(new ImageIcon(new ImageIcon("../data/images/playButton.jpg").getImage().getScaledInstance(265, 100, java.awt.Image.SCALE_SMOOTH)));
+        rules = new JButton();
         rules.addActionListener(new ListenerButtonGame(f));
-        quit = new JButton("Quit");
+        rules.setIcon(new ImageIcon(new ImageIcon("../data/images/rulesButton.jpg").getImage().getScaledInstance(265, 100, java.awt.Image.SCALE_SMOOTH)));
+        quit = new JButton();
         quit.addActionListener(new ListenerButtonGame(f));
+        quit.setIcon(new ImageIcon(new ImageIcon("../data/images/quitButton.jpg").getImage().getScaledInstance(265, 100, java.awt.Image.SCALE_SMOOTH)));
 
         JPanel pane1 = new JPanel();
 
@@ -34,13 +39,13 @@ public class MainMenu extends JPanel {
         this.add(new JLabel());
         this.add(pane1);
         pane1.add(new JLabel());
-        pane1.add(this.play);
+        pane1.add(play);
         pane1.add(new JLabel());
         pane1.add(new JLabel());
-        pane1.add(this.rules);
+        pane1.add(rules);
         pane1.add(new JLabel());
         pane1.add(new JLabel());
-        pane1.add(this.quit);
+        pane1.add(quit);
         pane1.add(new JLabel());
         pane1.add(new JLabel());
         pane1.add(new JLabel());
@@ -48,6 +53,10 @@ public class MainMenu extends JPanel {
 
     }
 
+    /**
+     * repaints the background with an image
+     * @param g
+     */
     protected void paintComponent(Graphics g)
     {
         super.paintComponent(g);

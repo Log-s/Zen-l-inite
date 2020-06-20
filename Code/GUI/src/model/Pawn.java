@@ -10,6 +10,8 @@ import java.io.Serializable;
  */
 public class Pawn implements Serializable {
 
+    private static final long serialVersionUID = 6529685098267757690L;
+
     private PawnColor color;
     private int xPos;
     private int yPos;

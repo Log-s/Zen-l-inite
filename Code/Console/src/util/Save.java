@@ -73,7 +73,7 @@ public class Save {
         }
 
         else {
-            String path = "../data/saves/" + fileName;
+            String path = "../../saves/" + fileName;
 
             try {
                 ObjectInputStream file = new ObjectInputStream(new FileInputStream(path));

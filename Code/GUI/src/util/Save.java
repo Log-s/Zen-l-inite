@@ -35,13 +35,15 @@ public class Save {
             System.err.println("[!] Error - null value \"game\" | util.Save.writeSave(String fileName, Game game)");
         } else {
 
-            String path = "../data/saves/" + fileName;
+            String path = "../../saves/" + fileName;
 
             try {
                 FileOutputStream filePath = new FileOutputStream(path);
                 ObjectOutputStream file = new ObjectOutputStream(filePath);
 
                 file.writeObject(game);
+
+                System.out.println("HERE");
 
                 file.close();
             } catch (FileNotFoundException e) {
@@ -73,7 +75,7 @@ public class Save {
         }
 
         else {
-            String path = "../data/saves/" + fileName;
+            String path = "../../saves/" + fileName;
 
             try {
                 ObjectInputStream file = new ObjectInputStream(new FileInputStream(path));
