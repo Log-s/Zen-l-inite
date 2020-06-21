@@ -39,4 +39,9 @@ Evaluation :
 * 24 juin : début des oraux de présentation
 
 
-Informations conmplétaires dans les pdf "PrésenationProjet.pdf".
+Informations complétaires dans les pdf "PrésenationProjet.pdf".
+
+
+Installation :
+-
+

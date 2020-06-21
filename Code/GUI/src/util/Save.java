@@ -43,8 +43,6 @@ public class Save {
 
                 file.writeObject(game);
 
-                System.out.println("HERE");
-
                 file.close();
             } catch (FileNotFoundException e) {
                 e.printStackTrace();

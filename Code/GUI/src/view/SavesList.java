@@ -30,6 +30,7 @@ import java.util.stream.Stream;
  * @author Léo DESMONTS - IUT VANNES - 2020
  * @version 1.0
  */
+@SuppressWarnings("unchecked")
 public class SavesList extends JPanel {
 
     public static JList list;

@@ -35,7 +35,7 @@ public class Save {
             System.err.println("[!] Error - null value \"game\" | util.Save.writeSave(String fileName, Game game)");
         } else {
 
-            String path = "../../GUI/data/saves/" + fileName;
+            String path = "../../saves/" + fileName;
 
             try {
                 FileOutputStream filePath = new FileOutputStream(path);
@@ -64,7 +64,6 @@ public class Save {
     public static Game readSave(String fileName) {
 
         Game game = new Game();
-        System.out.println("break save");
 
         if (fileName == null) {
             System.err.println("[!] Error - null value \"fileName\" | util.Save.readSave(String fileName)");
