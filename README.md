@@ -44,4 +44,8 @@ Informations complétaires dans les pdf "PrésenationProjet.pdf".
 
 Installation :
 -
+* Prérequis :
+	* Vous devez avoir java et son jdk d'installer, ainsi que le chemin d'acces des commande ```java``` et ```javac``` reseignés dans votre PATH.
 
+* Installation :
+	* Hello world
