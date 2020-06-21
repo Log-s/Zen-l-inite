@@ -208,11 +208,6 @@ public class Game implements Serializable{
      */
     public boolean isMovePossible(Pawn p, int x, int y) {
 
-        /*
-        Ne fontionne pas :
-	        $ bloquage par pions ennemis diagonales
-        */
-
         boolean possible = false;
 
         if (p == null) {
@@ -223,7 +218,7 @@ public class Game implements Serializable{
 
             int xP = p.getXPos();
             int yP = p.getYPos();
-            PawnColor c = PawnColor.BLACK; //to adapt to ZEN
+            PawnColor c = PawnColor.BLACK; 
             if (p.getColor() == PawnColor.BLACK) {
                 c = PawnColor.WHITE;
             }
@@ -566,7 +561,7 @@ public class Game implements Serializable{
 
         try {
 
-            Scanner sc = new Scanner(new FileReader("../data/config/pwnList2.txt"));
+            Scanner sc = new Scanner(new FileReader("../data/config/pwnList.txt"));
             sc.useDelimiter("\\s*:\\s*");
 
             while(sc.hasNext()){

@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 
 import model.PawnColor;
 import model.Pawn;
-import model.Color;
 
 public class TestPawn {
     

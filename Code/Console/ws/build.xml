@@ -6,7 +6,7 @@
     <property name="main.src.dir" location="../src/"/>
     <property name="test.build.dir" location="../build/test/"/>
     <property name="test.src.dir" location="../src/test/"/>
-    <property name="dist" location="../"/>
+    <property name="dist" location="../build"/>
     <property name="javadoc" location="../javaDoc" />
     <property name="testReport" location="../testReport"/>
 
