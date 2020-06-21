@@ -44,4 +44,18 @@ Informations complétaires dans les pdf "PrésenationProjet.pdf".
 
 Installation :
 -
+* Prérequis :
+	* Vous devez avoir java et son jdk d'installer, ainsi que le chemin d'acces des commande ```java``` et ```javac``` reseignés dans votre PATH.
 
+* Installation :
+	* Linux :
+		* Naviguez vers le dossier ```Code``` et tappez la commande suivante ```chmod +x install.sh && ./install.sh```
+		* C'est tout ! Vous pouvez à présent utiliser l'utilitaire zen.sh pour lancer l'application.
+		* Pour afficher les options : ```./zen.sh -h```
+	* Windows :
+		* Naviguez vers le dossier ```Code``` et cliquer sur le fichier ```install.bat```
+		* C'est tout ! Vous pouvez à présents uitiliser les utilitaires zenConsole.bat et zenGUI.bat en fonction de la version que vous voulez utilisez.
+
+> Notez que le dossier Code doit être placé là où vous souhaitez installer l'application (si vous le déplacer vous devrez reprocéder à l'étape d'installation. Vous pouvez en revanche déplacer les utilitaire de lancement (du moment que ces deriers restent sur le même disque que le dossier d'installation.
+
+NB : La version Windows, comporte des problèmes d'encodage pour la page des règles. Le temps n'étais pas suffisant pour y remedier.
