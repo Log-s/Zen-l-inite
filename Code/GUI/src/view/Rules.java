@@ -52,7 +52,6 @@ public class Rules extends JPanel {
             + "<p>"+ruleTab+"The ZEN pawn CANNOT be moved unless another pawn is position right next to it (in any</p>"
             + "<p>"+ruleTab+"direction)</p>"
             + "<p></p>"
-            + "<p></p>"
             + "<p>Have fun !</p>"
             + "<p>Author : Léo DESMONTS - IUT Vannes - 2020</p>"
             + "<p>Graphical version</p>";

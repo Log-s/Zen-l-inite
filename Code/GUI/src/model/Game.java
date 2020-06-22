@@ -292,7 +292,8 @@ public class Game implements Serializable{
                 }
                 if (p.getColor() == PawnColor.ZEN) {
                     boolean tmp = false;
-                    if ((x>0 && y>0 &&!this.grid[p.getYPos()-1][p.getXPos()-1].isFree()) ||  (y>0 && !this.grid[p.getYPos()-1][p.getXPos()].isFree()) || (y>0 && x<this.SIZE-1 !this.grid[p.getYPos()-1][p.getXPos()+1].isFree()) || (x>0 && !this.grid[p.getYPos()][p.getXPos()-1].isFree()) || (x<this.SIZE-1 && !this.grid[p.getYPos()][p.getXPos()+1].isFree()) || (y<this.SIZE-1 && x>0 && !this.grid[p.getYPos()+1][p.getXPos()-1].isFree()) || (y<this.SIZE-1!this.grid[p.getYPos()+1][p.getXPos()].isFree()) || (x<this.SIZE-1 && y<this.SIZE-1 && !this.grid[p.getYPos()+1][p.getXPos()+1].isFree())){
+                    System.out.println();
+                    if ((p.getXPos()>0 && p.getYPos()>0 &&!this.grid[p.getYPos()-1][p.getXPos()-1].isFree()) ||  (p.getYPos()>0 && !this.grid[p.getYPos()-1][p.getXPos()].isFree()) || (p.getYPos()>0 && p.getXPos()<this.SIZE-1 && !this.grid[p.getYPos()-1][p.getXPos()+1].isFree()) || (p.getXPos()>0 && !this.grid[p.getYPos()][p.getXPos()-1].isFree()) || (p.getXPos()<this.SIZE-1 && !this.grid[p.getYPos()][p.getXPos()+1].isFree()) || (p.getYPos()<this.SIZE-1 && p.getXPos()>0 && !this.grid[p.getYPos()+1][p.getXPos()-1].isFree()) || (p.getYPos()<this.SIZE-1 && !this.grid[p.getYPos()+1][p.getXPos()].isFree()) || (p.getXPos()<this.SIZE-1 && p.getYPos()<this.SIZE-1 && !this.grid[p.getYPos()+1][p.getXPos()+1].isFree())){
                         tmp = true;
                     }
                     if (tmp != possible) {
