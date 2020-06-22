@@ -235,6 +235,8 @@ public class Prompt {
 
         do {
 
+            verif = "y";
+
             do {
                 System.out.print("Do you want to quit ? (y/n)\n> ");
                 q = sc.nextLine();
