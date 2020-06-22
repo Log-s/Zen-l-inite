@@ -111,8 +111,8 @@ public class Game implements Serializable{
 
     /**
      * method used to end the game when someone wins
-     * n = 0  =>  a player won
-     * n = 1  =>  the game ended on a tie
+     * n = 0  :  a player won
+     * n = 1  :  the game ended on a tie
      * 
      * @param n int that decides the end scenario
      */

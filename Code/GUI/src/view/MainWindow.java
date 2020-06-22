@@ -13,7 +13,7 @@ import java.awt.CardLayout;
 import java.awt.Dimension;
 
 /**
- * class that displays the playing board
+ * class that models the main Frame
  * 
  * @author Léo DESMONTS - IUT VANNES - 2020
  * @version 1.0

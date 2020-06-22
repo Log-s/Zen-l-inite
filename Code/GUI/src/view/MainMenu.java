@@ -8,6 +8,12 @@ import javax.swing.JPanel;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 
+/**
+ * class that displays main menu
+ * 
+ * @author Léo DESMONTS - IUT VANNES - 2020
+ * @version 1.0
+ */
 public class MainMenu extends JPanel {
 
     public static JButton play;
