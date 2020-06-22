@@ -2,60 +2,60 @@
 
 ![alt text](https://github.com/Log-s/Zen-l-initie/blob/master/Resources/logoZen.png)
 
-Projet de programmation de fin de 1ere année de DUT Vannes.
+First year end programmation project at DUT INFO Vannes.
 	
 
-Il s'agit de créer un jeu sur plusieurs mois, individuellement. Les règles sont disponibles dans le pdf "besoin du client". L'ensemble de l'organisation du projet est bouleversé par le confinement général et la fermeture des établissements d'enseignements à cause de la pandémie du COVID-19.
+It's about creating a game on several months, individually. The rules ares available in the "besoin du client" PDF file. The entire project organization is overwhelmed by the general containment and closure of educational institutions as a result of the VIDOC-19 pandemic.
 
 
-Les objectifs du projet sont d'accroitre ses compétences :
-* D'analyse
-* De conception
-* En codage
-* En test
-* En gestion de projet
+The objectives of the project are to increase our skills in :
+* Analysis
+* Design
+* Coding
+* Tests
+* Project management
 
     
-Organisation :
+Organization :
 -
-Nous disposons de 1h30 de travail encadré par semaine, le reste du travail doit être réalisé en autonomie.
-Juste avant les vacances d'été nous disposons de 2 semaines de codage intensifs, dédiées au projet.
+We have 1h30 of supervised work per week, the rest of the work must be done independently.
+Just before the summer holidays we have ~~two~~ one week~~s~~ of intensive coding, dedicated to the project.
 
 
-Timeline Théorique :
+Theoretical timeline :
 -
-* Semaine 12 : début du projet
-* Semaine 12-14 : élaboration du cahier des charges
-* Semaines 15-20 : phase d'analyse et de conception
-* Semaines 16-26 : phase d'implementation   
+* Week 12 : Project's start
+* Weeks 12-14 : specification development
+* Weeks 15-20 : analysis and design phase period
+* Weeks 16-26 : implementation period   
 
 
 Evaluation :
 -
-* 6 avril : cahier des charges prévisionnel de gestion de projet
-* 18 mai : cahier d'analyse et de conception
-* 22 juin : 2 pages de bilan personnel
-* 22 juin : rendu et rapport final du projet
-* 24 juin : début des oraux de présentation
+* 6 april : provisional requirement specifications and project managment
+* 18 mai : analysis and design notebook
+* ~~22 juin : ~2 pages of personal assessment~~
+* 22 juin : final report of the project
+* ~~24 juin : oral presentations~~
 
 
-Informations complétaires dans les pdf "PrésenationProjet.pdf".
+More informations in the "PrésenationProjet.pdf" PDF file.
 
 
 Installation :
 -
-* Prérequis :
-	* Vous devez avoir java et son jdk d'installer, ainsi que le chemin d'acces des commande ```java``` et ```javac``` reseignés dans votre PATH.
+* Prerequisite :
+	* You must have java and it's JDK intsalled on your machine, and the access paths to the ```java``` and ```javac``` commands in your environment's PATH.
 
 * Installation :
 	* Linux :
-		* Naviguez vers le dossier ```Code``` et tappez la commande suivante ```chmod +x install.sh && ./install.sh```
-		* C'est tout ! Vous pouvez à présent utiliser l'utilitaire zen.sh pour lancer l'application.
-		* Pour afficher les options : ```./zen.sh -h```
+		* Navigate to the ```Code``` folder and type the following command : ```chmod +x install.sh && ./install.sh```
+		* That's it ! You can now use the zen.sh utility, and move it around.
+		* To display the options : ```./zen.sh -h```
 	* Windows :
-		* Naviguez vers le dossier ```Code``` et cliquer sur le fichier ```install.bat```
-		* C'est tout ! Vous pouvez à présents uitiliser les utilitaires zenConsole.bat et zenGUI.bat en fonction de la version que vous voulez utilisez.
+		* Navigate to the ```Code``` folder and click on the ```install.bat``` file.
+		* That's it !  You can now use the zenConsole.bat et zenGUI.bat executables (and move them around) to launch the desired versions.
 
-> Notez que le dossier Code doit être placé là où vous souhaitez installer l'application (si vous le déplacer vous devrez reprocéder à l'étape d'installation. Vous pouvez en revanche déplacer les utilitaire de lancement (du moment que ces deriers restent sur le même disque que le dossier d'installation.
+> Please note that the ```Code``` folder needs to be at the location you want to install the app to (if you move it you will have to reinstall it). You can move the executables around on the computer (as long as they stay on the same hard drive then the installation folder).
 
-NB : La version Windows, comporte des problèmes d'encodage pour la page des règles. Le temps n'étais pas suffisant pour y remedier.
+NB : The Windows version is a bit buggy (encoding problems) on the Rules page. There wasn't enough time to take care of it.
