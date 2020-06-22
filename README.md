@@ -3,7 +3,9 @@
 ![alt text](https://github.com/Log-s/Zen-l-initie/blob/master/Resources/logoZen.png)
 
 First year end programmation project at DUT INFO Vannes.
-	
+
+
+If you are reading this on a downloaded version, make sure to check out the live version here : https://github.com/Log-s/Zen-l-initie It's much pretier I promise ;-)
 
 It's about creating a game on several months, individually. The rules ares available in the "besoin du client" PDF file. The entire project organization is overwhelmed by the general containment and closure of educational institutions as a result of the VIDOC-19 pandemic.
 
