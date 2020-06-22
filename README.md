@@ -63,3 +63,6 @@ Installation :
 > Please note that the ```Code``` folder needs to be at the location you want to install the app to (if you move it you will have to reinstall it). You can move the executables around on the computer (as long as they stay on the same hard drive then the installation folder).
 
 NB : The Windows version is a bit buggy (encoding problems) on the Rules page. There wasn't enough time to take care of it.
+
+
+You can find a UserGuide in the ```Conception``` folder if you need to.
