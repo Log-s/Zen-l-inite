@@ -34,7 +34,7 @@ Evaluation :
 -
 * 6 april : provisional requirement specifications and project managment
 * 18 mai : analysis and design notebook
-* ~~22 juin : ~2 pages of personal assessment~~
+* ~~22 juin : 2 pages of personal assessment~~
 * 22 juin : final report of the project
 * ~~24 juin : oral presentations~~
 
