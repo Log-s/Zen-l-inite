@@ -6,7 +6,6 @@ First year end programmation project at DUT INFO Vannes.
 
 
 If you are reading this on a downloaded version, make sure to check out the live version here :
-
 https://github.com/Log-s/Zen-l-initie It's much pretier I promise ;-)
 
 
