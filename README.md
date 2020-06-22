@@ -48,6 +48,9 @@ More informations in the "PrésenationProjet.pdf" PDF file.
 
 Installation :
 -
+I have decided not to base the installation of my application on ANT, because I find it personnaly very hard to to use, and very intuitive for a daily user. The tests and javadoc can still be ran with it, but the installation is as follows :
+
+
 * Prerequisite :
 	* You must have java and it's JDK intsalled on your machine, and the access paths to the ```java``` and ```javac``` commands in your environment's PATH.
 
