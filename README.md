@@ -3,7 +3,11 @@
 ![alt text](https://github.com/Log-s/Zen-l-initie/blob/master/Resources/logoZen.png)
 
 First year end programmation project at DUT INFO Vannes.
-	
+
+
+If you are reading this on a downloaded version, make sure to check out the live version here :
+https://github.com/Log-s/Zen-l-initie It's much pretier I promise ;-)
+
 
 It's about creating a game on several months, individually. The rules ares available in the "besoin du client" PDF file. The entire project organization is overwhelmed by the general containment and closure of educational institutions as a result of the VIDOC-19 pandemic.
 
@@ -44,6 +48,9 @@ More informations in the "PrésenationProjet.pdf" PDF file.
 
 Installation :
 -
+I have decided not to base the installation of my application on ANT, because I find it personnaly very hard to to use, and very intuitive for a daily user. The tests and javadoc can still be ran with it, but the installation is as follows :
+
+
 * Prerequisite :
 	* You must have java and it's JDK intsalled on your machine, and the access paths to the ```java``` and ```javac``` commands in your environment's PATH.
 
@@ -59,3 +66,6 @@ Installation :
 > Please note that the ```Code``` folder needs to be at the location you want to install the app to (if you move it you will have to reinstall it). You can move the executables around on the computer (as long as they stay on the same hard drive then the installation folder).
 
 NB : The Windows version is a bit buggy (encoding problems) on the Rules page. There wasn't enough time to take care of it.
+
+
+You can find a UserGuide in the ```Conception``` folder if you need to.
