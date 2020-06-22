@@ -4,6 +4,7 @@
 # renders an executable file, that can be moved, and can lauch both versions
 
 dir=`pwd`
+mkdir saves
 
 #---------------------------------------------------------------------------------------------------------------------------------------#
 
