@@ -70,4 +70,6 @@ NB : The Windows version is a bit buggy (encoding problems) on the Rules page. T
 
 You can find a UserGuide in the ```Conception``` folder if you need to.
 
+
+
 *Special thoughts to V. Chiprianov, our programming teacher.*
